@@ -1,0 +1,11 @@
+4
+3 farmer 
+"truth or dare?" truth dare -1,1,0,0 1,-1,1,0
+"tell the truth about...?" yes no 5,-5,0,0 -5,5,0,0
+"do something...?" yes no 0,0,2,-2 0,0,-2,2
+1 queen 
+"do you love me?" yes no 0,10,-10,0 0,-5,-5,0
+1 wizard 
+"do you want to be external? Give me a donation." yes no -10,0,0,0 0,-10,0,0
+1 crown 
+"do you want to watch a play on ceremony?" yes no -5,5,-5,-5 0,-10,0,0
