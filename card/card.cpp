@@ -67,6 +67,7 @@ class Card {
         Card(const string name, const int quesCnt) : name(name), questionCnt(quesCnt){
             nowQuestion = 0;
             descript = "";
+            nowChoice = 0;
         };
         ~Card() {};
         void setTotalOpt(const Description opt){
@@ -130,6 +131,7 @@ class NormalCard : public Card{
         NormalCard(const string name, const int quesCnt) : Card(name, quesCnt){
             nowQuestion = 0;
             descript = "";
+            nowChoice = 0;
         };
 
         ~NormalCard() {};
@@ -192,17 +194,13 @@ void NormalCard :: GameCallingPrint()
 // 旁白(連續旁白、無數值增減)
 class NorrationCard : public Card{
     private:
-        int desCnt;
         string* des;
     public:
         NorrationCard() {};
         NorrationCard(const string name, const int quesCnt) : Card(name, quesCnt){
             nowQuestion = 0;
             descript = "";
-        };
-        NorrationCard(const string name, const int desCnt){
-            this->desCnt = desCnt;
-            des = new string[desCnt];
+            des = new string[quesCnt];
         };
         
         ~NorrationCard() {
@@ -216,7 +214,7 @@ class NorrationCard : public Card{
 
 };
 void NorrationCard :: GameCallingPrint(){
-    for(int i = 0 ; i < desCnt ; i++){
+    for(int i = 0 ; i < questionCnt ; i++){
         cout << des[i] << endl;
         while(!(GetAsyncKeyState(VK_SPACE) && 0x8000)){ // 等待玩家按下空白鍵
             Sleep(100);  // 100秒後，自動跳出迴圈
@@ -249,7 +247,7 @@ class EventCard : public Card{
         };
         //// setting
         void setTotalEventOpt(const eventDes opt){
-            totalEvent.push_back(opt);
+            totalEventOpt.push_back(opt);
         };
         void setIsEnter(const bool arr[2], const string EventDes, const string EventNorration){ // 設定進入事件的必要問題
             isEnter[0] = arr[0];
@@ -263,12 +261,21 @@ class EventCard : public Card{
             }
         };
         //// 判斷
-        bool isEnterEvent(const int choice){ // choice: 選擇左邊: 傳入0，選擇右邊: 傳入1
+        bool isEnterEvent(){ // choice: 選擇左邊: 傳入0，選擇右邊: 傳入1
             cout << name << ": " << EnterEvent << endl;
-            if(isEnter[choice]){ // 若選擇的那邊會進入事件
-                cout << EventNorration << endl;
-                isEvent = 1;
-                return 1;
+            if (GetAsyncKeyState(VK_LEFT) && 0x8001){ // left
+                if(isEnter[0]){
+                    cout << EventNorration << endl;
+                    isEvent = 1;
+                    return 1;
+                }
+            }
+            else if (GetAsyncKeyState(VK_RIGHT) && 0x8001){
+                if(isEnter[1]){
+                    cout << EventNorration << endl;
+                    isEvent = 1;
+                    return 1;
+                }
             }
             return 0;
         };
@@ -330,7 +337,7 @@ void EventCard :: GameCallingPrint(){
 }
 ///////////////////////////////////////////
 int main() {
-
+    cout << "initialize the information.../" << endl;
     int quesCnt, val1[4], val2[4], index = 0, cardCnt;
     string operation, name, question, opt1, opt2;
     string line; //temp string to change str in int
@@ -339,7 +346,7 @@ int main() {
     //// cardText.txt
     string cardPath = "./cardText.txt";
     ifstream cardFile(cardPath);
-    vector<NormalCard> myCard; 
+    vector<NormalCard> normalCard; 
     if (cardFile.is_open()){
         // file 總共行數
         getline(cardFile, line, '\n');
@@ -352,7 +359,7 @@ int main() {
             // name
             getline(cardFile, name, ' ');
             /// create card
-            myCard.push_back(NormalCard(name, quesCnt));
+            normalCard.push_back(NormalCard(name, quesCnt));
             /// create description
             for (int i = 0 ; i < quesCnt ; i++){
                 // question
@@ -384,9 +391,9 @@ int main() {
                 /// store into description
                 Description opt = Description(question, opt1, opt2, val1, val2);
                 /// set card's description
-                myCard[index].setTotalOpt(opt);
+                normalCard[index].setTotalOpt(opt);
             }
-            // 下一個myCard
+            // 下一個normalCard
             index++;
         }
     }
@@ -395,32 +402,25 @@ int main() {
         return 0;
     }
 
-    for(int i = 0; i < myCard.size(); i++){
-        myCard[i].GameCallingPrint();
-        if(GetAsyncKeyState(VK_A) && 0x8000){ // 左邊被按
-            myCard[i].setNowChoice(1);
-        }
-        else if(GetAsyncKeyState(VK_D) && 0x8000){ // 左邊被按
-            myCard[i].setNowChoice(2);
-        }
-    }
+
     cardFile.close();
     ///////// description of card //////////////
     string descriptPath = "./descript.txt";
     ifstream desFile(descriptPath);
-    int desCnt = 0, index = 0 ;
+    int desCnt = 0;
+    index = 0 ;
     if(desFile.is_open()){
         getline(desFile, line, ' ');
         desCnt = atoi(line.c_str());
         getline(desFile, name, '\n');
-        for(int i = 0 ; i < myCard.size() ; i++){
-            if(myCard[i].getName().compare(name) == 0){
+        for(int i = 0 ; i < normalCard.size() ; i++){
+            if(normalCard[i].getName().compare(name) == 0){
                 index = i; // record the index, to add descript
             }
         }
         for(int i = 0; i < desCnt ; i++){
             getline(desFile, line);
-            myCard[index].setDescript(line);
+            normalCard[index].setDescript(line);
         }
 
     }
@@ -434,7 +434,7 @@ int main() {
     vector<EventCard> eventCard;
     int eventCardCnt = 0, totalQuesInEvent = 0; 
     int leftChoice = 0, rightChoice = 0;
-    int index = 0;
+    index = 0;
     string EventNorration;
     if(eventFile.is_open()){
         getline(eventFile, line, '\n');
@@ -497,11 +497,16 @@ int main() {
                 opt.setNextIdex(leftChoice, rightChoice);
                 eventCard[index].setTotalEventOpt(opt);
             }
+            index++;
         }
     }
     else{
         cout << "eventFile cannot open." << endl;
     }
+    // eventCard[0].isEnterEvent();
+    // eventCard[0].GameCallingPrint();
+    eventFile.close();
+    cout << "pause ENTER to start Game." << endl;
     //////////////////////////////////////////
     // store some card information, etc.
     // cout << "開始遊戲中.../" << endl;
