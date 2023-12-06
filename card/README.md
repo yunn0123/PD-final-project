@@ -1,5 +1,6 @@
 # Card
 ## 主要說明
+> 編碼：ANSI，只能儲存中文跟英文。
 ### ` NormalCard `
 - 儲存方式(`cardText.txt`)
     ```
