@@ -1,9 +1,6 @@
-# fp
-## Player
-## Ending
-## Card
-### 主要說明
-#### ` NormalCard `
+# Card
+## 主要說明
+### ` NormalCard `
 - 儲存方式(`cardText.txt`)
     ```
     [卡牌的總數量]
@@ -19,7 +16,7 @@
 - 函數注意事項：
   1. `GameCallingPrint()` : 由於會用到上次選擇`nowChoice`，所以請在呼叫該函數前先呼叫`setNowChoice(int choice)`設定玩家的選擇。  
       > 選擇設定：左邊傳入 $1$ ， 右邊傳入 $2$。
-#### `RandomCard`
+### `RandomCard`
 - 儲存方式(`randomCard.txt`)
     ```
     [卡牌的總數量]
@@ -35,7 +32,7 @@
 - 函數注意事項：
   1. `GameCallingPrint()` : 由於會用到上次選擇`nowChoice`，所以請在呼叫該函數前先呼叫`setNowChoice(int choice)`設定玩家的選擇。  
       > 選擇設定：左邊傳入 $1$ ， 右邊傳入 $2$。
-#### `EventCard`
+### `EventCard`
 - 儲存方式(`event.txt`)
     ```
     [卡牌的總數量]
@@ -56,5 +53,3 @@
 - 函數注意事項：
   1. 要進入該event的話，先呼叫`isEnterEvent()`，會印出進入事件的描述以及讓玩家選擇選項，若玩家選擇到進入的選項，會印出旁白並回傳 $1$；沒有進入會回傳 $0$。
   2. `GameCallingPrint()` : 會讀取static 變數`isEvent`(在`isEnterEvent()`會設定好)，為迴圈(所以不會在event中出現其他卡牌)，會處理好玩家選擇以及數值增減的部分。
-##  Game
-##  Item
