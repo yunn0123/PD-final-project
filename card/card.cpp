@@ -8,7 +8,7 @@ using namespace std;
 class Description{
     friend class Card;
     friend class NormalCard; 
-    friend class NorrationCard; 
+    friend class RandomCard; 
     friend class EventCard;
     protected:
         string question;
@@ -147,10 +147,10 @@ void NormalCard :: GameCallingPrint()
 {
     // choice: game傳入玩家選擇
     // 左 = 1 ，右 = 2
-    // 0 -> 1,2  (+1 , +2) 0
-    // 1 -> 3,4  (+2 , +3) 1
-    // 2 -> 5,6  (+3 , +4) 1
-    // 3 -> 7,8  (+4 , +5) 2
+    // 0 -> 1, 2  (+1 , +2) 0
+    // 1 -> 3, 4  (+2 , +3) 1
+    // 2 -> 5, 6  (+3 , +4) 1
+    // 3 -> 7, 8  (+4 , +5) 2
     nowQuestion += (nowQuestion + nowChoice);
     // if last question has asked, return first question
     if(nowQuestion >= questionCnt){
@@ -191,19 +191,19 @@ void NormalCard :: GameCallingPrint()
     cout << endl;
 }
 ////////////////////////////////////////////////
-// 旁白(連續旁白、無數值增減)
-class NorrationCard : public Card{
+// 隨機(數值自行random)
+class RandomCard : public Card{
     private:
         string* des;
     public:
-        NorrationCard() {};
-        NorrationCard(const string name, const int quesCnt) : Card(name, quesCnt){
+        RandomCard() {};
+        RandomCard(const string name, const int quesCnt) : Card(name, quesCnt){
             nowQuestion = 0;
             descript = "";
             des = new string[quesCnt];
         };
         
-        ~NorrationCard() {
+        ~RandomCard() {
             delete [] des;
             des = nullptr;
         };
@@ -213,20 +213,21 @@ class NorrationCard : public Card{
         void GameCallingPrint();
 
 };
-void NorrationCard :: GameCallingPrint(){
-    for(int i = 0 ; i < questionCnt ; i++){
-        cout << des[i] << endl;
-        while(!(GetAsyncKeyState(VK_SPACE) && 0x8000)){ // 等待玩家按下空白鍵
-            Sleep(100);  // 100秒後，自動跳出迴圈
-        }
-    }
+void RandomCard :: GameCallingPrint(){
+    // for(int i = 0 ; i < questionCnt ; i++){
+    //     cout << des[i] << endl;
+    //     while(!(GetAsyncKeyState(VK_SPACE) && 0x8000)){ // 等待玩家按下空白鍵
+    //         Sleep(100);  // 100秒後，自動跳出迴圈
+    //     }
+    // }
 }
 ////////////////////////////////////////////////
 // 事件(進入不可出來，除非選到特定的選項)
 class EventCard : public Card{
-    static int isEvent;
+    static int isEvent;    // 是否在event中
+    static int isHappened; // 該event有出現過
     private:
-        int contiVal[4]; // 持續變化的數值(可不用，就全是0)
+        // int contiVal[4]; // 持續變化的數值(可不用，就全是0)
         string EnterEvent; // 第一張敘述，是否要進入該事件
         string EventNorration; // 進入事件的旁白
         bool isEnter[2]; // isEnter[0]: 左邊選項是否進入事件, isEnter[1]: 右邊選項是否進入事件
@@ -256,9 +257,9 @@ class EventCard : public Card{
             this->EventNorration = EventNorration;
         };
         void setContiVal(const int val[4]){
-            for(int i = 0 ; i < 3 ; i++){
-                contiVal[i] = val[i];
-            }
+            // for(int i = 0 ; i < 3 ; i++){
+            //     contiVal[i] = val[i];
+            // }
         };
         //// 判斷
         bool isEnterEvent(){ // choice: 選擇左邊: 傳入0，選擇右邊: 傳入1
@@ -269,12 +270,18 @@ class EventCard : public Card{
                     isEvent = 1;
                     return 1;
                 }
+                else{
+                    return 0;
+                }
             }
             else if (GetAsyncKeyState(VK_RIGHT) && 0x8001){
                 if(isEnter[1]){
                     cout << EventNorration << endl;
                     isEvent = 1;
                     return 1;
+                }
+                else{
+                    return 0;
                 }
             }
             return 0;
@@ -329,7 +336,8 @@ void EventCard :: GameCallingPrint(){
         }
         // call Player value change
         // updateValues(val[0], val[1], val[2], val[3]);
-        
+        // if ending: ?
+        // write the keyboard condition
 
     }
     
@@ -503,8 +511,8 @@ int main() {
     else{
         cout << "eventFile cannot open." << endl;
     }
-    // eventCard[0].isEnterEvent();
-    // eventCard[0].GameCallingPrint();
+    eventCard[0].isEnterEvent();
+    eventCard[0].GameCallingPrint();
     eventFile.close();
     cout << "pause ENTER to start Game." << endl;
     //////////////////////////////////////////
