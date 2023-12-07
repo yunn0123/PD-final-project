@@ -1,11 +1,7 @@
-4
-3 farmer 
-"truth or dare?" truth dare
-"tell the truth about...?" yes no
-"do something...?" yes no
-1 queen 
-"do you love me?" yes no
-1 wizard 
-"do you want to be external? Give me a donation." yes no
-1 crown 
-"do you want to watch a play on ceremony?" yes no
+3
+1 不知名藥水
+"你面前出現一個透明無色無味的玻璃瓶狀的...水？" 喝掉 不喝
+1 黑盒子
+"你打開房間大門赫然發現地上放著一塊完全不透色的黑色立方體，你摸了摸，摸到了蓋子" 打開 不開
+1 蒙面人
+"一個身穿黑袍的人快速跑過你身側，但不小心撞到了你" 拉住他的手 倒在地上
