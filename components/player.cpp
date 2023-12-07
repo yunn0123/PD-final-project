@@ -14,7 +14,12 @@ string printChange(int change){
     }
     return out;
 }
-Player :: Player() : value1(INI_VAL), value2(INI_VAL), value3(INI_VAL), value4(INI_VAL) {}
+Player :: Player() : value1(INI_VAL), value2(INI_VAL), value3(INI_VAL), value4(INI_VAL) {
+    chV1.push_back(INI_VAL);
+    chV2.push_back(INI_VAL);
+    chV3.push_back(INI_VAL);
+    chV4.push_back(INI_VAL);
+}
 
 void Player :: updateValues(int change1, int change2, int change3, int change4) 
 {
@@ -22,6 +27,10 @@ void Player :: updateValues(int change1, int change2, int change3, int change4)
     value2 += change2;
     value3 += change3;
     value4 += change4;
+    chV1.push_back(value1);
+    chV2.push_back(value2);
+    chV3.push_back(value3);
+    chV4.push_back(value4);
     cout << "A: " << value1 << printChange(change1) << ' ';
     cout << "B: " << value2 << printChange(change2) << ' ';
     cout << "C: " << value3 << printChange(change3) << ' ';
