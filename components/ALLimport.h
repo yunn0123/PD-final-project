@@ -132,6 +132,7 @@ class Player {
         int choiceList[100] = {0};   //針對有兩個選項的Card，用陣列存player從遊戲一開始到現在的選擇(1為左，2為右) ->處理連續卡牌
     public:
         int value1, value2, value3, value4; // 四個主要數值
+        vector<int> chV1, chV2, chV3, chV4; //存四個數值遊戲期間變化
         Player() : value1(INI_VAL), value2(INI_VAL), value3(INI_VAL), value4(INI_VAL) {}
 
         void updateValues(int change1, int change2, int change3, int change4); //更新玩家的數值並印出
