@@ -1,7 +1,7 @@
 # Card
 ## 主要說明
-> 編碼：ANSI，只能儲存中文跟英文。  
-> 執行方式：在termainal(CMD, 命令提示字元)打指令  
+> 編碼：ANSI，只能儲存中文跟英文。    
+> 執行方式：在termainal(CMD, 命令提示字元)打指令    
     ```
     cd 該file
     g++ mainFunc.cpp card.cpp description.cpp player.cpp
