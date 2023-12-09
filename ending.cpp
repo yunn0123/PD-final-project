@@ -1,29 +1,28 @@
 #include <iostream>
 using namespace std;
-#include "ALLimport.h"
 
-using namespace std;
+#include "./headFile/ending.h"
 
-// æª¢æŸ¥ä¸¦è§¸ç™¼éŠæˆ²çµå±€
+// ÀË¬d¨ÃÄ²µo¹CÀ¸µ²§½
 void Ending :: checkForEnding(Player& player, Game& game)
 {
-    // è¨­è¨ˆå¹³è¡¡çš„æ•¸å€¼ï¼ˆå¯æ”¹ï¼‰
+    // ³]­p¥­¿Åªº¼Æ­È¡]¥i§ï¡^
     const int MIN_BALANCE_VALUE = 5;
     const int MAX_BALANCE_VALUE = 20;
 
-    // æª¢æŸ¥æ˜¯å¦é”åˆ°éœ€é‡çŽ©çš„æ¢ä»¶
+    // ÀË¬d¬O§_¹F¨ì»Ý­«ª±ªº±ø¥ó
     if (!isValuesBalanced(player, MIN_BALANCE_VALUE, MAX_BALANCE_VALUE)) {
         restartEnding();
         return;
     }
 
-    // æª¢æŸ¥æ˜¯å¦é”åˆ°æ™®é€šçµå±€çš„æ¢ä»¶
+    // ÀË¬d¬O§_¹F¨ì´¶³qµ²§½ªº±ø¥ó
     if (isNormalEndingAchieved(game)) {
         normalEnding();
         return;
     }
 
-    // æª¢æŸ¥æ˜¯å¦è§£éŽ–éš±è—çµå±€
+    // ÀË¬d¬O§_¸ÑÂêÁôÂÃµ²§½
     if (isHiddenEndingUnlocked(player)) {
         hiddenEnding();
         return;
@@ -31,7 +30,7 @@ void Ending :: checkForEnding(Player& player, Game& game)
 
     // 
 }
-// æª¢æŸ¥çŽ©å®¶æ•¸å€¼æ˜¯å¦å¹³è¡¡
+// ÀË¬dª±®a¼Æ­È¬O§_¥­¿Å
 bool Ending :: isValuesBalanced(Player& player, int minVal, int maxVal)
 {
     return (player.value1 >= minVal && player.value1 <= maxVal &&
@@ -40,37 +39,37 @@ bool Ending :: isValuesBalanced(Player& player, int minVal, int maxVal)
             player.value4 >= minVal && player.value4 <= maxVal);
 }
 
-// æª¢æŸ¥æ˜¯å¦é”åˆ°æ™®é€šçµå±€æ¢ä»¶
+// ÀË¬d¬O§_¹F¨ì´¶³qµ²§½±ø¥ó
 bool Ending :: isNormalEndingAchieved(Game& game)
 {
-    // æª¢æŸ¥è¦è·‘çš„åœ°æ–¹æ˜¯å¦éƒ½å®Œæˆ or ç‰¹å®šäº‹ä»¶æ˜¯å¦è¢«è§¸ç™¼
+    // ÀË¬d­n¶]ªº¦a¤è¬O§_³£§¹¦¨ or ¯S©w¨Æ¥ó¬O§_³QÄ²µo
     // return game.isAllProcessCompleted();
 }
 
-// æª¢æŸ¥æ˜¯å¦è§£éŽ–éš±è—çµå±€ï¼ˆè¦çœ‹æœ‰æ²’æœ‰ç‰¹æ®Šé“å…·ï¼‰
+// ÀË¬d¬O§_¸ÑÂêÁôÂÃµ²§½¡]­n¬Ý¦³¨S¦³¯S®í¹D¨ã¡^
 bool Ending :: isHiddenEndingUnlocked(Player& player)
 {
-    // æª¢æŸ¥çŽ©å®¶çš„é“å…·ä¸­æ˜¯å¦åŒ…å«ç‰¹å®šé“å…·
+    // ÀË¬dª±®aªº¹D¨ã¤¤¬O§_¥]§t¯S©w¹D¨ã
     // return player.hasSecretItem(); 
 }
 
-// é‡å•Ÿçµå±€
+// ­«±Òµ²§½
 void Ending :: restartEnding()
 {
     cout << "..." << endl;
-    // é‡æ–°åˆå§‹åŒ–éŠæˆ²
+    // ­«·sªì©l¤Æ¹CÀ¸
 }
 
-// æ™®é€šçµå±€
+// ´¶³qµ²§½
 void Ending :: normalEnding()
 {
     cout << "..." << endl;
-    // çµå±€æ•…äº‹æ•˜è¿°æ–‡å­— or çµå±€è©•åˆ†
+    // µ²§½¬G¨Æ±Ô­z¤å¦r or µ²§½µû¤À
 }
 
-// éš±è—çµå±€
+// ÁôÂÃµ²§½
 void Ending :: hiddenEnding()
 {
     cout << "..." << endl;
-    // éš±è—çµå±€æ•…äº‹æ•˜è¿°æ–‡å­— or è§£éŽ–ç‰¹æ®ŠçŽå‹µå¯ä»¥é–‹å•Ÿæ–°çš„éŠæˆ²å…§å®¹
+    // ÁôÂÃµ²§½¬G¨Æ±Ô­z¤å¦r or ¸ÑÂê¯S®í¼úÀy¥i¥H¶}±Ò·sªº¹CÀ¸¤º®e
 }
