@@ -21,7 +21,7 @@ Player :: Player() : value1(INI_VAL), value2(INI_VAL), value3(INI_VAL), value4(I
     chV4.push_back(INI_VAL);
 }
 
-void Player :: updateValues(int change1, int change2, int change3, int change4) 
+void Player :: updateValues(int change1, int change2, int change3, int change4, Game& game) 
 {
     value1 += change1;
     value2 += change2;
@@ -36,7 +36,7 @@ void Player :: updateValues(int change1, int change2, int change3, int change4)
     cout << "外交: " << value3 << printChange(change3) << "  ";
     cout << "發展: " << value4 << printChange(change4) << "  ";
     cout << endl;
-    checkForEnding(*this, );
+    checkForEnding(*this, Game& game);
 }
 char Player :: getChoice()
 {
