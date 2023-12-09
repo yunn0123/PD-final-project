@@ -3,7 +3,7 @@
 > 編碼：ANSI，只能儲存中文跟英文。    
 - 執行方式：在termainal(CMD, 命令提示字元)打指令    
     ```
-    cd 該file
+    cd PD-final-project
     g++ mainFunc.cpp card.cpp description.cpp player.cpp
     ./a.exe
     ```
