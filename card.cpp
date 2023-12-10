@@ -26,25 +26,25 @@ NormalCard :: NormalCard(const string name, const int quesCnt) : Card(name, ques
 };
 void NormalCard :: GameCallingPrint()
 {
-    // ¥ª = 1 ¥k = 2
+    // å·¦ = 1 å³ = 2
     // 0 -> 1, 2  (+1 , +2) 0
     // 1 -> 3, 4  (+2 , +3) 1
     // 2 -> 5, 6  (+3 , +4) 1
     // 3 -> 7, 8  (+4 , +5) 2
     cout << name << ": " << totalOpt[nowQuestion].question << endl; 
-    cout << totalOpt[nowQuestion].option1 << " (¥ª)" << " -> ¼vÅT ";
+    cout << totalOpt[nowQuestion].option1 << " (å·¦)" << " -> å½±éŸ¿ ";
     // effect what value, print out
-    if(totalOpt[nowQuestion].eff1[0]){cout << "¸gÀÙ ";}
-    if(totalOpt[nowQuestion].eff1[1]){cout << "Án±æ ";}
-    if(totalOpt[nowQuestion].eff1[2]){cout << "¥~¥æ ";}
-    if(totalOpt[nowQuestion].eff1[3]){cout << "ªÀ·|µo®i ";}
+    if(totalOpt[nowQuestion].eff1[0]){cout << "ç¶“æ¿Ÿ ";}
+    if(totalOpt[nowQuestion].eff1[1]){cout << "è²æœ› ";}
+    if(totalOpt[nowQuestion].eff1[2]){cout << "å¤–äº¤ ";}
+    if(totalOpt[nowQuestion].eff1[3]){cout << "ç¤¾æœƒç™¼å±• ";}
     cout << "           " ;
-    cout <<  totalOpt[nowQuestion].option2 << " (¥k)" << " -> ¼vÅT ";
+    cout <<  totalOpt[nowQuestion].option2 << " (å³)" << " -> å½±éŸ¿ ";
     // effect what value, print out
-    if(totalOpt[nowQuestion].eff2[0]){cout << "¸gÀÙ ";}
-    if(totalOpt[nowQuestion].eff2[1]){cout << "Án±æ ";}
-    if(totalOpt[nowQuestion].eff2[2]){cout << "¥~¥æ ";}
-    if(totalOpt[nowQuestion].eff2[3]){cout << "ªÀ·|µo®i ";}
+    if(totalOpt[nowQuestion].eff2[0]){cout << "ç¶“æ¿Ÿ ";}
+    if(totalOpt[nowQuestion].eff2[1]){cout << "è²æœ› ";}
+    if(totalOpt[nowQuestion].eff2[2]){cout << "å¤–äº¤ ";}
+    if(totalOpt[nowQuestion].eff2[3]){cout << "ç¤¾æœƒç™¼å±• ";}
     cout << endl;
 
     while(true){
@@ -78,7 +78,7 @@ void NormalCard :: GameCallingPrint()
     }
 }
 ////////////////////////////////////////////////
-// ÀH¾÷
+// éš¨æ©Ÿ
 RandomCard :: RandomCard() {}
 RandomCard :: RandomCard(const string name, const int quesCnt) : Card(name, quesCnt)
 {
@@ -89,26 +89,26 @@ RandomCard :: ~RandomCard() {}
 void RandomCard :: setTotalOpt(const Description opt) {totalOpt.push_back(opt);}
 void RandomCard :: GameCallingPrint()
 {
-    // ¥ª = 1 ¥k = 2
+    // å·¦ = 1 å³ = 2
     // 0 -> 1, 2  (+1 , +2) 0
     // 1 -> 3, 4  (+2 , +3) 1
     // 2 -> 5, 6  (+3 , +4) 1
     // 3 -> 7, 8  (+4 , +5) 2
 
     cout << name << ": " << totalOpt[nowQuestion].question << endl; 
-    cout << totalOpt[nowQuestion].option1 << " (¥ª)" << " -> ¼vÅT ";
+    cout << totalOpt[nowQuestion].option1 << " (å·¦)" << " -> å½±éŸ¿ ";
     // effect what value, print out
-    if(totalOpt[nowQuestion].eff1[0]){cout << "¸gÀÙ ";}
-    if(totalOpt[nowQuestion].eff1[1]){cout << "Án±æ ";}
-    if(totalOpt[nowQuestion].eff1[2]){cout << "¥~¥æ ";}
-    if(totalOpt[nowQuestion].eff1[3]){cout << "ªÀ·|µo®i ";}
+    if(totalOpt[nowQuestion].eff1[0]){cout << "ç¶“æ¿Ÿ ";}
+    if(totalOpt[nowQuestion].eff1[1]){cout << "è²æœ› ";}
+    if(totalOpt[nowQuestion].eff1[2]){cout << "å¤–äº¤ ";}
+    if(totalOpt[nowQuestion].eff1[3]){cout << "ç¤¾æœƒç™¼å±• ";}
     cout << "           " ;
-    cout <<  totalOpt[nowQuestion].option2 << " (¥k)" << " -> ¼vÅT ";
+    cout <<  totalOpt[nowQuestion].option2 << " (å³)" << " -> å½±éŸ¿ ";
     // effect what value, print out
-    if(totalOpt[nowQuestion].eff2[0]){cout << "¸gÀÙ ";}
-    if(totalOpt[nowQuestion].eff2[1]){cout << "Án±æ ";}
-    if(totalOpt[nowQuestion].eff2[2]){cout << "¥~¥æ ";}
-    if(totalOpt[nowQuestion].eff2[3]){cout << "ªÀ·|µo®i ";}
+    if(totalOpt[nowQuestion].eff2[0]){cout << "ç¶“æ¿Ÿ ";}
+    if(totalOpt[nowQuestion].eff2[1]){cout << "è²æœ› ";}
+    if(totalOpt[nowQuestion].eff2[2]){cout << "å¤–äº¤ ";}
+    if(totalOpt[nowQuestion].eff2[3]){cout << "ç¤¾æœƒç™¼å±• ";}
     cout << endl;
     //
     while(true){
@@ -141,7 +141,7 @@ void RandomCard :: GameCallingPrint()
     
 }
 ////////////////////////////////////////////////
-// ¨Æ¥ó(³sÄò)
+// äº‹ä»¶(é€£çºŒ)
 EventCard :: EventCard() {}
 EventCard :: EventCard(const string name, const int quesCnt) : Card(name, quesCnt)
 {
@@ -173,7 +173,7 @@ bool EventCard :: isEnterEvent()
 {
     cout << EventNorration << endl;
     cout << name << " : " << EnterEventQues << endl;
-    cout << optLEFT << " (¥ª)          " << optRIGHT << " (¥k)" << endl;
+    cout << optLEFT << " (å·¦)          " << optRIGHT << " (å³)" << endl;
     while(true){
         if (GetAsyncKeyState(VK_LEFT) && 0x8001){ // left
             keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
@@ -217,19 +217,19 @@ void EventCard :: GameCallingPrint(){
     this -> isEnterEvent();
     while(nowQuestion < questionCnt && isEvent){
         cout << totalEventOpt[nowQuestion].name << ": " << totalEventOpt[nowQuestion].question << endl; 
-        cout << totalEventOpt[nowQuestion].option1 << " (¥ª)" << " -> ¼vÅT ";
+        cout << totalEventOpt[nowQuestion].option1 << " (å·¦)" << " -> å½±éŸ¿ ";
         // effect what value, print out
-        if(totalEventOpt[nowQuestion].eff1[0]){cout << "¸gÀÙ ";}
-        if(totalEventOpt[nowQuestion].eff1[1]){cout << "Án±æ ";}
-        if(totalEventOpt[nowQuestion].eff1[2]){cout << "¥~¥æ ";}
-        if(totalEventOpt[nowQuestion].eff1[3]){cout << "ªÀ·|µo®i ";}
+        if(totalEventOpt[nowQuestion].eff1[0]){cout << "ç¶“æ¿Ÿ ";}
+        if(totalEventOpt[nowQuestion].eff1[1]){cout << "è²æœ› ";}
+        if(totalEventOpt[nowQuestion].eff1[2]){cout << "å¤–äº¤ ";}
+        if(totalEventOpt[nowQuestion].eff1[3]){cout << "ç¤¾æœƒç™¼å±• ";}
         cout << "          " ;
-        cout <<  totalEventOpt[nowQuestion].option2 << " (¥k)" << " -> ¼vÅT ";
+        cout <<  totalEventOpt[nowQuestion].option2 << " (å³)" << " -> å½±éŸ¿ ";
         // effect what value, print out
-        if(totalEventOpt[nowQuestion].eff2[0]){cout << "¸gÀÙ ";}
-        if(totalEventOpt[nowQuestion].eff2[1]){cout << "Án±æ ";}
-        if(totalEventOpt[nowQuestion].eff2[2]){cout << "¥~¥æ ";}
-        if(totalEventOpt[nowQuestion].eff2[3]){cout << "ªÀ·|µo®i ";}
+        if(totalEventOpt[nowQuestion].eff2[0]){cout << "ç¶“æ¿Ÿ ";}
+        if(totalEventOpt[nowQuestion].eff2[1]){cout << "è²æœ› ";}
+        if(totalEventOpt[nowQuestion].eff2[2]){cout << "å¤–äº¤ ";}
+        if(totalEventOpt[nowQuestion].eff2[3]){cout << "ç¤¾æœƒç™¼å±• ";}
         cout << endl;
         // call Player value change
         while(true){
@@ -250,9 +250,9 @@ void EventCard :: GameCallingPrint(){
         }
         cout << "-------------------" << endl;
         // if ending: ?
-        if (nowQuestion == -1){ // ¨Æ¥ó¥¢±Ñ
+        if (nowQuestion == -1){ // äº‹ä»¶å¤±æ•—
             isEvent = 0;
-            cout << EventEnd << endl;
+            cout << "äº‹ä»¶å¤±æ•—ã€‚" << endl;
             if (isDead){
                 // tragger ending
                 // call ending ?
