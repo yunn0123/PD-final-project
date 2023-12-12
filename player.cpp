@@ -45,3 +45,7 @@ char Player :: getChoice()
     cin >> choice;
     return choice;
 }
+void Player::catchItem(Item)
+{
+    itemList.push_back(Item);
+}
