@@ -55,10 +55,6 @@ bool Ending :: isValuesBalanced(Player& player, int minVal, int maxVal)
         cout << "沒有科技的社會猶如一片死水，你的國家成為了他國的附屬品…" << endl;
         restartGame = true;
     }
-   /* return (player.value1 >= minVal && player.value1 <= maxVal &&
-            player.value2 >= minVal && player.value2 <= maxVal &&
-            player.value3 >= minVal && player.value3 <= maxVal &&
-            player.value4 >= minVal && player.value4 <= maxVal);*/
 }
 
 // 檢查是否達到普通結局條件
@@ -71,7 +67,7 @@ bool Ending :: isNormalEndingAchieved(Game& game)
 void Ending :: restartEnding()
 {
     cout << "旅程即將重新開始…" << endl;
-    // 重新初始化遊戲
+    // 重新初始化遊戲，數值初始化，指回最初的卡牌
 }
 
 
@@ -90,6 +86,6 @@ void Ending :: normalEnding()
         << "經濟：" << player.value1 << endl
         << "聲望：" << player.value2 << endl
         << "外交：" << player.value3 << endl
-        << "發展:" << player.value4 << endl;
+        << "發展:" << player.value4 << endl; // 會與Game.cpp撞到可能要改一下
 }
 
