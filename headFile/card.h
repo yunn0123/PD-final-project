@@ -8,12 +8,15 @@ using namespace std;
 //
 
 #ifndef CRAD_H
+
 #define CARD_H
 
 #include "description.h"
 #include "player.h"
+#include "item.h"
 
 class Card {
+    friend class Game;
     protected:
         string name;
         int questionCnt;
@@ -73,6 +76,10 @@ class EventCard : public Card{
         bool isDead;     // 事件失敗是否會死亡
         // 問題們
         vector<eventDes> totalEventOpt;
+        ////////////// get item
+        int itemQues, itemChoice;
+        string ItemNorration;
+        Item item;
         //// 判斷
         bool isEnterEvent();
     public:
@@ -81,7 +88,7 @@ class EventCard : public Card{
         EventCard(const string name, const int quesCnt, const string EventNorration, const string EventDes, const string opt1, const string opt2, const bool left, const int right);
         //// setting
         void setTotalEventOpt(const eventDes opt);
-        // void setIsEnter(const bool arr[2], const string EventDes, const string EventNorration, const string op1, const string opt2);
+        void setItem(const int itemQues, const int itemChoice, const string GetItemNorration, const string name);
         void setEnding(const string end, bool isDead);
         //// print
         void GameCallingPrint(); 

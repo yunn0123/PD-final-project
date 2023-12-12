@@ -4,13 +4,14 @@
 #include <Windows.h>
 #include <fstream>
 #include <random>
-#include "./headFile/item.h"
 using namespace std;
 //
 #ifndef PLAYER_H
 #define PLAYER_H
 
-// #include "ending.h"
+#include "item.h"
+#include "game.h"
+#include "ending.h"
 
 /// player
 const int INI_VAL = 25;
@@ -25,10 +26,10 @@ class Player {
         int value1, value2, value3, value4; // 四個主要數值
         Player();
 
-        void updateValues(int change1, int change2, int change3, int change4, Game& game); //更新玩家的數值並印出
+        void updateValues(int change1, int change2, int change3, int change4, Game & game); //更新玩家的數值並印出
         char getChoice(); //return玩家的選擇 ("l" or "r" or 其他)
         void useItem(); //TODO: 從itemList使用道具
-        void catchItem(Item); //拿到道具，存進itemList
+        void catchItem(Item item); //拿到道具，存進itemList
 
 };
 
