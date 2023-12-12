@@ -2,8 +2,8 @@ using namespace std;
 #include "headFile/card.h"
 #include "headFile/description.h"
 #include "headFile/player.h"
-// #include "headFile/ending.h"
-// #include "headFile/game.h"
+#include "headFile/ending.h"
+#include "headFile/game.h"
 ///
 ////////////////////////////
 Player PLAYER;
@@ -139,8 +139,9 @@ int main() {
     vector<EventCard> eventCard;
     int eventCardCnt = 0, totalQuesInEvent = 0; 
     int leftChoice = 0, rightChoice = 0;
+    int itemChoice, itemQues;
     bool isDead;
-    string EventNorration;
+    string EventNorration, ItemNorration;
     //
     if(eventFile.is_open()){
         getline(eventFile, line, '\n');
@@ -205,10 +206,19 @@ int main() {
                 opt.setNextIdex(leftChoice, rightChoice);
                 eventCard[j].setTotalEventOpt(opt);
             } // total question 
+            // event ending
             getline(eventFile, EventNorration, ' ');
             getline(eventFile, line);
             isDead = atoi(line.c_str());
             eventCard[j].setEnding(EventNorration, isDead);
+            // event item
+            getline(eventFile, name, ' ');
+            getline(eventFile, ItemNorration, ' ');
+            getline(eventFile, line, ' ');
+            itemQues = atoi(line.c_str());
+            getline(eventFile, line);
+            itemChoice = atoi(line.c_str());
+            eventCard[j].setItem(itemQues, itemChoice, ItemNorration, name);
         }// this event card
     }
     else{
@@ -241,20 +251,10 @@ int main() {
         }
     }
     //////////////////////////////////////////
-    // store some card information, etc.
-    // cout << "開始遊戲中.../" << endl;
+    eventCard[0].GameCallingPrint();
     // Game game(numCards); // n(卡牌數)
     // game.start();
 
-    ///// GameCallingPrint test /////
-    normalCard[19].GameCallingPrint();
-    normalCard[19].GameCallingPrint();
-    //
-    randomCard[0].GameCallingPrint();
-    randomCard[0].GameCallingPrint();
-    //
-    eventCard[0].GameCallingPrint();
-    ////////////
     return 0;
 }
 
