@@ -28,7 +28,7 @@ class Player {
         void updateValues(int change1, int change2, int change3, int change4, Game& game); //更新玩家的數值並印出
         char getChoice(); //return玩家的選擇 ("l" or "r" or 其他)
         void useItem(); //TODO: 從itemList使用道具
-        void catchItem(); //拿到道具，存進itemList
+        void catchItem(Item); //拿到道具，存進itemList
 
 };
 
