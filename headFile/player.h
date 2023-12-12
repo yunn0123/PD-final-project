@@ -12,7 +12,7 @@ using namespace std;
 // #include "ending.h"
 
 /// player
-const int INI_VAL = 10;
+const int INI_VAL = 25;
 string printChange(int change);//印出數值變化
 
 class Player {
