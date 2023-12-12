@@ -1,10 +1,8 @@
 #include <iostream>
 #include <cstdlib>
 #include "./headFile/player.h"
-#include "./headFile/ending.h"
-#include "./headFile/item.h"
 using namespace std;
-const int INI_VAL = 25;
+
 
 string printChange(int change){
     string out = "";
@@ -23,7 +21,7 @@ Player :: Player() : value1(INI_VAL), value2(INI_VAL), value3(INI_VAL), value4(I
     chV4.push_back(INI_VAL);
 }
 
-void Player :: updateValues(int change1, int change2, int change3, int change4, Game& game) 
+void Player :: updateValues(int change1, int change2, int change3, int change4, Game &game) 
 {
     value1 += change1;
     value2 += change2;
@@ -33,12 +31,12 @@ void Player :: updateValues(int change1, int change2, int change3, int change4, 
     chV2.push_back(value2);
     chV3.push_back(value3);
     chV4.push_back(value4);
-    cout << "ç¶“æ¿Ÿ: " << value1 << printChange(change1) << "  ";
-    cout << "è²æœ›: " << value2 << printChange(change2) << "  ";
-    cout << "å¤–äº¤: " << value3 << printChange(change3) << "  ";
-    cout << "ç™¼å±•: " << value4 << printChange(change4) << "  ";
+    cout << "¸gÀÙ: " << value1 << printChange(change1) << "  ";
+    cout << "Án±æ: " << value2 << printChange(change2) << "  ";
+    cout << "¥~¥æ: " << value3 << printChange(change3) << "  ";
+    cout << "µo®i: " << value4 << printChange(change4) << "  ";
     cout << endl;
-    checkForEnding(*this, Game& game);
+    Ending :: checkForEnding(*this, game);
 }
 char Player :: getChoice()
 {
@@ -46,7 +44,7 @@ char Player :: getChoice()
     cin >> choice;
     return choice;
 }
-void Player::catchItem(Item)
+void Player::catchItem(Item item )
 {
-    itemList.push_back(Item);
+    itemList.push_back(item);
 }
