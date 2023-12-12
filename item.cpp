@@ -3,8 +3,11 @@
 #include "./headFile/item.h"
 using namespace std;
 
+Item :: Item(){};
+
 Item::Item(const string& n): name(n){}
 
-Item::getName() const{
+string Item::getName() const{
     return name;
 }
+
