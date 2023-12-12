@@ -22,13 +22,6 @@ void Ending :: checkForEnding(Player& player, Game& game)
         return;
     }
 
-/*
-    // 檢查是否解鎖隱藏結局
-    if (isHiddenEndingUnlocked(player)) {
-        hiddenEnding();
-        return;
-    }
-*/
     // 
 }
 // 檢查玩家數值是否過高或過低
@@ -71,6 +64,21 @@ bool Ending :: isValuesBalanced(Player& player, int minVal, int maxVal)
 // 檢查是否達到普通結局條件
 bool Ending :: isNormalEndingAchieved(Game& game)
 {
+// 是否已經讀取特定數字的卡牌
+}
+
+// 重啟結局
+void Ending :: restartEnding()
+{
+    cout << "旅程即將重新開始…" << endl;
+    // 重新初始化遊戲
+}
+
+
+
+// 普通結局
+void Ending :: normalEnding()
+{
     cout << "恭喜！你已成功克服了每一個遇到的挑戰！你的洞察力和決策能力令人印象深刻。" << endl 
         << "你在鋪著國家前進的道路上展現出了無限的潛力，你的每一個決策都為這個國家的未來帶來了光明和希望。" << endl
         << "通過這個挑戰，你展現了自己在政治領域的非凡才華，也證明了你是一位出色的領袖。 << endl
@@ -83,44 +91,5 @@ bool Ending :: isNormalEndingAchieved(Game& game)
         << "聲望：" << player.value2 << endl
         << "外交：" << player.value3 << endl
         << "發展:" << player.value4 << endl;
-
-
-    
-    // 檢查要跑的地方是否都完成 or 特定事件是否被觸發
-    // return game.isAllProcessCompleted();
 }
 
-/*
-// 暫時先不需要
-// 檢查是否解鎖隱藏結局（要看有沒有特殊道具）
-bool Ending :: isHiddenEndingUnlocked(Player& player)
-{
-    // 檢查玩家的道具中是否包含特定道具
-    // return player.hasSecretItem(); 
-}
-*/
-
-// 重啟結局
-void Ending :: restartEnding()
-{
-    cout << "..." << endl;
-    // 重新初始化遊戲
-}
-
-
-
-// 普通結局
-void Ending :: normalEnding()
-{
-    cout << "..." << endl;
-    // 結局故事敘述文字 or 結局評分
-}
-
-/* // 先不要
-// 隱藏結局
-void Ending :: hiddenEnding()
-{
-    cout << "..." << endl;
-    // 隱藏結局故事敘述文字 or 解鎖特殊獎勵可以開啟新的遊戲內容
-}
-*/
