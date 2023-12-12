@@ -3,6 +3,7 @@
 #include "./headFile/player.h"
 #include "./headFile/ending.h"
 using namespace std;
+const int INI_VAL = 25;
 
 string printChange(int change){
     string out = "";
