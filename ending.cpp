@@ -3,20 +3,20 @@ using namespace std;
 
 #include "./headFile/ending.h"
 
-// æª¢æŸ¥ä¸¦è§¸ç™¼éŠæˆ²çµå±€
+// ÀË¬d¨ÃÄ²µo¹CÀ¸µ²§½
 void Ending :: checkForEnding(Player& player, Game& game)
 {
-    // è¨­è¨ˆæœ€é«˜èˆ‡æœ€ä½Žçš„æ•¸å€¼
-    const int MIN_BALANCE_VALUE = -50;
+    // ³]­p³Ì°ª»P³Ì§Cªº¼Æ­È
+    const int MIN_BALANCE_VALUE = 0;
     const int MAX_BALANCE_VALUE = 50;
 
-    // æª¢æŸ¥æ˜¯å¦é”åˆ°éœ€é‡çŽ©çš„æ¢ä»¶
+    // ÀË¬d¬O§_¹F¨ì»Ý­«ª±ªº±ø¥ó
     if (!isValuesBalanced(player, MIN_BALANCE_VALUE, MAX_BALANCE_VALUE)) {
         restartEnding();
         return;
     }
 
-    // æª¢æŸ¥æ˜¯å¦é”åˆ°æ™®é€šçµå±€çš„æ¢ä»¶
+    // ÀË¬d¬O§_¹F¨ì´¶³qµ²§½ªº±ø¥ó
     if (isNormalEndingAchieved(game)) {
         normalEnding();
         return;
@@ -24,68 +24,67 @@ void Ending :: checkForEnding(Player& player, Game& game)
 
     // 
 }
-// æª¢æŸ¥çŽ©å®¶æ•¸å€¼æ˜¯å¦éŽé«˜æˆ–éŽä½Ž
+// ÀË¬dª±®a¼Æ­È¬O§_¹L°ª©Î¹L§C
 bool Ending :: isValuesBalanced(Player& player, int minVal, int maxVal)
 {
 
     bool restartGame = false;
     
-    if(player.value1 >= MAX_BALANCE_VALUE){
-        cout << "ç‰©åƒ¹æ–·å±¤ä¸Šæ¼²ï¼Œæ°‘çœ¾è‹¦ä¸å ªè¨€ï¼Œä½ è¢«æŠ•ç¥¨ç½·å…ï¼Œå¾€å¾Œå°‡å—æ°‘çœ¾å”¾æ£„â€¦" << endl;
+    if(player.value1 >= maxVal){
+        cout << "ª«»ùÂ_¼h¤Wº¦¡A¥Á²³­W¤£³ô¨¥¡A§A³Q§ë²¼½}§K¡A©¹«á±N¨ü¥Á²³³è±ó¡K" << endl;
         restartGame = true;
-    } else if(player.value1 <= MIN_BALANCE_VALUE){
-        cout << "æ°‘ç”Ÿå‡‹è½ï¼Œä½ è¢«é—–å…¥çš„æ°‘çœ¾é›†é«”ç“œåˆ†ï¼Œä¸çŸ¥åŽ»å‘â€¦" << endl;
+    } else if(player.value1 <= minVal){
+        cout << "¥Á¥Í­ä¸¨¡A§A³QÂô¤Jªº¥Á²³¶°Åé¥Ê¤À¡A¤£ª¾¥h¦V¡K" << endl;
         restartGame = true;
-    } else if(player.value2 >= MAX_BALANCE_VALUE){
-        cout << "ä½ è¢«æ‹±ç‚ºæ°‘çœ¾çš„å¶åƒï¼Œä¸æ–·çš„å¹æ§ä¸­ä½ è¿·å¤±è‡ªæˆ‘ã€‚åœ¨ä¸€æ¬¡çš„å°éŒ¯èª¤ä¸­ï¼Œä½ è¢«æŽ¨ä¸‹ç¥žå£‡ï¼Œæˆç‚ºè¬äººå”¾æ£„çš„å°è±¡â€¦" << endl;
+    } else if(player.value2 >= maxVal){
+        cout << "§A³Q«ý¬°¥Á²³ªº°¸¹³¡A¤£Â_ªº§j±·¤¤§A°g¥¢¦Û§Ú¡C¦b¤@¦¸ªº¤p¿ù»~¤¤¡A§A³Q±À¤U¯«¾Â¡A¦¨¬°¸U¤H³è±óªº¹ï¶H¡K" << endl;
         restartGame = true;
-    } else if (player.value2 <= MIN_BALANCE_VALUE){
-        cout << "æ¯æ¬¡ä½ å‡ºé–€ï¼Œç¸½æ˜¯è¢«è·¯éŽçš„äººæ°‘ä¸Ÿé£Ÿç‰©æˆ–å»šé¤˜ï¼Œä½ å†ä¹Ÿå—ä¸äº†é€™æ¨£çš„å°å¾…ï¼Œå¾žæ­¤æ¶ˆè²åŒ¿è·¡â€¦" << endl;
+    } else if (player.value2 <= minVal){
+        cout << "¨C¦¸§A¥Xªù¡AÁ`¬O³Q¸ô¹Lªº¤H¥Á¥á­¹ª«©Î¼p¾l¡A§A¦A¤]¨ü¤£¤F³o¼Ëªº¹ï«Ý¡A±q¦¹®øÁn°Î¸ñ¡K" << endl;
         restartGame = true;
-    } else if(player.value3 >= MAX_BALANCE_VALUE){
-        cout << "ä½ çµäº¤äº†å¾ˆå¤šæœ‹å‹ï¼Œä½†åœ¨ä¸€æ¬¡çš„è¡çªä¸­ä½ ç„¡æ³•ç‚ºå…©æ–¹æœ‹å‹ç«™å ´ï¼Œé›™æ–¹ä¸æ»¿çš„å°‡ä½ è§£æ±ºäº†â€¦" << endl;
+    } else if(player.value3 >= maxVal){
+        cout << "§Aµ²¥æ¤F«Ü¦hªB¤Í¡A¦ý¦b¤@¦¸ªº½Ä¬ð¤¤§AµLªk¬°¨â¤èªB¤Í¯¸³õ¡AÂù¤è¤£º¡ªº±N§A¸Ñ¨M¤F¡K" << endl;
         restartGame = true;
-    } else if (player.value3 <= MIN_BALANCE_VALUE){
-        cout << "ä½ åœ¨åœ‹éš›è¢«å­¤ç«‹ï¼Œæ²’æœ‰äººé¡˜æ„åœ¨å‡ºäº‹æ™‚å¹«åŠ©ä½ ï¼Œå°±é€™æ¨£ï¼Œä½ çš„åœ‹å®¶æ¼¸æ¼¸åœ°åœ¨ä¸–ç•Œä¸­æ¶ˆå¤±äº†â€¦" << endl;
+    } else if (player.value3 <= minVal){
+        cout << "§A¦b°ê»Ú³Q©t¥ß¡A¨S¦³¤HÄ@·N¦b¥X¨Æ®ÉÀ°§U§A¡A´N³o¼Ë¡A§Aªº°ê®aº¥º¥¦a¦b¥@¬É¤¤®ø¥¢¤F¡K" << endl;
         restartGame = true;
-    } else if(player.value4 >= MAX_BALANCE_VALUE){
-        cout << "ç§‘æŠ€å¿«é€Ÿç™¼å±•ï¼Œä½ çš„åœ‹å®¶æˆç‚ºäº†æ³•å¤–ä¹‹åœ°ã€‚åœ¨ä¸€æ¬¡å‡ºé–€ä¸­ï¼Œä½ è¢«æœ€æ–°ç§‘æŠ€éŽ–å®šâ€¦" << endl;
+    } else if(player.value4 >= maxVal){
+        cout << "¬ì§Þ§Ö³tµo®i¡A§Aªº°ê®a¦¨¬°¤Fªk¥~¤§¦a¡C¦b¤@¦¸¥Xªù¤¤¡A§A³Q³Ì·s¬ì§ÞÂê©w¡K" << endl;
         restartGame = true;
-    } else if (player.value4 <= MIN_BALANCE_VALUE){
-        cout << "æ²’æœ‰ç§‘æŠ€çš„ç¤¾æœƒçŒ¶å¦‚ä¸€ç‰‡æ­»æ°´ï¼Œä½ çš„åœ‹å®¶æˆç‚ºäº†ä»–åœ‹çš„é™„å±¬å“â€¦" << endl;
+    } else if (player.value4 <= minVal){
+        cout << "¨S¦³¬ì§ÞªºªÀ·|µS¦p¤@¤ù¦º¤ô¡A§Aªº°ê®a¦¨¬°¤F¥L°êªºªþÄÝ«~¡K" << endl;
         restartGame = true;
     }
 }
 
-// æª¢æŸ¥æ˜¯å¦é”åˆ°æ™®é€šçµå±€æ¢ä»¶
+// ÀË¬d¬O§_¹F¨ì´¶³qµ²§½±ø¥ó
 bool Ending :: isNormalEndingAchieved(Game& game)
 {
-// æ˜¯å¦å·²ç¶“è®€å–ç‰¹å®šæ•¸å­—çš„å¡ç‰Œ
+// ¬O§_¤w¸gÅª¨ú¯S©w¼Æ¦rªº¥dµP
 }
 
-// é‡å•Ÿçµå±€
+// ­«±Òµ²§½
 void Ending :: restartEnding()
 {
-    cout << "æ—…ç¨‹å³å°‡é‡æ–°é–‹å§‹â€¦" << endl;
-    // é‡æ–°åˆå§‹åŒ–éŠæˆ²ï¼Œæ•¸å€¼åˆå§‹åŒ–ï¼ŒæŒ‡å›žæœ€åˆçš„å¡ç‰Œ
+    cout << "®Èµ{§Y±N­«·s¶}©l¡K" << endl;
+    // ­«·sªì©l¤Æ¹CÀ¸¡A¼Æ­Èªì©l¤Æ¡A«ü¦^³Ìªìªº¥dµP
 }
 
 
 
-// æ™®é€šçµå±€
+// ´¶³qµ²§½
 void Ending :: normalEnding()
 {
-    cout << "æ­å–œï¼ä½ å·²æˆåŠŸå…‹æœäº†æ¯ä¸€å€‹é‡åˆ°çš„æŒ‘æˆ°ï¼ä½ çš„æ´žå¯ŸåŠ›å’Œæ±ºç­–èƒ½åŠ›ä»¤äººå°è±¡æ·±åˆ»ï¼" << endl 
-        << "ä½ åœ¨é‹ªè‘—åœ‹å®¶å‰é€²çš„é“è·¯ä¸Šå±•ç¾å‡ºäº†ç„¡é™çš„æ½›åŠ›ï¼Œä½ çš„æ¯ä¸€å€‹æ±ºç­–éƒ½ç‚ºé€™å€‹åœ‹å®¶çš„æœªä¾†å¸¶ä¾†äº†å…‰æ˜Žå’Œå¸Œæœ›ã€‚" << endl
-        << "é€šéŽé€™å€‹æŒ‘æˆ°ï¼Œä½ å±•ç¾äº†è‡ªå·±åœ¨æ”¿æ²»é ˜åŸŸçš„éžå‡¡æ‰è¯ï¼Œä¹Ÿè­‰æ˜Žäº†ä½ æ˜¯ä¸€ä½å‡ºè‰²çš„é ˜è¢–ã€‚ << endl
-        << è®“æˆ‘å€‘æœŸå¾…çœ‹åˆ°ä½ åœ¨é€™å ´è§’è‰²æ‰®æ¼”çš„æ—…ç¨‹ä¸­ï¼Œç¹¼çºŒç‚ºé€™å€‹åœ‹å®¶å¸¶ä¾†æ›´å¤šçš„ç¹æ¦®å’Œé€²æ­¥ï¼" << endl
-        << "ç¥è³€ä½ ï¼Œé€™æ¬¡çš„å‹åˆ©åªæ˜¯ä½ ä¸æ–·è¿½æ±‚å“è¶Šçš„é–‹å§‹â€¦" << endl;
+    cout << "®¥³ß¡I§A¤w¦¨¥\§JªA¤F¨C¤@­Ó¹J¨ìªº¬D¾Ô¡I§Aªº¬}¹î¤O©M¨Mµ¦¯à¤O¥O¤H¦L¶H²`¨è¡I" << endl 
+        << "§A¦b¾QµÛ°ê®a«e¶iªº¹D¸ô¤W®i²{¥X¤FµL­­ªº¼ç¤O¡A§Aªº¨C¤@­Ó¨Mµ¦³£¬°³o­Ó°ê®aªº¥¼¨Ó±a¨Ó¤F¥ú©ú©M§Æ±æ¡C" << endl
+        << "³q¹L³o­Ó¬D¾Ô¡A§A®i²{¤F¦Û¤v¦b¬Fªv»â°ìªº«D¤Z¤~µØ¡A¤]ÃÒ©ú¤F§A¬O¤@¦ì¥X¦âªº»â³S¡C" << endl
+        << "Åý§Ú­Ì´Á«Ý¬Ý¨ì§A¦b³o³õ¨¤¦â§êºtªº®Èµ{¤¤¡AÄ~Äò¬°³o­Ó°ê®a±a¨Ó§ó¦hªºÁcºa©M¶i¨B¡I" << endl
+        << "¯¬¶P§A¡A³o¦¸ªº³Ó§Q¥u¬O§A¤£Â_°l¨D¨ô¶Vªº¶}©l¡K" << endl;
 
-    // æ•¸å€¼é¡¯ç¤º
-    cout << "åœ¨é€™å ´æ—…ç¨‹ä¸­ï¼Œä½ æœ€å¾Œä»¥é€™æ¨£çš„æ•¸å€¼ç‚ºé€™æ®µæ•…äº‹å¯«ä¸‹çµå±€ï¼š" << endl
-        << "ç¶“æ¿Ÿï¼š" << player.value1 << endl
-        << "è²æœ›ï¼š" << player.value2 << endl
-        << "å¤–äº¤ï¼š" << player.value3 << endl
-        << "ç™¼å±•:" << player.value4 << endl; // æœƒèˆ‡Game.cppæ’žåˆ°å¯èƒ½è¦æ”¹ä¸€ä¸‹
+    // ¼Æ­ÈÅã¥Ü
+    cout << "¦b³o³õ®Èµ{¤¤¡A§A³Ì«á¥H³o¼Ëªº¼Æ­È¬°³o¬q¬G¨Æ¼g¤Uµ²§½¡G" << endl
+        << "¸gÀÙ¡G" << PLAYER.value1 << endl
+        << "Án±æ¡G" << PLAYER.value2 << endl
+        << "¥~¥æ¡G" << PLAYER.value3 << endl
+        << "µo®i:" << PLAYER.value4 << endl; // ·|»PGame.cpp¼²¨ì¥i¯à­n§ï¤@¤U
 }
-
