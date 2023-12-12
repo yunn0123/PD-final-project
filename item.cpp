@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include "./headerFile/item.h"
+#include "./headFile/item.h"
 using namespace std;
 
 Item::Item(const string& n): name(n){}
