@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "./headFile/player.h"
 #include "./headFile/ending.h"
+#include "./headFile/item.h"
 using namespace std;
 const int INI_VAL = 25;
 
