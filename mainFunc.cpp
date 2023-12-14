@@ -1,7 +1,7 @@
 using namespace std;
 #include "headFile/card.h"
 #include "headFile/description.h"
-#include "headFile/player.h"
+#include "headFile/character.h"
 #include "headFile/ending.h"
 #include "headFile/game.h"
 ///
@@ -145,38 +145,38 @@ int main() {
     //
     if(eventFile.is_open()){
         getline(eventFile, line, '\n');
-        eventCardCnt = atoi(line.c_str()); // Á`¦@ªº¨Æ¥ó¥dµP¼Æ
+        eventCardCnt = atoi(line.c_str()); // ç¸½å…±çš„äº‹ä»¶å¡ç‰Œæ•¸
         // 
         for(int j = 0 ; j < eventCardCnt ; j++){
-            // ¸Ó¨Æ¥óªºÁ`¦@°İÃD¼Æ¶q 
+            // è©²äº‹ä»¶çš„ç¸½å…±å•é¡Œæ•¸é‡ 
             getline(eventFile, line, ' ');
             totalQuesInEvent = atoi(line.c_str()); 
-            // ¨Æ¥ó¶}©lªº®Ç¥Õ
+            // äº‹ä»¶é–‹å§‹çš„æ—ç™½
             getline(eventFile, EventNorration, '\n');
-            // ²Ä¤@­Ó­n¬O§_­n¶i¤J¨Æ¥ó°İÃDªº¦W¦r
+            // ç¬¬ä¸€å€‹è¦æ˜¯å¦è¦é€²å…¥äº‹ä»¶å•é¡Œçš„åå­—
             getline(eventFile, name, ' ');
-            // ¬O§_­n¶i¤J¨Æ¥óªº°İÃD
+            // æ˜¯å¦è¦é€²å…¥äº‹ä»¶çš„å•é¡Œ
             getline(eventFile, question, '\"');
             getline(eventFile, question, '\"');
             getline(eventFile, line, ' ');
-            // ¥ª¥k¿ï¾Ü
+            // å·¦å³é¸æ“‡
             getline(eventFile, opt1, ' ');
             getline(eventFile, opt2, ' ');
-            // ¥ª¥k¿ï¾Ü¬O§_·|¶i¤J¨Æ¥ó
+            // å·¦å³é¸æ“‡æ˜¯å¦æœƒé€²å…¥äº‹ä»¶
             getline(eventFile, line, ' ');
             leftChoice = atoi(line.c_str());
             getline(eventFile, line);
             rightChoice = atoi(line.c_str());
             eventCard.push_back(EventCard(name, totalQuesInEvent, EventNorration, question, opt1, opt2, leftChoice, rightChoice));
-            // ¨Æ¥óªº°İÃD­Ì
+            // äº‹ä»¶çš„å•é¡Œå€‘
             for (int i = 0; i < totalQuesInEvent ; i++){
-                // ¦W¦r(´£°İ¤H)
+                // åå­—(æå•äºº)
                 getline(eventFile, name, ' ');
-                // °İÃD
+                // å•é¡Œ
                 getline(eventFile, question, '\"');
                 getline(eventFile, question, '\"');
                 getline(eventFile, line, ' ');
-                // ¿ï¶µ­Ì
+                // é¸é …å€‘
                 getline(eventFile, opt1, ' ');
                 getline(eventFile, opt2, ' ');
                 // val1
@@ -197,7 +197,7 @@ int main() {
                 val2[2] = atoi(line.c_str());
                 getline(eventFile, line, ' ');
                 val2[3] = atoi(line.c_str());
-                // ¥ª¥k¿ï¶µ·|«ü¨ìªº¤U¤@­Ó°İÃD
+                // å·¦å³é¸é …æœƒæŒ‡åˆ°çš„ä¸‹ä¸€å€‹å•é¡Œ
                 getline(eventFile, line, ' ');
                 leftChoice = atoi(line.c_str());
                 getline(eventFile, line);
@@ -229,7 +229,7 @@ int main() {
     //////////////////////////////////////////////////////
     cout << "Timeless Redemption" << endl;
     cout << endl;
-    cout << "---«ö SPACE ¶}©l¹CÀ¸---" << endl;
+    cout << "---æŒ‰ SPACE é–‹å§‹éŠæˆ²---" << endl;
     while(true){
         if (GetAsyncKeyState(VK_SPACE) && 0x8001){
             keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
@@ -238,26 +238,26 @@ int main() {
         }
         if(GetAsyncKeyState(VK_ESCAPE) && 0x8001){ // esc
             keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
-            cout << "½T©w­nÂ÷¶}¶Ü¡H" << endl;
-            cout << "¬O(y) §_(n)" << endl;
+            cout << "ç¢ºå®šè¦é›¢é–‹å—ï¼Ÿ" << endl;
+            cout << "æ˜¯(y) å¦(n)" << endl;
             string user;
             cin >> user;
             if (user.compare("y") == 0){ // y
                 return 0;
             }
             if (user.compare("n") == 0){ // n
-                cout << "---«ö SPACE ¶}©l¹CÀ¸---" << endl;
+                cout << "---æŒ‰ SPACE é–‹å§‹éŠæˆ²---" << endl;
             }
         }
     }
     //////////////////////////////////////////
     eventCard[0].GameCallingPrint();
-    // Game game(numCards); // n(¥dµP¼Æ)
+    // Game game(numCards); // n(å¡ç‰Œæ•¸)
     // game.start();
 
     return 0;
 }
 
-// main function Åª¤J¸ê®Æ¡Bcout ¤@¨Ç¹CÀ¸¶}±Òµ¥¦r²´
-// ¥D¬yµ{(game)·|¬O¤£Â_cinªº¹Lµ{(while(cin))
-// ª½¨ì¹LÃö¶]§¹°Êµe©Î¬Oµ²§ô¹CÀ¸¡A¥Î¤@­Ó§PÂ_¦¡§PÂ_¬O§_¸õ¥X°j°é
+// main function è®€å…¥è³‡æ–™ã€cout ä¸€äº›éŠæˆ²é–‹å•Ÿç­‰å­—çœ¼
+// ä¸»æµç¨‹(game)æœƒæ˜¯ä¸æ–·cinçš„éç¨‹(while(cin))
+// ç›´åˆ°éé—œè·‘å®Œå‹•ç•«æˆ–æ˜¯çµæŸéŠæˆ²ï¼Œç”¨ä¸€å€‹åˆ¤æ–·å¼åˆ¤æ–·æ˜¯å¦è·³å‡ºè¿´åœˆ
