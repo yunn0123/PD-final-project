@@ -4,7 +4,7 @@
 - 執行方式：在termainal(CMD, 命令提示字元)打指令    
     ```
     cd PD-final-project
-    g++ mainFunc.cpp card.cpp description.cpp player.cpp
+    g++ mainFunc.cpp card.cpp description.cpp character.cpp
     ./a.exe
     ```
 ### ` NormalCard `
