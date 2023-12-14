@@ -12,7 +12,7 @@ using namespace std;
 #define CARD_H
 
 #include "description.h"
-#include "player.h"
+#include "character.h"
 #include "item.h"
 
 class Card {
