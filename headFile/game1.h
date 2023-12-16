@@ -24,7 +24,7 @@ private:
 	Player PLAYER;
 public:
 	//void setup();//initialization and read card text
-	Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCard> eCard);
+	Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCard> eCard, Player PLAYER);
 	~Game(){}
 	void displayQuestion();
 	void getChoice();
