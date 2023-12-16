@@ -11,6 +11,7 @@ Card :: Card(const string name, const int quesCnt) : name(name), questionCnt(que
 }
 void Card :: setTotalOpt(const Description opt) {totalOpt.push_back(opt);}
 string Card :: getName() {return name;}
+int Card:: getCnt() {return questionCnt;}
 void Card :: setDescript(const string des) {descript = des;}
 void Card :: GameCallingPrint(){}
 ////////////////////////////////////////////////
@@ -48,17 +49,17 @@ void NormalCard :: GameCallingPrint()
     cout << endl;
 
     // for next print
-    nowQuestion += (nowQuestion + nowChoice);
-    // if last question has asked, return to first question
-    if(nowQuestion >= questionCnt){
-        nowQuestion = 0;
-        nowChoice = 0;
-    }
-    // if in the array but no question
-    else if(totalOpt[nowQuestion].question.compare(" ") == 0){
-        nowQuestion = 0;
-        nowChoice = 0;
-    }
+    // nowQuestion += (nowQuestion + nowChoice);
+    // // if last question has asked, return to first question
+    // if(nowQuestion >= questionCnt){
+    //     nowQuestion = 0;
+    //     nowChoice = 0;
+    // }
+    // // if in the array but no question
+    // else if(totalOpt[nowQuestion].question.compare(" ") == 0){
+    //     nowQuestion = 0;
+    //     nowChoice = 0;
+    // }
     // tragger ending 
     
 
@@ -98,17 +99,17 @@ void RandomCard :: GameCallingPrint()
     cout << endl;
 
     // for next print
-    nowQuestion += (nowQuestion + nowChoice);
-    // if last question has asked, return to first question
-    if(nowQuestion >= questionCnt){
-        nowQuestion = 0;
-        nowChoice = 0;
-    }
-    // if in the array but no question
-    else if(totalOpt[nowQuestion].question.compare(" ") == 0){
-        nowQuestion = 0;
-        nowChoice = 0;
-    }
+    // nowQuestion += (nowQuestion + nowChoice);
+    // // if last question has asked, return to first question
+    // if(nowQuestion >= questionCnt){
+    //     nowQuestion = 0;
+    //     nowChoice = 0;
+    // }
+    // // if in the array but no question
+    // else if(totalOpt[nowQuestion].question.compare(" ") == 0){
+    //     nowQuestion = 0;
+    //     nowChoice = 0;
+    // }
     
 }
 ////////////////////////////////////////////////

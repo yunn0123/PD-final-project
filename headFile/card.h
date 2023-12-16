@@ -31,6 +31,7 @@ class Card {
         ~Card();
         void setTotalOpt(const Description opt);
         string getName();
+        int getCnt();
         void setDescript(const string des);
         virtual void GameCallingPrint() = 0;
 };

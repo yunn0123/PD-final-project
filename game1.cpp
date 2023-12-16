@@ -1,4 +1,4 @@
-#include "./headFile/game.h"
+#include "./headFile/game1.h"
 using namespace std;
 
 Game :: Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCard> eCard, Player PLAYER)
@@ -13,7 +13,7 @@ Game :: Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCar
  
 void Game :: displayQuestion()
 {
-	normalCard[this->nCardIdx].gameCallPrint();
+	normalCard[this->nCardIdx].GameCallingPrint();
 }
 
 void Game :: getChoice()

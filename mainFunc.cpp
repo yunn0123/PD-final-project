@@ -4,6 +4,7 @@ using namespace std;
 #include "headFile/character.h"
 #include "headFile/ending.h"
 #include "headFile/game1.h"
+#include "headFile/item.h"
 ///
 ////////////////////////////
 Player PLAYER;
@@ -254,7 +255,7 @@ int main() {
     //processing normal cards
     for(int i = 0; i < normalCard.size(); i++)
     {
-        for(int j = 0; j < normalCard[i].questionCnt; j++)
+        for(int j = 0; j < normalCard[i].getCnt(); j++)
         {
             game.displayQuestion();
             game.getChoice();
@@ -264,7 +265,7 @@ int main() {
     //processing event cards
     for(int i = 0; i < eventCard.size(); i++)
     {
-        for(int j = 0; j < eventCard[i].questionCnt; j++)
+        for(int j = 0; j < eventCard[i].getCnt(); j++)
         {
             game.displayQuestion();
             game.getChoice();
