@@ -260,6 +260,17 @@ int main() {
             game.getChoice();
         }
     }
+
+    //processing event cards
+    for(int i = 0; i < eventCard.size(); i++)
+    {
+        for(int j = 0; j < eventCard[i].questionCnt; j++)
+        {
+            game.displayQuestion();
+            game.getChoice();
+        }
+    }
+    
     return 0;
 }
 
