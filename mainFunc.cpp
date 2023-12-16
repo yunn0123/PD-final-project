@@ -3,10 +3,10 @@ using namespace std;
 #include "headFile/description.h"
 #include "headFile/character.h"
 #include "headFile/ending.h"
-#include "headFile/game.h"
+#include "headFile/game1.h"
 ///
 ////////////////////////////
-// Player PLAYER;
+Player PLAYER;
 int main() {
     /// initilalize the keyboard ///
     
@@ -250,13 +250,8 @@ int main() {
         }
     }
     //////////////////////////////////////////
-    // eventCard[0].GameCallingPrint();
-    // Game game(numCards); // n(卡牌數)
-    // game.start();
+    Game game(normalCard, randomCard, eventCard, PLAYER);
 
     return 0;
 }
 
-// main function 讀入資料、cout 一些遊戲開啟等字眼
-// 主流程(game)會是不斷cin的過程(while(cin))
-// 直到過關跑完動畫或是結束遊戲，用一個判斷式判斷是否跳出迴圈

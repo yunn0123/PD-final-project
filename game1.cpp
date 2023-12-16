@@ -1,4 +1,4 @@
-#include "./headFile/game.h"
+#include "./headFile/game1.h"
 using namespace std;
 
 Game :: Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCard> eCard, Player PLAYER)
@@ -18,7 +18,7 @@ void Game :: displayQuestion()
 {
 	if(normalCard[this->nCardIdx].nowQuestion < normalCard[this->nCardIdx].questionCnt)
 	{
-		normalCard[this->nCardIdx].gameCallPrint();
+		normalCard[this->nCardIdx].GameCallingPrint();
 		normalCard[this->nCardIdx].nowQuestion += 1;
 	}
 	this->nCardIdx  += 1;

@@ -1,8 +1,16 @@
  #include <Windows.h>
- #include <card.h>
  #include <iostream>
+ #include <vector>
  using namespace std;
- 
+
+#ifndef GAME_H
+#define GAME_H
+
+#include "ending.h"
+#include "card.h"
+#include "character.h"
+#include "item.h"
+
 class Game
 {
 private:
@@ -18,27 +26,12 @@ private:
 	Player PLAYER;
 public:
 	//void setup();//initialization and read card text
-	Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCard> eCard);
-	~Game(){}
+	Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCard> eCard, Player Player);
+	~Game();
 	void displayQuestion();
 	void getChoice();
 	void theEnd();//ending
 };
- 
-//setup--read all cards
-Game :: Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCard> eCard, Player PLAYER)
-{
-	normalCard = nCard;
-	randomCard = rCard;
-	eventCard = eCard;
-	nCardIdx = -1;
-	rCardIdx = -1;
-	eCardIdx = -1;
-	nQuestionIdx = -1;
-	rQuestionIdx = -1;
-	eQuestionIdx = -1;
-}
- 
 
  
- 
+#endif

@@ -14,6 +14,7 @@ using namespace std;
 #include "description.h"
 #include "character.h"
 #include "item.h"
+#include "game1.h"
 
 class Card {
     friend class Game;

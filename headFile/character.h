@@ -49,5 +49,6 @@ class Enemy: public Character{
         int getEnemyChoice();
 };
 
-//extern Character Character;
+extern Player PLAYER;
+
 #endif

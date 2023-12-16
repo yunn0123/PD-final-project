@@ -74,3 +74,4 @@ void Game :: endGame() {
     std::cout << "經濟：" << player.getEconomy() << " 軍事：" << player.getMilitary()
                 << " 聲望：" << player.getPrestige() << " 外交：" << player.getDiplomacy() << std::endl;
 }
+
