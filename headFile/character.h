@@ -25,7 +25,7 @@ class Character {
         vector<int> chV1, chV2, chV3, chV4;
     public:
         Character();
-        virtual void updateValues(int change1, int change2, int change3, int change4, Game & game) = 0; //更新玩家的數值並印出
+        virtual void updateValues(int change1, int change2, int change3, int change4) = 0; //更新玩家的數值並印出
         int getEnemyChoice();
         void catchItem(Item item);
         vector<Item> getItem();
@@ -39,13 +39,13 @@ class Player: public Character{
         Player();
         void catchItem(Item item); //拿到道具，存進itemList
         vector<Item> getItem();
-        void updateValues(int change1, int change2, int change3, int change4, Game & game);
+        void updateValues(int change1, int change2, int change3, int change4);
 };
 
 class Enemy: public Character{
     public:
         Enemy();
-        void updateValues(int change1, int change2, int change3, int change4, Game & game);
+        void updateValues(int change1, int change2, int change3, int change4);
         int getEnemyChoice();
 };
 

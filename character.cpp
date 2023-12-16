@@ -43,7 +43,7 @@ Player::Player(): Character(){
     name = "玩家";
 }
 
-void Player :: updateValues(int change1, int change2, int change3, int change4, Game &game)
+void Player :: updateValues(int change1, int change2, int change3, int change4)
 {
     value1 += change1;
     value2 += change2;
@@ -59,13 +59,14 @@ void Player :: updateValues(int change1, int change2, int change3, int change4, 
     cout << "外交: " << value3 << printChange(change3) << "  ";
     cout << "社會發展: " << value4 << printChange(change4) << "  ";
     cout << endl;
-    Ending :: checkForEnding(*this, game);
+    //
+    Ending :: checkForEnding(*this);
 }
 /////////////////////////////////////////////
 Enemy::Enemy(): Character(){
     name = "敵人";
 }
-void Enemy::updateValues(int change1, int change2, int change3, int change4, Game &game)
+void Enemy::updateValues(int change1, int change2, int change3, int change4)
 {
     value1 += change1;
     value2 += change2;
@@ -81,7 +82,8 @@ void Enemy::updateValues(int change1, int change2, int change3, int change4, Gam
     cout << "外交: " << value3 << printChange(change3) << "  ";
     cout << "社會發展: " << value4 << printChange(change4) << "  ";
     cout << endl;
-    Ending :: checkForEnding();
+    //
+    // Ending :: checkForEnding(*this);
 }
 int Enemy::getEnemyChoice(){
     // Seed the random number generator

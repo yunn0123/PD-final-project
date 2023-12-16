@@ -73,8 +73,8 @@ bool Ending :: isNormalEndingAchieved()
 }
 
 //檢查是否有特定的道具
-bool Ending::hasSpecificItem(Player& player, const string& itemName) {
-    for (const Item& item : player.getItem()) {
+bool Ending::hasSpecificItem(Player& player, const string itemName) {
+    for (const Item item : player.getItem()) {
         if (item.getName() == itemName) {
             return true;
         }
