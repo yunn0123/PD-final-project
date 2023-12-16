@@ -22,18 +22,25 @@ Character :: Character() : value1(INI_VAL), value2(INI_VAL), value3(INI_VAL), va
     chV4.push_back(INI_VAL);
     name = "";
 }
+void Character :: catchItem(Item item){}
+vector<Item> Character :: getItem(){}
 
-void Character::catchItem(Item item )
+////////////////////////////////////////////////////
+
+void Player::catchItem(Item item)
 {
     itemList.push_back(item);
 }
 
-int Character::getEnemyChoice(){
+int Character::getEnemyChoice(){}
+
+vector<Item> Player :: getItem()
+{
+    return itemList;
 }
 
-////////////////////////////////////////////////////
 Player::Player(): Character(){
-    name = "ª±®a";
+    name = "ï¿½ï¿½ï¿½a";
 }
 
 void Player :: updateValues(int change1, int change2, int change3, int change4, Game &game)
@@ -47,16 +54,16 @@ void Player :: updateValues(int change1, int change2, int change3, int change4, 
     chV3.push_back(value3);
     chV4.push_back(value4);
     cout << "<" <<  name << "> " << endl;
-    cout << "¸gÀÙ: " << value1 << printChange(change1) << "  ";
-    cout << "Án±æ: " << value2 << printChange(change2) << "  ";
-    cout << "¥~¥æ: " << value3 << printChange(change3) << "  ";
-    cout << "µo®i: " << value4 << printChange(change4) << "  ";
+    cout << "ï¿½gï¿½ï¿½: " << value1 << printChange(change1) << "  ";
+    cout << "ï¿½nï¿½ï¿½: " << value2 << printChange(change2) << "  ";
+    cout << "ï¿½~ï¿½ï¿½: " << value3 << printChange(change3) << "  ";
+    cout << "ï¿½oï¿½i: " << value4 << printChange(change4) << "  ";
     cout << endl;
     Ending :: checkForEnding(*this, game);
 }
 /////////////////////////////////////////////
 Enemy::Enemy(): Character(){
-    name = "¼Ä¤H";
+    name = "ï¿½Ä¤H";
 }
 void Enemy::updateValues(int change1, int change2, int change3, int change4, Game &game)
 {
@@ -69,10 +76,10 @@ void Enemy::updateValues(int change1, int change2, int change3, int change4, Gam
     chV3.push_back(value3);
     chV4.push_back(value4);
     cout << "<" <<  name << "> " << endl;
-    cout << "¸gÀÙ: " << value1 << printChange(change1) << "  ";
-    cout << "Án±æ: " << value2 << printChange(change2) << "  ";
-    cout << "¥~¥æ: " << value3 << printChange(change3) << "  ";
-    cout << "µo®i: " << value4 << printChange(change4) << "  ";
+    cout << "ï¿½gï¿½ï¿½: " << value1 << printChange(change1) << "  ";
+    cout << "ï¿½nï¿½ï¿½: " << value2 << printChange(change2) << "  ";
+    cout << "ï¿½~ï¿½ï¿½: " << value3 << printChange(change3) << "  ";
+    cout << "ï¿½oï¿½i: " << value4 << printChange(change4) << "  ";
     cout << endl;
     Ending :: checkForEnding(*this, game);
 }

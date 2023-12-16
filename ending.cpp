@@ -4,7 +4,7 @@ using namespace std;
 #include "./headFile/ending.h"
 
 // 檢查並觸發遊戲結局
-void Ending :: checkForEnding(Player& player, Game& game)
+void Ending :: checkForEnding(Player& player)
 {
     // 設計最高與最低的數值
     const int minVal = 0;
@@ -17,7 +17,7 @@ void Ending :: checkForEnding(Player& player, Game& game)
     }
 
     // 檢查是否達到普通結局的條件
-    if (isNormalEndingAchieved(game)) {
+    if (isNormalEndingAchieved()) {
         normalEnding();
         return;
     }
@@ -67,14 +67,14 @@ bool Ending :: isValuesBalanced(Player& player, int minVal, int maxVal)
 }
 
 // 檢查是否達到普通結局條件
-bool Ending :: isNormalEndingAchieved(Game& game)
+bool Ending :: isNormalEndingAchieved()
 {
 // 是否已經讀取特定數字的卡牌
 }
 
 //檢查是否有特定的道具
-bool Ending::hasSpecificItem(const Character& character, const string& itemName) {
-    for (const Item& item : character.itemList) {
+bool Ending::hasSpecificItem(Player& player, const string& itemName) {
+    for (const Item& item : player.getItem()) {
         if (item.getName() == itemName) {
             return true;
         }

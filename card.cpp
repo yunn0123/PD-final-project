@@ -47,22 +47,6 @@ void NormalCard :: GameCallingPrint()
     if(totalOpt[nowQuestion].eff2[3]){cout << "社會發展 ";}
     cout << endl;
 
-    while(true){
-        if(GetAsyncKeyState(VK_LEFT) && 0x8001){ // choose left
-            keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
-            nowChoice = 1;
-            PLAYER.updateValues(totalOpt[nowQuestion].val1[0], totalOpt[nowQuestion].val1[1], totalOpt[nowQuestion].val1[2], totalOpt[nowQuestion].val1[3]);
-            break;
-        }
-        if(GetAsyncKeyState(VK_RIGHT) && 0x8001){ // choose right
-            keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
-            nowChoice = 2;
-            PLAYER.updateValues(totalOpt[nowQuestion].val2[0], totalOpt[nowQuestion].val2[1], totalOpt[nowQuestion].val2[2], totalOpt[nowQuestion].val2[3]);
-
-            break;
-        }
-    }
-    cout << "-------------------" << endl;
     // for next print
     nowQuestion += (nowQuestion + nowChoice);
     // if last question has asked, return to first question
@@ -112,22 +96,7 @@ void RandomCard :: GameCallingPrint()
     if(totalOpt[nowQuestion].eff2[2]){cout << "外交 ";}
     if(totalOpt[nowQuestion].eff2[3]){cout << "社會發展 ";}
     cout << endl;
-    //
-    while(true){
-        if(GetAsyncKeyState(VK_LEFT) && 0x8001){ // choose left
-            keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
-            nowChoice = 1;
-            PLAYER.updateValues(totalOpt[nowQuestion].val1[0], totalOpt[nowQuestion].val1[1], totalOpt[nowQuestion].val1[2], totalOpt[nowQuestion].val1[3]);
-            break;
-        }
-        if(GetAsyncKeyState(VK_RIGHT) && 0x8001){ // choose right
-            keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
-            nowChoice = 2;
-            PLAYER.updateValues(totalOpt[nowQuestion].val2[0], totalOpt[nowQuestion].val2[1], totalOpt[nowQuestion].val2[2], totalOpt[nowQuestion].val2[3]);
-            break;
-        }
-    }
-    cout << "-------------------" << endl;
+
     // for next print
     nowQuestion += (nowQuestion + nowChoice);
     // if last question has asked, return to first question
@@ -180,12 +149,13 @@ int EventCard :: isHappened = 0;
 //// 
 bool EventCard :: isEnterEvent()
 {
+    string choice;
     cout << EventNorration << endl;
     cout << name << " : " << EnterEventQues << endl;
     cout << optLEFT << " (左)          " << optRIGHT << " (右)" << endl;
+    cin >> choice;
     while(true){
-        if (GetAsyncKeyState(VK_LEFT) && 0x8001){ // left
-            keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
+        if (choice.compare("l") == 0){ // left
             if(isEnter[0]){
                 isEvent = 1;
                 isHappened = 1;
@@ -198,8 +168,7 @@ bool EventCard :: isEnterEvent()
             }
             break;
         }
-        else if (GetAsyncKeyState(VK_RIGHT) && 0x8001){ ///right
-            keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
+        else if (choice.compare("r") == 0){ ///right
             if(isEnter[1]){
                 isEvent = 1;
                 isHappened = 1;
@@ -244,35 +213,34 @@ void EventCard :: GameCallingPrint(){
         if(totalEventOpt[nowQuestion].eff2[3]){cout << "社會發展 ";}
         cout << endl;
         // call Player value change
-        while(true){
-            if(GetAsyncKeyState(VK_LEFT) && 0x8001){ // choose left
-                keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
-                nowChoice = 1;
-                // item check
-                if (nowQuestion == itemQues && nowChoice == itemChoice ){
-                    cout << ItemNorration << endl;
-                    PLAYER.catchItem(item);
-                }
-                //
-                PLAYER.updateValues(totalEventOpt[nowQuestion].val1[0], totalEventOpt[nowQuestion].val1[1], totalEventOpt[nowQuestion].val1[2], totalEventOpt[nowQuestion].val1[3]);
-                nowQuestion = totalEventOpt[nowQuestion].nextIndex[0];
-                break;
-            }
-            if(GetAsyncKeyState(VK_RIGHT) && 0x8001){ // choose right
-                keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
-                nowChoice = 2;
-                // item check 
-                if (nowQuestion == itemQues && nowChoice == itemChoice ){
-                    cout << ItemNorration << endl;
-                    PLAYER.catchItem(item);
-                }
-                //
-                PLAYER.updateValues(totalEventOpt[nowQuestion].val2[0], totalEventOpt[nowQuestion].val2[1], totalEventOpt[nowQuestion].val2[2], totalEventOpt[nowQuestion].val2[3]);
-                nowQuestion = totalEventOpt[nowQuestion].nextIndex[1];
-                break;
-            }
-        }
-        cout << "-------------------" << endl;
+        // while(true){
+        //     if(GetAsyncKeyState(VK_LEFT) && 0x8001){ // choose left
+        //         keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
+        //         nowChoice = 1;
+        //         // item check
+        //         if (nowQuestion == itemQues && nowChoice == itemChoice ){
+        //             cout << ItemNorration << endl;
+        //             PLAYER.catchItem(item);
+        //         }
+        //         //
+        //         PLAYER.updateValues(totalEventOpt[nowQuestion].val1[0], totalEventOpt[nowQuestion].val1[1], totalEventOpt[nowQuestion].val1[2], totalEventOpt[nowQuestion].val1[3]);
+        //         nowQuestion = totalEventOpt[nowQuestion].nextIndex[0];
+        //         break;
+        //     }
+        //     if(GetAsyncKeyState(VK_RIGHT) && 0x8001){ // choose right
+        //         keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
+        //         nowChoice = 2;
+        //         // item check 
+        //         if (nowQuestion == itemQues && nowChoice == itemChoice ){
+        //             cout << ItemNorration << endl;
+        //             PLAYER.catchItem(item);
+        //         }
+        //         //
+        //         PLAYER.updateValues(totalEventOpt[nowQuestion].val2[0], totalEventOpt[nowQuestion].val2[1], totalEventOpt[nowQuestion].val2[2], totalEventOpt[nowQuestion].val2[3]);
+        //         nowQuestion = totalEventOpt[nowQuestion].nextIndex[1];
+        //         break;
+        //     }
+        // }
         // if ending: ?
         if (nowQuestion == -1){ // 事件失敗
             isEvent = 0;

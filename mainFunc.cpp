@@ -6,11 +6,10 @@ using namespace std;
 #include "headFile/game.h"
 ///
 ////////////////////////////
-Player PLAYER;
+// Player PLAYER;
 int main() {
     /// initilalize the keyboard ///
-    keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
-    keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
+    
     keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
     keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
 
@@ -251,7 +250,7 @@ int main() {
         }
     }
     //////////////////////////////////////////
-    eventCard[0].GameCallingPrint();
+    // eventCard[0].GameCallingPrint();
     // Game game(numCards); // n(卡牌數)
     // game.start();
 
