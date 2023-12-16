@@ -250,8 +250,16 @@ int main() {
         }
     }
     //////////////////////////////////////////
-    Game game(normalCard, randomCard, eventCard, PLAYER);
-
+    Game game(normalCard, randomCard, eventCard, PLAYER);//game setup
+    //processing normal cards
+    for(int i = 0; i < normalCard.size(); i++)
+    {
+        for(int j = 0; j < normalCard[i].questionCnt; j++)
+        {
+            game.displayQuestion();
+            game.getChoice();
+        }
+    }
     return 0;
 }
 
