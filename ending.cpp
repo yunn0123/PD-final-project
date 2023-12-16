@@ -22,6 +22,15 @@ void Ending :: checkForEnding(Player& player, Game& game)
         return;
     }
 
+
+    const string mothershipModel = "母艦模型";
+    const string trainModel = "火車模型";
+    if (hasSpecificItem(player, mothershipModel) && hasSpecificItem(player, trainModel)) {
+        hiddenEnding();
+        return;
+    }
+
+
     // 
 }
 // 檢查玩家數值是否過高或過低
@@ -63,6 +72,16 @@ bool Ending :: isNormalEndingAchieved(Game& game)
 // 是否已經讀取特定數字的卡牌
 }
 
+//檢查是否有特定的道具
+bool Ending::hasSpecificItem(const Character& character, const string& itemName) {
+    for (const Item& item : character.itemList) {
+        if (item.getName() == itemName) {
+            return true;
+        }
+    }
+    return false;
+}
+
 // 重啟結局
 void Ending :: restartEnding()
 {
@@ -88,3 +107,16 @@ void Ending :: normalEnding()
         << "外交：" << PLAYER.value3 << endl
         << "發展:" << PLAYER.value4 << endl; // 會與Game.cpp撞到可能要改一下
 }
+
+void Ending :: hiddenEnding()
+{
+    cout << "隨著你在這趟旅程中所展現出的卓越決策和領導才能，你已不僅僅是一位國家的領袖。" << endl;
+    cout << "你的內心深處，對於模型的熱愛逐漸滋長，成為了你生活中不可或缺的一部分。" << endl;
+    cout << "從你收集到的母艦模型和火車模型開始，你的辦公室逐漸轉變成了一個小型博物館，吸引了無數同好者前來參觀。" << endl;
+    cout << "你的收藏品成為了全國甚至全世界模型愛好者的聖地。" << endl;
+    cout << "在你的引領下，國家不僅在政治和經濟上取得了巨大的成就，你對模型的熱愛也成為了國民文化的一部分。" << endl;
+    cout << "你的故事證明了，即使是國家領袖，也可以擁有自己的愛好，並將這份愛好提升到藝術的層次。" << endl;
+    cout << "恭喜你，你不僅是一位成功的領袖，也是一位備受尊敬的模型收藏家。" << endl;
+}
+
+
