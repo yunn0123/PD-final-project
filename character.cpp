@@ -40,7 +40,7 @@ vector<Item> Player :: getItem()
 }
 
 Player::Player(): Character(){
-    name = "ï¿½ï¿½ï¿½a";
+    name = "ª±®a";
 }
 
 void Player :: updateValues(int change1, int change2, int change3, int change4, Game &game)
@@ -54,16 +54,16 @@ void Player :: updateValues(int change1, int change2, int change3, int change4, 
     chV3.push_back(value3);
     chV4.push_back(value4);
     cout << "<" <<  name << "> " << endl;
-    cout << "ï¿½gï¿½ï¿½: " << value1 << printChange(change1) << "  ";
-    cout << "ï¿½nï¿½ï¿½: " << value2 << printChange(change2) << "  ";
-    cout << "ï¿½~ï¿½ï¿½: " << value3 << printChange(change3) << "  ";
-    cout << "ï¿½oï¿½i: " << value4 << printChange(change4) << "  ";
+    cout << "¸gÀÙ: " << value1 << printChange(change1) << "  ";
+    cout << "Án±æ: " << value2 << printChange(change2) << "  ";
+    cout << "¥~¥æ: " << value3 << printChange(change3) << "  ";
+    cout << "ªÀ·|µo®i: " << value4 << printChange(change4) << "  ";
     cout << endl;
     Ending :: checkForEnding(*this, game);
 }
 /////////////////////////////////////////////
 Enemy::Enemy(): Character(){
-    name = "ï¿½Ä¤H";
+    name = "¼Ä¤H";
 }
 void Enemy::updateValues(int change1, int change2, int change3, int change4, Game &game)
 {
@@ -76,12 +76,12 @@ void Enemy::updateValues(int change1, int change2, int change3, int change4, Gam
     chV3.push_back(value3);
     chV4.push_back(value4);
     cout << "<" <<  name << "> " << endl;
-    cout << "ï¿½gï¿½ï¿½: " << value1 << printChange(change1) << "  ";
-    cout << "ï¿½nï¿½ï¿½: " << value2 << printChange(change2) << "  ";
-    cout << "ï¿½~ï¿½ï¿½: " << value3 << printChange(change3) << "  ";
-    cout << "ï¿½oï¿½i: " << value4 << printChange(change4) << "  ";
+    cout << "¸gÀÙ: " << value1 << printChange(change1) << "  ";
+    cout << "Án±æ: " << value2 << printChange(change2) << "  ";
+    cout << "¥~¥æ: " << value3 << printChange(change3) << "  ";
+    cout << "ªÀ·|µo®i: " << value4 << printChange(change4) << "  ";
     cout << endl;
-    Ending :: checkForEnding(*this, game);
+    Ending :: checkForEnding();
 }
 int Enemy::getEnemyChoice(){
     // Seed the random number generator
