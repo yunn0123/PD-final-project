@@ -61,7 +61,7 @@ bool Ending :: isValuesBalanced(Player& player, int minVal, int maxVal)
         cout << "科技快速發展，你的國家成為了法外之地。在一次出門中，你被最新科技鎖定…" << endl;
         restartGame = true;
     } else if (player.value4 <= minVal){
-        cout << "沒有科技的社會猶如一片死水，你的國家成為了他國的附屬品…" << endl;
+        cout << "沒有科技的社會猶如一片死水，你的國家成為了他國的附屬品，也不再需要你…" << endl;
         restartGame = true;
     }
 }
