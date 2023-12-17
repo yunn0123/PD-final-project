@@ -7,14 +7,16 @@
 using namespace std;
 //
 
-#ifndef CRAD_H
+#ifndef CARD_H
 
 #define CARD_H
 
 #include "description.h"
 #include "character.h"
 #include "item.h"
-#include "game1.h"
+//#include "game1.h"
+
+class Game; // Forward declaration
 
 class Card {
     friend class Game;
@@ -46,7 +48,7 @@ class NormalCard : public Card{
         void setTotalOpt(const Description opt);
         void GameCallingPrint(); // 當game呼叫card，要印出的問題與選項 (可能有連續性問題)，game呼叫時傳入已經call該card幾次或是要call odd or even function
         int* getVal1(); // 回傳左邊選項的數值增減陣列
-        int* getVal2(); 
+        int* getVal2();
 
 };
 ////////////////////////////////////////////////
@@ -93,9 +95,9 @@ class EventCard : public Card{
         void setItem(const int itemQues, const int itemChoice, const string GetItemNorration, const string name);
         void setEnding(const string end, bool isDead);
         //// print
-        void GameCallingPrint(); 
+        void GameCallingPrint();
         //// destructor
-        ~EventCard(); 
+        ~EventCard();
 
 };
 

@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "./headFile/character.h"
+#include "./headFile/ending.h"
 using namespace std;
 
 string printChange(int change){

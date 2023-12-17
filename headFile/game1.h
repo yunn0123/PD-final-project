@@ -1,26 +1,26 @@
- #include <Windows.h>
- #include <iostream>
- #include <vector>
+#include <Windows.h>
+#include <iostream>
+#include <vector>
 
-#ifndef GAME_H
-#define GAME_H
+#ifndef GAME1_H
+#define GAME1_H
 
 #include "ending.h"
 #include "card.h"
 #include "character.h"
 #include "item.h"
 
- using namespace std;
- 
+using namespace std;
+
 class Game
 {
 private:
-	vector<NormalCard> normalCard; 
-	vector<RandomCard> randomCard; 
-	vector<EventCard> eventCard; 
+	vector<NormalCard> normalCard;
+	vector<RandomCard> randomCard;
+	vector<EventCard> eventCard;
 	int nCardIdx;//which card are we now
 	int rCardIdx;
-	int eCardIdx;   
+	int eCardIdx;
 	Player PLAYER;
 public:
 	//void setup();//initialization and read card text
@@ -30,10 +30,10 @@ public:
 	void getChoice();
 	void theEnd();//ending
 };
- 
 
- 
- 
 
- 
+
+
+
+
 #endif

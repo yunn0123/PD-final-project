@@ -3,14 +3,14 @@ using namespace std;
 
 Game :: Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCard> eCard, Player PLAYER)
 {
-	normalCard.assign(nCard.begin(), nCard.end());//try: normalCard = nCard; 
+	normalCard.assign(nCard.begin(), nCard.end());//try: normalCard = nCard;
 	randomCard.assign(rCard.begin(), rCard.end());
 	eventCard.assign(eCard.begin(), eCard.end());
 	nCardIdx = 0;
 	rCardIdx = 0;
 	eCardIdx = 0;
 }
- 
+
 void Game :: displayQuestion()
 {
 	normalCard[this->nCardIdx].GameCallingPrint();
