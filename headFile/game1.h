@@ -21,7 +21,7 @@ private:
 	int nCardIdx;//which card are we now
 	int rCardIdx;
 	int eCardIdx;
-	Player PLAYER;
+	// Player PLAYER;
 public:
 	//void setup();//initialization and read card text
 	Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCard> eCard, Player PLAYER);

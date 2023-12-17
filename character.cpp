@@ -61,7 +61,7 @@ void Player :: updateValues(int change1, int change2, int change3, int change4)
     cout << "社會發展: " << value4 << printChange(change4) << "  ";
     cout << endl;
     //
-    Ending :: checkForEnding(*this);
+    Ending :: checkForEnding(PLAYER);
 }
 /////////////////////////////////////////////
 Enemy::Enemy(): Character(){
@@ -80,8 +80,8 @@ void Enemy::updateValues(int change1, int change2, int change3, int change4)
     cout << "<" <<  name << "> " << endl;
     cout << "經濟: " << value1 << printChange(change1) << "  ";
     cout << "聲望: " << value2 << printChange(change2) << "  ";
-    cout << "外交: " << value3 << printChange(change3) << "  ";
-    cout << "社會發展: " << value4 << printChange(change4) << "  ";
+    cout << "外交" << value3 << printChange(change3) << "  ";
+    cout << "社會發展" << value4 << printChange(change4) << "  ";
     cout << endl;
     //
     // Ending :: checkForEnding(*this);

@@ -1,3 +1,4 @@
+#include <windows.h>
 using namespace std;
 #include "headFile/card.h"
 #include "headFile/description.h"
@@ -145,38 +146,38 @@ int main() {
     //
     if(eventFile.is_open()){
         getline(eventFile, line, '\n');
-        eventCardCnt = atoi(line.c_str()); // ç¸½å…±çš„äº‹ä»¶å¡ç‰Œæ•¸
+        eventCardCnt = atoi(line.c_str()); // Á`¦@ªº¨Æ¥ó¥dµP¼Æ
         //
         for(int j = 0 ; j < eventCardCnt ; j++){
-            // è©²äº‹ä»¶çš„ç¸½å…±å•é¡Œæ•¸é‡
+            // ¸Ó¨Æ¥óªºÁ`¦@°İÃD¼Æ¶q
             getline(eventFile, line, ' ');
             totalQuesInEvent = atoi(line.c_str());
-            // äº‹ä»¶é–‹å§‹çš„æ—ç™½
+            // ¨Æ¥ó¶}©lªº®Ç¥Õ
             getline(eventFile, EventNorration, '\n');
-            // ç¬¬ä¸€å€‹è¦æ˜¯å¦è¦é€²å…¥äº‹ä»¶å•é¡Œçš„åå­—
+            // ²Ä¤@­Ó­n¬O§_­n¶i¤J¨Æ¥ó°İÃDªº¦W¦r
             getline(eventFile, name, ' ');
-            // æ˜¯å¦è¦é€²å…¥äº‹ä»¶çš„å•é¡Œ
+            // ¬O§_­n¶i¤J¨Æ¥óªº°İÃD
             getline(eventFile, question, '\"');
             getline(eventFile, question, '\"');
             getline(eventFile, line, ' ');
-            // å·¦å³é¸æ“‡
+            // ¥ª¥k¿ï¾Ü
             getline(eventFile, opt1, ' ');
             getline(eventFile, opt2, ' ');
-            // å·¦å³é¸æ“‡æ˜¯å¦æœƒé€²å…¥äº‹ä»¶
+            // ¥ª¥k¿ï¾Ü¬O§_·|¶i¤J¨Æ¥ó
             getline(eventFile, line, ' ');
             leftChoice = atoi(line.c_str());
             getline(eventFile, line);
             rightChoice = atoi(line.c_str());
             eventCard.push_back(EventCard(name, totalQuesInEvent, EventNorration, question, opt1, opt2, leftChoice, rightChoice));
-            // äº‹ä»¶çš„å•é¡Œå€‘
+            // ¨Æ¥óªº°İÃD­Ì
             for (int i = 0; i < totalQuesInEvent ; i++){
-                // åå­—(æå•äºº)
+                // ¦W¦r(´£°İ¤H)
                 getline(eventFile, name, ' ');
-                // å•é¡Œ
+                // °İÃD
                 getline(eventFile, question, '\"');
                 getline(eventFile, question, '\"');
                 getline(eventFile, line, ' ');
-                // é¸é …å€‘
+                // ¿ï¶µ­Ì
                 getline(eventFile, opt1, ' ');
                 getline(eventFile, opt2, ' ');
                 // val1
@@ -197,7 +198,7 @@ int main() {
                 val2[2] = atoi(line.c_str());
                 getline(eventFile, line, ' ');
                 val2[3] = atoi(line.c_str());
-                // å·¦å³é¸é …æœƒæŒ‡åˆ°çš„ä¸‹ä¸€å€‹å•é¡Œ
+                // ¥ª¥k¿ï¶µ·|«ü¨ìªº¤U¤@­Ó°İÃD
                 getline(eventFile, line, ' ');
                 leftChoice = atoi(line.c_str());
                 getline(eventFile, line);
@@ -229,7 +230,8 @@ int main() {
     //////////////////////////////////////////////////////
     cout << "Timeless Redemption" << endl;
     cout << endl;
-    cout << "---æŒ‰ SPACE é–‹å§‹éŠæˆ²---" << endl;
+    cout << "---«ö SPACE ¶}©l¹CÀ¸---" << endl;
+
     while(true){
         if (GetAsyncKeyState(VK_SPACE) && 0x8001){
             keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
@@ -238,15 +240,15 @@ int main() {
         }
         if(GetAsyncKeyState(VK_ESCAPE) && 0x8001){ // esc
             keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
-            cout << "ç¢ºå®šè¦é›¢é–‹å—ï¼Ÿ" << endl;
-            cout << "æ˜¯(y) å¦(n)" << endl;
+            cout << "½T©w­nÂ÷¶}¶Ü¡H" << endl;
+            cout << "¬O(y) §_(n)" << endl;
             string user;
             cin >> user;
             if (user.compare("y") == 0){ // y
                 return 0;
             }
             if (user.compare("n") == 0){ // n
-                cout << "---æŒ‰ SPACE é–‹å§‹éŠæˆ²---" << endl;
+                cout << "---«ö SPACE ¶}©l¹CÀ¸---" << endl;
             }
         }
     }
