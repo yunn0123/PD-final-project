@@ -11,9 +11,10 @@ using namespace std;
 
 class Description{
     friend class Card;
-    friend class NormalCard; 
-    friend class RandomCard; 
+    friend class NormalCard;
+    friend class RandomCard;
     friend class EventCard;
+    friend class Game;
     protected:
         string question;
         string option1;

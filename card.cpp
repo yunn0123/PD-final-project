@@ -15,7 +15,7 @@ int Card:: getCnt() {return questionCnt;}
 void Card :: setDescript(const string des) {descript = des;}
 void Card :: GameCallingPrint(){}
 ////////////////////////////////////////////////
-// 
+//
 NormalCard :: NormalCard(){}
 NormalCard :: ~NormalCard(){}
 void NormalCard :: setTotalOpt(const Description opt) {totalOpt.push_back(opt);}
@@ -32,7 +32,7 @@ void NormalCard :: GameCallingPrint()
     // 1 -> 3, 4  (+2 , +3) 1
     // 2 -> 5, 6  (+3 , +4) 1
     // 3 -> 7, 8  (+4 , +5) 2
-    cout << name << ": " << totalOpt[nowQuestion].question << endl; 
+    cout << name << ": " << totalOpt[nowQuestion].question << endl;
     cout << totalOpt[nowQuestion].option1 << " (左)" << " -> 影響 ";
     // effect what value, print out
     if(totalOpt[nowQuestion].eff1[0]){cout << "經濟 ";}
@@ -60,8 +60,8 @@ void NormalCard :: GameCallingPrint()
     //     nowQuestion = 0;
     //     nowChoice = 0;
     // }
-    // tragger ending 
-    
+    // tragger ending
+
 
 }
 ////////////////////////////////////////////////
@@ -71,7 +71,7 @@ RandomCard :: RandomCard(const string name, const int quesCnt) : Card(name, ques
 {
     nowQuestion = 0;
     descript = "";
-}       
+}
 RandomCard :: ~RandomCard() {}
 void RandomCard :: setTotalOpt(const Description opt) {totalOpt.push_back(opt);}
 void RandomCard :: GameCallingPrint()
@@ -82,7 +82,7 @@ void RandomCard :: GameCallingPrint()
     // 2 -> 5, 6  (+3 , +4) 1
     // 3 -> 7, 8  (+4 , +5) 2
 
-    cout << name << ": " << totalOpt[nowQuestion].question << endl; 
+    cout << name << ": " << totalOpt[nowQuestion].question << endl;
     cout << totalOpt[nowQuestion].option1 << " (左)" << " -> 影響 ";
     // effect what value, print out
     if(totalOpt[nowQuestion].eff1[0]){cout << "經濟 ";}
@@ -110,7 +110,7 @@ void RandomCard :: GameCallingPrint()
     //     nowQuestion = 0;
     //     nowChoice = 0;
     // }
-    
+
 }
 ////////////////////////////////////////////////
 // ???(?s??)
@@ -144,10 +144,10 @@ void EventCard:: setItem(const int itemQues, const int itemChoice, const string 
 }
 
 //// destructor
-EventCard :: ~EventCard() {}; 
+EventCard :: ~EventCard() {};
 int EventCard :: isEvent = 0;
 int EventCard :: isHappened = 0;
-//// 
+////
 bool EventCard :: isEnterEvent()
 {
     string choice;
@@ -198,7 +198,7 @@ void EventCard :: setEnding(const string end, bool isDead)
 void EventCard :: GameCallingPrint(){
     this -> isEnterEvent();
     while(nowQuestion < questionCnt && isEvent){
-        cout << totalEventOpt[nowQuestion].name << ": " << totalEventOpt[nowQuestion].question << endl; 
+        cout << totalEventOpt[nowQuestion].name << ": " << totalEventOpt[nowQuestion].question << endl;
         cout << totalEventOpt[nowQuestion].option1 << " (左)" << " -> 影響 ";
         // effect what value, print out
         if(totalEventOpt[nowQuestion].eff1[0]){cout << "經濟 ";}
@@ -231,7 +231,7 @@ void EventCard :: GameCallingPrint(){
         //     if(GetAsyncKeyState(VK_RIGHT) && 0x8001){ // choose right
         //         keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
         //         nowChoice = 2;
-        //         // item check 
+        //         // item check
         //         if (nowQuestion == itemQues && nowChoice == itemChoice ){
         //             cout << ItemNorration << endl;
         //             PLAYER.catchItem(item);

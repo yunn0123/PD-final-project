@@ -16,7 +16,7 @@ using namespace std;
 #include "item.h"
 //#include "game1.h"
 
-class Game; // Forward declaration
+//class Game; // Forward declaration
 
 class Card {
     friend class Game;

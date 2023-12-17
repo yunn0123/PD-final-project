@@ -11,8 +11,8 @@ using namespace std;
 
 #include "item.h"
 #include "game.h"
-#include "ending.h"
-
+//#include "ending.h"
+class Ending;
 /// player
 const int INI_VAL = 25;
 string printChange(int change);//印出數值變化

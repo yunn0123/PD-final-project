@@ -10,7 +10,7 @@ using namespace std;
 Player PLAYER;
 int main() {
     /// initilalize the keyboard ///
-    
+
     keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
     keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
 
@@ -23,7 +23,7 @@ int main() {
     //// cardText.txt
     string cardPath = "textFile/cardText.txt";
     ifstream cardFile(cardPath);
-    vector<NormalCard> normalCard; 
+    vector<NormalCard> normalCard;
     if (cardFile.is_open()){
         getline(cardFile, line, '\n');
         cardCnt = atoi(line.c_str());
@@ -41,12 +41,12 @@ int main() {
                 // question
                 getline(cardFile, question, '\"');
                 getline(cardFile, question, '\"');
-                if (question.compare(" ") == 0){ 
-                    Description opt = Description(" ");    
+                if (question.compare(" ") == 0){
+                    Description opt = Description(" ");
                     /// set card's description
                     normalCard[j].setTotalOpt(opt);
                 }
-                else{    
+                else{
                     // option
                     getline(cardFile, line, ' ');
 
@@ -88,7 +88,7 @@ int main() {
     //// cardText.txt
     string randomCardPath = "textFile/randomCard.txt";
     ifstream randomCardFile(randomCardPath);
-    vector<RandomCard> randomCard; 
+    vector<RandomCard> randomCard;
     if (randomCardFile.is_open()){
         getline(randomCardFile, line, '\n');
         cardCnt = atoi(line.c_str());
@@ -106,7 +106,7 @@ int main() {
                 // question
                 getline(randomCardFile, question, '\"');
                 getline(randomCardFile, question, '\"');
-                if (question.compare(" ") == 0){ 
+                if (question.compare(" ") == 0){
                     Description opt = Description(" ");
                     /// set card's description
                     normalCard[j].setTotalOpt(opt);
@@ -137,7 +137,7 @@ int main() {
     string eventPath = "textFile/event.txt";
     ifstream eventFile(eventPath);
     vector<EventCard> eventCard;
-    int eventCardCnt = 0, totalQuesInEvent = 0; 
+    int eventCardCnt = 0, totalQuesInEvent = 0;
     int leftChoice = 0, rightChoice = 0;
     int itemChoice, itemQues;
     bool isDead;
@@ -146,11 +146,11 @@ int main() {
     if(eventFile.is_open()){
         getline(eventFile, line, '\n');
         eventCardCnt = atoi(line.c_str()); // 總共的事件卡牌數
-        // 
+        //
         for(int j = 0 ; j < eventCardCnt ; j++){
-            // 該事件的總共問題數量 
+            // 該事件的總共問題數量
             getline(eventFile, line, ' ');
-            totalQuesInEvent = atoi(line.c_str()); 
+            totalQuesInEvent = atoi(line.c_str());
             // 事件開始的旁白
             getline(eventFile, EventNorration, '\n');
             // 第一個要是否要進入事件問題的名字
@@ -205,7 +205,7 @@ int main() {
                 eventDes opt = eventDes(name, question, opt1, opt2, val1, val2);
                 opt.setNextIdex(leftChoice, rightChoice);
                 eventCard[j].setTotalEventOpt(opt);
-            } // total question 
+            } // total question
             // event ending
             getline(eventFile, EventNorration, ' ');
             getline(eventFile, line);
@@ -271,7 +271,7 @@ int main() {
             game.getChoice();
         }
     }
-    
+
     return 0;
 }
 
