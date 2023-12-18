@@ -89,7 +89,7 @@ bool Ending::hasSpecificItem(Player& player, const string itemName) {
 // 重啟結局
 void Ending :: restartEnding(Player& player)
 {
-    cout << "嚙褓程嚙磐嚙瞇嚙踝蕭嚙編嚙罷嚙締嚙皺" << endl;
+    cout << "旅程即將重新開始......." << endl;
     // 重新初始化遊戲，數值初始化，指回最初的卡牌
     player.restart = true;
     player.value1 = INI_VAL;
