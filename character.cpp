@@ -39,6 +39,7 @@ int Character::getEnemyChoice(){}
 const bool* Player :: getItem()
 {
     return itemList;
+    
 }
 
 Player::Player(): Character(){

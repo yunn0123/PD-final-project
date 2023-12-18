@@ -22,6 +22,7 @@ void Ending :: checkForEnding(Player& player)
     //     hiddenEnding();
     //     return;
     // }
+    
     bool hasAllItem = true;
     const bool* itemList = player.getItem();
     for(int i = 0; i < 4; i++){

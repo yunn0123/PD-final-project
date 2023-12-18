@@ -30,6 +30,7 @@ class Character {
         int getEnemyChoice();
         void catchItem(Item item);
         const bool* getItem(); //return pointer pointed to itemList
+        
 };
 
 class Player: public Character{

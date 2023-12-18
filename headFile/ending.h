@@ -28,7 +28,6 @@ class Ending {
 
         // 檢查是否解鎖隱藏結局（要看有沒有特殊道具）
         //static bool hasSpecificItem(Player& player, const string itemName);
-
         // 重啟結局
         static void restartEnding(Player& player);
 
