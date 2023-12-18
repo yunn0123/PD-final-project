@@ -12,7 +12,7 @@ using namespace std;
 ////////////////////////////
 Player PLAYER;
 int main() {
-    ///  intialize the keyboard 
+    ///  intialize the keyboard
         keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
         keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
         keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
@@ -148,38 +148,38 @@ int main() {
     //
     if(eventFile.is_open()){
         getline(eventFile, line, '\n');
-        eventCardCnt = atoi(line.c_str()); // ï¿½`ï¿½@ï¿½ï¿½ï¿½Æ¥ï¿½dï¿½Pï¿½ï¿½
+        eventCardCnt = atoi(line.c_str()); // ?????¤ç«þ?¬¾?«þd?Öë?¤ç«þ
         //
         for(int j = 0 ; j < eventCardCnt ; j++){
-            // ï¿½Ó¨Æ¥ï¿½ï¿½`ï¿½@ï¿½ï¿½ï¿½Dï¿½Æ¶q
+            // ?±µ£u?«þ?????¤ç«þ?Öï?¬¾Ïü
             getline(eventFile, line, ' ');
             totalQuesInEvent = atoi(line.c_str());
-            // ï¿½Æ¥ï¿½}ï¿½lï¿½ï¿½ï¿½Ç¥ï¿½
+            // ?¬¾?«þ}?Úí?¤ç«þ?¨¤?«þ
             getline(eventFile, EventNorration, '\n');
-            // ï¿½Ä¤@ï¿½Ó­nï¿½Oï¿½_ï¿½nï¿½iï¿½Jï¿½Æ¥ï¿½ï¿½ï¿½Dï¿½ï¿½ï¿½Wï¿½r
+            // ????±µðE?²Ì?Úï?????Öê?¬¾?«þ?¤ç«þD?¤ç«þ?Úû?Úø
             getline(eventFile, name, ' ');
-            // ï¿½Oï¿½_ï¿½nï¿½iï¿½Jï¿½Æ¥óªº°ï¿½ï¿½D
+            // ?²Ì?Úï?????Öê?¬¾???«þ?Öï
             getline(eventFile, question, '\"');
             getline(eventFile, question, '\"');
             getline(eventFile, line, ' ');
-            // ï¿½ï¿½ï¿½kï¿½ï¿½ï¿½
+            // ?¤ç«þ?µº?¤ç«þ??
             getline(eventFile, opt1, ' ');
             getline(eventFile, opt2, ' ');
-            // ï¿½ï¿½ï¿½kï¿½ï¿½Ü¬Oï¿½_ï¿½|ï¿½iï¿½Jï¿½Æ¥ï¿½
+            // ?¤ç«þ?µº?¤ç«þá[O?Úï?????Öê?¬¾?«þ
             getline(eventFile, line, ' ');
             leftChoice = atoi(line.c_str());
             getline(eventFile, line);
             rightChoice = atoi(line.c_str());
             eventCard.push_back(EventCard(name, totalQuesInEvent, EventNorration, question, opt1, opt2, leftChoice, rightChoice));
-            // ï¿½Æ¥óªº°ï¿½ï¿½Dï¿½ï¿½
+            // ?¬¾???«þ?Öï?¤ç«þ
             for (int i = 0; i < totalQuesInEvent ; i++){
-                // ï¿½Wï¿½r(ï¿½ï¿½ï¿½Ý¤H)
+                // ?Úû?Úø(?¤ç«þ?±¶?)
                 getline(eventFile, name, ' ');
-                // ï¿½ï¿½ï¿½D
+                // ?¤ç«þ?Öï
                 getline(eventFile, question, '\"');
                 getline(eventFile, question, '\"');
                 getline(eventFile, line, ' ');
-                // ï¿½ï¶µï¿½ï¿½
+                // ?¤ç°Â?¤ç«þ
                 getline(eventFile, opt1, ' ');
                 getline(eventFile, opt2, ' ');
                 // val1
@@ -200,7 +200,7 @@ int main() {
                 val2[2] = atoi(line.c_str());
                 getline(eventFile, line, ' ');
                 val2[3] = atoi(line.c_str());
-                // ï¿½ï¿½ï¿½kï¿½ï¶µï¿½|ï¿½ï¿½ï¿½ìªºï¿½Uï¿½@ï¿½Ó°ï¿½ï¿½D
+                // ?¤ç«þ?µº?¤ç°Â???¤ç«þ????????±µ?«þ?Öï
                 getline(eventFile, line, ' ');
                 leftChoice = atoi(line.c_str());
                 getline(eventFile, line);
@@ -230,31 +230,7 @@ int main() {
     }
     eventFile.close();
     //////////////////////////////////////////////////////
-    // cout << "Timeless Redemption" << endl;
-    // cout << endl;
-    // cout << "---ï¿½ï¿½ SPACE ï¿½}ï¿½lï¿½Cï¿½ï¿½---" << endl;
 
-    // while(true){
-    //     if (GetAsyncKeyState(VK_SPACE) && 0x8001){
-    //         keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
-    //         // call game
-    //         break;
-    //     }
-    //     if(GetAsyncKeyState(VK_ESCAPE) && 0x8001){ // esc
-    //         keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
-    //         cout << "ï¿½Tï¿½wï¿½nï¿½ï¿½ï¿½}ï¿½Ü¡H" << endl;
-    //         cout << "ï¿½O(y) ï¿½_(n)" << endl;
-    //         string user;
-    //         cin >> user;
-    //         if (user.compare("y") == 0){ // y
-    //             return 0;
-    //         }
-    //         if (user.compare("n") == 0){ // n
-    //             cout << "---ï¿½ï¿½ SPACE ï¿½}ï¿½lï¿½Cï¿½ï¿½---" << endl;
-    //         }
-    //     }
-    // }
-    //////////////////////////////////////////
     while(true){
         // initialize
         PLAYER.restart = false;

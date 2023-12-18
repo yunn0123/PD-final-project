@@ -23,7 +23,6 @@ class Character {
     protected:
         string name;
         int value1, value2, value3, value4; // 四個主要數值
-        vector<int> chV1, chV2, chV3, chV4;
     public:
         Character();
         //virtual void updateValues(int change1, int change2, int change3, int change4) = 0; //更新玩家的數值並印出

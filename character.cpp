@@ -17,10 +17,6 @@ string printChange(int change){
 }
 ///////////////////////////////////////////////////
 Character :: Character() : value1(INI_VAL), value2(INI_VAL), value3(INI_VAL), value4(INI_VAL) {
-    chV1.push_back(INI_VAL);
-    chV2.push_back(INI_VAL);
-    chV3.push_back(INI_VAL);
-    chV4.push_back(INI_VAL);
     name = "";
 }
 void Character :: catchItem(Item item){}
