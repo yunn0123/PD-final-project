@@ -228,51 +228,68 @@ int main() {
     }
     eventFile.close();
     //////////////////////////////////////////////////////
-    cout << "Timeless Redemption" << endl;
-    cout << endl;
-    cout << "---按 SPACE 開始遊戲---" << endl;
+    // cout << "Timeless Redemption" << endl;
+    // cout << endl;
+    // cout << "---按 SPACE 開始遊戲---" << endl;
 
-    while(true){
-        if (GetAsyncKeyState(VK_SPACE) && 0x8001){
-            keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
-            // call game
-            break;
-        }
-        if(GetAsyncKeyState(VK_ESCAPE) && 0x8001){ // esc
-            keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
-            cout << "確定要離開嗎？" << endl;
-            cout << "是(y) 否(n)" << endl;
-            string user;
-            cin >> user;
-            if (user.compare("y") == 0){ // y
-                return 0;
-            }
-            if (user.compare("n") == 0){ // n
-                cout << "---按 SPACE 開始遊戲---" << endl;
-            }
-        }
-    }
+    // while(true){
+    //     if (GetAsyncKeyState(VK_SPACE) && 0x8001){
+    //         keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
+    //         // call game
+    //         break;
+    //     }
+    //     if(GetAsyncKeyState(VK_ESCAPE) && 0x8001){ // esc
+    //         keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
+    //         cout << "確定要離開嗎？" << endl;
+    //         cout << "是(y) 否(n)" << endl;
+    //         string user;
+    //         cin >> user;
+    //         if (user.compare("y") == 0){ // y
+    //             return 0;
+    //         }
+    //         if (user.compare("n") == 0){ // n
+    //             cout << "---按 SPACE 開始遊戲---" << endl;
+    //         }
+    //     }
+    // }
     //////////////////////////////////////////
-    Game game(normalCard, randomCard, eventCard, PLAYER);//game setup
-    //processing normal cards
-    for(int i = 0; i < normalCard.size(); i++)
-    {
-        for(int j = 0; j < normalCard[i].getCnt(); j++)
+    while(true){
+        PLAYER.restart = false;
+        Game game(normalCard, randomCard, eventCard, PLAYER);//game setup
+        if(PLAYER.end){
+            return 0;
+        }
+        //processing normal cards
+        for(int i = 0; i < normalCard.size(); i++)
         {
-            game.displayQuestion();
-            game.getChoice();
+            for(int j = 0; j < normalCard[i].getCnt(); j++)
+            {
+                game.displayQuestion();
+                game.getChoice();
+                if(PLAYER.restart){
+                    break;
+                }
+            }
+            if(PLAYER.restart){
+                break;
+            }
+
+        }
+        if(PLAYER.restart){
+            continue;
+        }
+
+        //processing event cards
+        for(int i = 0; i < eventCard.size(); i++)
+        {
+            for(int j = 0; j < eventCard[i].getCnt(); j++)
+            {
+                game.displayQuestion();
+                game.getChoice();
+            }
         }
     }
 
-    //processing event cards
-    for(int i = 0; i < eventCard.size(); i++)
-    {
-        for(int j = 0; j < eventCard[i].getCnt(); j++)
-        {
-            game.displayQuestion();
-            game.getChoice();
-        }
-    }
 
     return 0;
 }

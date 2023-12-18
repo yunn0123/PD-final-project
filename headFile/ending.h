@@ -25,7 +25,7 @@ class Ending {
         static bool hasSpecificItem(Player& player, const string itemName);
 
         // 重啟結局
-        static void restartEnding();
+        static void restartEnding(Player& player);
 
         // 普通結局
         static void normalEnding();

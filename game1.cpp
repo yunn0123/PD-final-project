@@ -1,7 +1,7 @@
 #include "./headFile/game1.h"
 using namespace std;
 
-Game :: Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCard> eCard, Player PLAYER)
+Game :: Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCard> eCard, Player& PLAYER)
 {
     normalCard = nCard;
     //normalCard.assign(nCard.begin(), nCard.end());//try: normalCard = nCard;
@@ -10,6 +10,35 @@ Game :: Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCar
 	nCardIdx = 0;
 	rCardIdx = 0;
 	eCardIdx = 0;
+    cout << "Timeless Redemption" << endl;
+    cout << endl;
+    cout << "---按 SPACE 開始遊戲、按ESC結束遊戲 ---" << endl;
+    Sleep(10);
+    while(true){
+        if (GetAsyncKeyState(VK_SPACE) && 0x8001){
+            keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
+            while (GetAsyncKeyState(VK_SPACE) && 0x8001) {
+                // Wait for the SPACE key to be released
+                Sleep(30);
+            }
+            // call game
+            break;
+        }
+        if(GetAsyncKeyState(VK_ESCAPE) && 0x8001){ // esc
+            keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
+            cout << "確定要離開嗎？" << endl;
+            cout << "是(y) 否(n)" << endl;
+            string user;
+            cin >> user;
+            if (user.compare("y") == 0){ // y
+                PLAYER.end = true;
+                break;
+            }
+            if (user.compare("n") == 0){ // n
+                cout << "---按 SPACE 開始遊戲---" << endl;
+            }
+        }
+    }
 }
 
 void Game :: displayQuestion()

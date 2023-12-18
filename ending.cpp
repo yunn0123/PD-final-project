@@ -11,7 +11,7 @@ void Ending :: checkForEnding(Player& player)
     const int maxVal = 50;
     // 檢查是否達到需重玩的條件
     if (isValuesBalanced(player, minVal, maxVal)) {
-        restartEnding();
+        restartEnding(player);
         return;
     }
 
@@ -30,14 +30,14 @@ void Ending :: checkForEnding(Player& player)
     }
 
 
-    // 
+    //
 }
 // 檢查玩家數值是否過高或過低
 bool Ending :: isValuesBalanced(Player& player, int minVal, int maxVal)
 {
 
     bool restartGame = false;
-    
+
     if(player.value1 >= maxVal){
         cout << "物價斷層上漲，民眾苦不堪言，你被投票罷免，往後將受民眾唾棄…" << endl;
         restartGame = true;
@@ -83,10 +83,16 @@ bool Ending::hasSpecificItem(Player& player, const string itemName) {
 }
 
 // 重啟結局
-void Ending :: restartEnding()
+void Ending :: restartEnding(Player& player)
 {
     cout << "旅程即將重新開始…" << endl;
     // 重新初始化遊戲，數值初始化，指回最初的卡牌
+    player.restart = true;
+    player.value1 = INI_VAL;
+    player.value2 = INI_VAL;
+    player.value3 = INI_VAL;
+    player.value4 = INI_VAL;
+
 }
 
 
@@ -94,7 +100,7 @@ void Ending :: restartEnding()
 // 普通結局
 void Ending :: normalEnding()
 {
-    cout << "恭喜！你已成功克服了每一個遇到的挑戰！你的洞察力和決策能力令人印象深刻！" << endl 
+    cout << "恭喜！你已成功克服了每一個遇到的挑戰！你的洞察力和決策能力令人印象深刻！" << endl
         << "你在鋪著國家前進的道路上展現出了無限的潛力，你的每一個決策都為這個國家的未來帶來了光明和希望。" << endl
         << "通過這個挑戰，你展現了自己在政治領域的非凡才華，也證明了你是一位出色的領袖。" << endl
         << "讓我們期待看到你在這場角色扮演的旅程中，繼續為這個國家帶來更多的繁榮和進步！" << endl

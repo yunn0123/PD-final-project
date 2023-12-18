@@ -42,6 +42,8 @@ vector<Item> Player :: getItem()
 
 Player::Player(): Character(){
     name = "ª±®a";
+    restart = false;
+    end = false;
 }
 
 void Player :: updateValues(int change1, int change2, int change3, int change4)

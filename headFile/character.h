@@ -36,6 +36,8 @@ class Player: public Character{
     private:
         vector<Item>itemList; //存拿到的隱藏道具
     public:
+        bool restart;
+        bool end;
         Player();
         void catchItem(Item item); //拿到道具，存進itemList
         vector<Item> getItem();
