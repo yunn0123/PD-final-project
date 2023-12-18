@@ -30,6 +30,8 @@ class Card {
         int nowQuestion;
         string descript;
         int nowChoice; // 紀錄this card上次的選擇
+        bool already_A_Round; // this card is back to the index 0.
+
     public:
         Card();
         Card(const string name, const int quesCnt);
@@ -39,6 +41,7 @@ class Card {
         int getCnt();
         void setDescript(const string des);
         virtual void GameCallingPrint() = 0;
+        bool getIfRounded();
 };
 ////////////////////////////////////////////////
 // 一般

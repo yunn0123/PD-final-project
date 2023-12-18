@@ -1,8 +1,16 @@
 #include "./headFile/game1.h"
 using namespace std;
-
+int Game :: getTotalseq(){return totalCardNumNeedToProcess;}
 Game :: Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCard> eCard, Player& PLAYER)
 {
+    // random the card's seq once if player dead
+    srand( time(NULL) );
+    for (int i = 0; i < totalCardNumNeedToProcess ; i++){
+        int seq = rand();
+        cardAppearSeq.push_back( seq % 20 );
+    }
+    ///////////////////////////////////////////////////////
+
     normalCard = nCard;
     //normalCard.assign(nCard.begin(), nCard.end());//try: normalCard = nCard;
 	randomCard.assign(rCard.begin(), rCard.end());
@@ -20,7 +28,7 @@ Game :: Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCar
             keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
             keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
             keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
-            
+
             while (GetAsyncKeyState(VK_SPACE) && 0x8001) {
                 // Wait for the SPACE key to be released
                 Sleep(50);
@@ -47,13 +55,22 @@ Game :: Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCar
 
 void Game :: displayQuestion()
 {
-	normalCard[this->nCardIdx].GameCallingPrint();
+    if (nCardIdx < totalCardNumNeedToProcess){
+        normalCard[this->cardAppearSeq[nCardIdx]].GameCallingPrint();
+    }
+    else{
+        Ending :: normalEnding();
+        PLAYER.end = 1;
+        exit(0);
+    }
 }
 
 void Game :: getChoice()
 {
-    Card& normalTmp = normalCard[this->nCardIdx];
+    Card& normalTmp = normalCard[this->cardAppearSeq[nCardIdx]];
     while(true){
+        keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
+        keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
         if(GetAsyncKeyState(VK_LEFT) && 0x8001){ // choose left
             keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
                 Sleep(50);
@@ -70,6 +87,7 @@ void Game :: getChoice()
         }
     }
     PLAYER.updateValues(&normalTmp);
+    nCardIdx ++;
     cout << "-------------------" << endl;
     // for next print
     normalTmp.nowQuestion += (normalTmp.nowQuestion + normalTmp.nowChoice);
@@ -77,10 +95,12 @@ void Game :: getChoice()
     if(normalTmp.nowQuestion >= normalTmp.questionCnt){
         normalTmp.nowQuestion = 0;
         normalTmp.nowChoice = 0;
+        normalTmp.already_A_Round = 1;
     }
     // if in the array but no question
     else if(normalTmp.totalOpt[normalTmp.nowQuestion].question.compare(" ") == 0){
         normalTmp.nowQuestion = 0;
         normalTmp.nowChoice = 0;
+        normalTmp.already_A_Round = 1;
     }
 }

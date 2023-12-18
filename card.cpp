@@ -8,10 +8,12 @@ Card :: Card(const string name, const int quesCnt) : name(name), questionCnt(que
     nowQuestion = 0;
     descript = "";
     nowChoice = 0;
+    already_A_Round = 0;
 }
 void Card :: setTotalOpt(const Description opt) {totalOpt.push_back(opt);}
 string Card :: getName() {return name;}
 int Card:: getCnt() {return questionCnt;}
+bool Card:: getIfRounded() {return already_A_Round;}
 void Card :: setDescript(const string des) {descript = des;}
 void Card :: GameCallingPrint(){}
 ////////////////////////////////////////////////
@@ -48,20 +50,6 @@ void NormalCard :: GameCallingPrint()
     if(totalOpt[nowQuestion].eff2[3]){cout << "社會發展 ";}
     cout << endl;
 
-    // for next print
-    // nowQuestion += (nowQuestion + nowChoice);
-    // // if last question has asked, return to first question
-    // if(nowQuestion >= questionCnt){
-    //     nowQuestion = 0;
-    //     nowChoice = 0;
-    // }
-    // // if in the array but no question
-    // else if(totalOpt[nowQuestion].question.compare(" ") == 0){
-    //     nowQuestion = 0;
-    //     nowChoice = 0;
-    // }
-    // tragger ending
-
 
 }
 ////////////////////////////////////////////////
@@ -76,7 +64,7 @@ RandomCard :: ~RandomCard() {}
 void RandomCard :: setTotalOpt(const Description opt) {totalOpt.push_back(opt);}
 void RandomCard :: GameCallingPrint()
 {
-    // ?? = 1 ?k = 2
+    // left = 1 , right = 2
     // 0 -> 1, 2  (+1 , +2) 0
     // 1 -> 3, 4  (+2 , +3) 1
     // 2 -> 5, 6  (+3 , +4) 1
@@ -98,18 +86,6 @@ void RandomCard :: GameCallingPrint()
     if(totalOpt[nowQuestion].eff2[3]){cout << "社會發展 ";}
     cout << endl;
 
-    // for next print
-    // nowQuestion += (nowQuestion + nowChoice);
-    // // if last question has asked, return to first question
-    // if(nowQuestion >= questionCnt){
-    //     nowQuestion = 0;
-    //     nowChoice = 0;
-    // }
-    // // if in the array but no question
-    // else if(totalOpt[nowQuestion].question.compare(" ") == 0){
-    //     nowQuestion = 0;
-    //     nowChoice = 0;
-    // }
 
 }
 ////////////////////////////////////////////////

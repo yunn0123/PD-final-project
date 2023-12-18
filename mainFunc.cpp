@@ -1,4 +1,6 @@
 #include <windows.h>
+#include <random>
+#include <ctime>
 using namespace std;
 #include "headFile/card.h"
 #include "headFile/description.h"
@@ -10,7 +12,11 @@ using namespace std;
 ////////////////////////////
 Player PLAYER;
 int main() {
-
+    ///  intialize the keyboard 
+        keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
+        keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
+        keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
+        keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
     ////////////////////////////////
     cout << "initialize the information.../" << endl;
     int quesCnt, val1[4], val2[4], index = 0, cardCnt;
@@ -142,38 +148,38 @@ int main() {
     //
     if(eventFile.is_open()){
         getline(eventFile, line, '\n');
-        eventCardCnt = atoi(line.c_str()); // Á`¦@ªº¨Æ¥ó¥dµP¼Æ
+        eventCardCnt = atoi(line.c_str()); // ï¿½`ï¿½@ï¿½ï¿½ï¿½Æ¥ï¿½dï¿½Pï¿½ï¿½
         //
         for(int j = 0 ; j < eventCardCnt ; j++){
-            // ¸Ó¨Æ¥óªºÁ`¦@°ÝÃD¼Æ¶q
+            // ï¿½Ó¨Æ¥ï¿½ï¿½`ï¿½@ï¿½ï¿½ï¿½Dï¿½Æ¶q
             getline(eventFile, line, ' ');
             totalQuesInEvent = atoi(line.c_str());
-            // ¨Æ¥ó¶}©lªº®Ç¥Õ
+            // ï¿½Æ¥ï¿½}ï¿½lï¿½ï¿½ï¿½Ç¥ï¿½
             getline(eventFile, EventNorration, '\n');
-            // ²Ä¤@­Ó­n¬O§_­n¶i¤J¨Æ¥ó°ÝÃDªº¦W¦r
+            // ï¿½Ä¤@ï¿½Ó­nï¿½Oï¿½_ï¿½nï¿½iï¿½Jï¿½Æ¥ï¿½ï¿½ï¿½Dï¿½ï¿½ï¿½Wï¿½r
             getline(eventFile, name, ' ');
-            // ¬O§_­n¶i¤J¨Æ¥óªº°ÝÃD
+            // ï¿½Oï¿½_ï¿½nï¿½iï¿½Jï¿½Æ¥óªº°ï¿½ï¿½D
             getline(eventFile, question, '\"');
             getline(eventFile, question, '\"');
             getline(eventFile, line, ' ');
-            // ¥ª¥k¿ï¾Ü
+            // ï¿½ï¿½ï¿½kï¿½ï¿½ï¿½
             getline(eventFile, opt1, ' ');
             getline(eventFile, opt2, ' ');
-            // ¥ª¥k¿ï¾Ü¬O§_·|¶i¤J¨Æ¥ó
+            // ï¿½ï¿½ï¿½kï¿½ï¿½Ü¬Oï¿½_ï¿½|ï¿½iï¿½Jï¿½Æ¥ï¿½
             getline(eventFile, line, ' ');
             leftChoice = atoi(line.c_str());
             getline(eventFile, line);
             rightChoice = atoi(line.c_str());
             eventCard.push_back(EventCard(name, totalQuesInEvent, EventNorration, question, opt1, opt2, leftChoice, rightChoice));
-            // ¨Æ¥óªº°ÝÃD­Ì
+            // ï¿½Æ¥óªº°ï¿½ï¿½Dï¿½ï¿½
             for (int i = 0; i < totalQuesInEvent ; i++){
-                // ¦W¦r(´£°Ý¤H)
+                // ï¿½Wï¿½r(ï¿½ï¿½ï¿½Ý¤H)
                 getline(eventFile, name, ' ');
-                // °ÝÃD
+                // ï¿½ï¿½ï¿½D
                 getline(eventFile, question, '\"');
                 getline(eventFile, question, '\"');
                 getline(eventFile, line, ' ');
-                // ¿ï¶µ­Ì
+                // ï¿½ï¶µï¿½ï¿½
                 getline(eventFile, opt1, ' ');
                 getline(eventFile, opt2, ' ');
                 // val1
@@ -194,7 +200,7 @@ int main() {
                 val2[2] = atoi(line.c_str());
                 getline(eventFile, line, ' ');
                 val2[3] = atoi(line.c_str());
-                // ¥ª¥k¿ï¶µ·|«ü¨ìªº¤U¤@­Ó°ÝÃD
+                // ï¿½ï¿½ï¿½kï¿½ï¶µï¿½|ï¿½ï¿½ï¿½ìªºï¿½Uï¿½@ï¿½Ó°ï¿½ï¿½D
                 getline(eventFile, line, ' ');
                 leftChoice = atoi(line.c_str());
                 getline(eventFile, line);
@@ -226,7 +232,7 @@ int main() {
     //////////////////////////////////////////////////////
     // cout << "Timeless Redemption" << endl;
     // cout << endl;
-    // cout << "---«ö SPACE ¶}©l¹CÀ¸---" << endl;
+    // cout << "---ï¿½ï¿½ SPACE ï¿½}ï¿½lï¿½Cï¿½ï¿½---" << endl;
 
     // while(true){
     //     if (GetAsyncKeyState(VK_SPACE) && 0x8001){
@@ -236,15 +242,15 @@ int main() {
     //     }
     //     if(GetAsyncKeyState(VK_ESCAPE) && 0x8001){ // esc
     //         keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
-    //         cout << "½T©w­nÂ÷¶}¶Ü¡H" << endl;
-    //         cout << "¬O(y) §_(n)" << endl;
+    //         cout << "ï¿½Tï¿½wï¿½nï¿½ï¿½ï¿½}ï¿½Ü¡H" << endl;
+    //         cout << "ï¿½O(y) ï¿½_(n)" << endl;
     //         string user;
     //         cin >> user;
     //         if (user.compare("y") == 0){ // y
     //             return 0;
     //         }
     //         if (user.compare("n") == 0){ // n
-    //             cout << "---«ö SPACE ¶}©l¹CÀ¸---" << endl;
+    //             cout << "---ï¿½ï¿½ SPACE ï¿½}ï¿½lï¿½Cï¿½ï¿½---" << endl;
     //         }
     //     }
     // }
@@ -252,47 +258,34 @@ int main() {
     while(true){
         // initialize
         PLAYER.restart = false;
-        Game game(normalCard, randomCard, eventCard, PLAYER);//game setup
-        
-        ///  keyboard 
-        keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
-        keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
-        keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
-        keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
-
+        Game game(normalCard, randomCard, eventCard, PLAYER); // game setup
+        int CardSeq = game.getTotalseq();
+        int count = 0;
         // main process
         if(PLAYER.end){
             return 0;
         }
         //processing normal cards
-        for(int i = 0; i < normalCard.size(); i++)
+        while(true)
         {
-            for(int j = 0; j < normalCard[i].getCnt(); j++)
-            {
-                game.displayQuestion();
-                game.getChoice();
-                if(PLAYER.restart){
-                    break;
-                }
-            }
-            if(PLAYER.restart){
-                break;
-            }
-
+            game.displayQuestion();
+            game.getChoice();
+            count ++;
+            if(PLAYER.restart){break;}
         }
         if(PLAYER.restart){
             continue;
         }
 
         //processing event cards
-        for(int i = 0; i < eventCard.size(); i++)
-        {
-            for(int j = 0; j < eventCard[i].getCnt(); j++)
-            {
-                game.displayQuestion();
-                game.getChoice();
-            }
-        }
+        // for(int i = 0; i < eventCard.size(); i++)
+        // {
+        //     for(int j = 0; j < eventCard[i].getCnt(); j++)
+        //     {
+        //         game.displayQuestion();
+        //         game.getChoice();
+        //     }
+        // }
     }
 
 

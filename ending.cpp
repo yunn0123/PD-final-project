@@ -6,21 +6,15 @@ using namespace std;
 // 檢查並觸發遊戲結局
 void Ending :: checkForEnding(Player& player)
 {
-    // 設計最高與最低的數值
+     // 設計最高與最低的數值
     const int minVal = 0;
     const int maxVal = 50;
+
     // 檢查是否達到需重玩的條件
     if (isValuesBalanced(player, minVal, maxVal)) {
         restartEnding(player);
         return;
     }
-
-    // 檢查是否達到普通結局的條件
-    if (isNormalEndingAchieved()) {
-        normalEnding();
-        return;
-    }
-
 
     const string mothershipModel = "母艦模型";
     const string trainModel = "火車模型";
@@ -82,12 +76,6 @@ bool Ending :: isValuesBalanced(Player& player, int minVal, int maxVal)
     return restartGame;
 }
 
-// 檢查是否達到普通結局條件
-bool Ending :: isNormalEndingAchieved()
-{
-// 是否已經讀取特定數字的卡牌
-}
-
 //檢查是否有特定的道具
 bool Ending::hasSpecificItem(Player& player, const string itemName) {
     for (const Item item : player.getItem()) {
@@ -101,7 +89,7 @@ bool Ending::hasSpecificItem(Player& player, const string itemName) {
 // 重啟結局
 void Ending :: restartEnding(Player& player)
 {
-    cout << "旅程即將重新開始…" << endl;
+    cout << "嚙褓程嚙磐嚙瞇嚙踝蕭嚙編嚙罷嚙締嚙皺" << endl;
     // 重新初始化遊戲，數值初始化，指回最初的卡牌
     player.restart = true;
     player.value1 = INI_VAL;
@@ -127,18 +115,19 @@ void Ending :: normalEnding()
         << "經濟：" << PLAYER.value1 << endl
         << "聲望：" << PLAYER.value2 << endl
         << "外交：" << PLAYER.value3 << endl
-        << "發展:" << PLAYER.value4 << endl; // 會與Game.cpp撞到可能要改一下
+        << "發展：" << PLAYER.value4 << endl;
 }
 
 void Ending :: hiddenEnding()
 {
-    cout << "隨著你在這趟旅程中所展現出的卓越決策和領導才能，你已不僅僅是一位國家的領袖。" << endl;
+     cout << "隨著你在這趟旅程中所展現出的卓越決策和領導才能，你已不僅僅是一位國家的領袖。" << endl;
     cout << "你的內心深處，對於模型的熱愛逐漸滋長，成為了你生活中不可或缺的一部分。" << endl;
     cout << "從你收集到的母艦模型和火車模型開始，你的辦公室逐漸轉變成了一個小型博物館，吸引了無數同好者前來參觀。" << endl;
     cout << "你的收藏品成為了全國甚至全世界模型愛好者的聖地。" << endl;
     cout << "在你的引領下，國家不僅在政治和經濟上取得了巨大的成就，你對模型的熱愛也成為了國民文化的一部分。" << endl;
     cout << "你的故事證明了，即使是國家領袖，也可以擁有自己的愛好，並將這份愛好提升到藝術的層次。" << endl;
     cout << "恭喜你，你不僅是一位成功的領袖，也是一位備受尊敬的模型收藏家。" << endl;
+
 }
 
 
