@@ -20,18 +20,23 @@ Character :: Character() : value1(INI_VAL), value2(INI_VAL), value3(INI_VAL), va
     name = "";
 }
 void Character :: catchItem(Item item){}
-vector<Item> Character :: getItem(){}
+const bool* Character :: getItem(){}
 
 ////////////////////////////////////////////////////
 
 void Player::catchItem(Item item)
 {
-    itemList.push_back(item);
+    if(item.getName() == "¥ÀÄ¥¼Ò«¬"){
+        itemList[0] = 1;
+    }
+    else if(item.getName() == "¥ÀÄ¥¼Ò«¬"){
+        itemList[1] = 1;
+    } //TODO: other 2 items
 }
 
 int Character::getEnemyChoice(){}
 
-vector<Item> Player :: getItem()
+const bool* Player :: getItem()
 {
     return itemList;
 }
@@ -40,6 +45,9 @@ Player::Player(): Character(){
     name = "ª±®a";
     restart = false;
     end = false;
+    for(int i = 0; i < 4; i++){
+        itemList[i] = 0;
+    }
 }
 
 // void Player :: updateValues(int change1, int change2, int change3, int change4)

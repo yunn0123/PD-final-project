@@ -16,9 +16,21 @@ void Ending :: checkForEnding(Player& player)
         return;
     }
 
-    const string mothershipModel = "母艦模型";
-    const string trainModel = "火車模型";
-    if (hasSpecificItem(player, mothershipModel) && hasSpecificItem(player, trainModel)) {
+    // const string mothershipModel = "母艦模型";
+    // const string trainModel = "火車模型";
+    // if (hasSpecificItem(player, mothershipModel) && hasSpecificItem(player, trainModel)) {
+    //     hiddenEnding();
+    //     return;
+    // }
+    bool hasAllItem = true;
+    const bool* itemList = player.getItem();
+    for(int i = 0; i < 4; i++){
+        if(itemList[i] == 0){
+            hasAllItem = false;
+            break;
+        }
+    }
+    if(hasAllItem){
         hiddenEnding();
         return;
     }
@@ -77,14 +89,14 @@ bool Ending :: isValuesBalanced(Player& player, int minVal, int maxVal)
 }
 
 //檢查是否有特定的道具
-bool Ending::hasSpecificItem(Player& player, const string itemName) {
-    for (const Item item : player.getItem()) {
-        if (item.getName() == itemName) {
-            return true;
-        }
-    }
-    return false;
-}
+// bool Ending::hasSpecificItem(Player& player, const string itemName) {
+//     for (const Item item : player.getItem()) {
+//         if (item.getName() == itemName) {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
 
 // 重啟結局
 void Ending :: restartEnding(Player& player)
@@ -120,7 +132,7 @@ void Ending :: normalEnding()
 
 void Ending :: hiddenEnding()
 {
-     cout << "隨著你在這趟旅程中所展現出的卓越決策和領導才能，你已不僅僅是一位國家的領袖。" << endl;
+    cout << "隨著你在這趟旅程中所展現出的卓越決策和領導才能，你已不僅僅是一位國家的領袖。" << endl;
     cout << "你的內心深處，對於模型的熱愛逐漸滋長，成為了你生活中不可或缺的一部分。" << endl;
     cout << "從你收集到的母艦模型和火車模型開始，你的辦公室逐漸轉變成了一個小型博物館，吸引了無數同好者前來參觀。" << endl;
     cout << "你的收藏品成為了全國甚至全世界模型愛好者的聖地。" << endl;

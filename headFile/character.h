@@ -29,19 +29,18 @@ class Character {
         virtual void updateValues(Card* card) = 0;
         int getEnemyChoice();
         void catchItem(Item item);
-        vector<Item> getItem();
-        //void useItem(); //TODO: 從itemList使用道具
+        const bool* getItem(); //return pointer pointed to itemList
 };
 
 class Player: public Character{
     private:
-        vector<Item>itemList; //存拿到的隱藏道具
+        bool itemList[4]; //存拿到的隱藏道具(1: 拿到 0: 未拿到)
     public:
         bool restart;
         bool end;
         Player();
-        void catchItem(Item item); //拿到道具，存進itemList
-        vector<Item> getItem();
+        void catchItem(Item item); //拿到道具，設定itemList中對應道具為0或1
+        const bool* getItem(); //return pointer pointed to itemList
         //void updateValues(int change1, int change2, int change3, int change4);
         void updateValues(Card* card);
 };
