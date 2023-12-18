@@ -15,6 +15,8 @@ class Description{
     friend class RandomCard;
     friend class EventCard;
     friend class Game;
+    friend class Player;
+    friend class Enemy;
     protected:
         string question;
         string option1;

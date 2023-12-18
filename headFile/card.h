@@ -12,14 +12,17 @@ using namespace std;
 #define CARD_H
 
 #include "description.h"
-#include "character.h"
+//#include "character.h"
 #include "item.h"
 //#include "game1.h"
 
 //class Game; // Forward declaration
+class Character;
 
 class Card {
     friend class Game;
+    friend class Player;
+    friend class Enemy;
     protected:
         string name;
         int questionCnt;

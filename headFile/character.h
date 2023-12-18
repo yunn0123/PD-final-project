@@ -11,6 +11,7 @@ using namespace std;
 
 #include "item.h"
 #include "game.h"
+#include "card.h"
 //#include "ending.h"
 class Ending;
 /// player
@@ -25,7 +26,8 @@ class Character {
         vector<int> chV1, chV2, chV3, chV4;
     public:
         Character();
-        virtual void updateValues(int change1, int change2, int change3, int change4) = 0; //更新玩家的數值並印出
+        //virtual void updateValues(int change1, int change2, int change3, int change4) = 0; //更新玩家的數值並印出
+        virtual void updateValues(Card* card) = 0;
         int getEnemyChoice();
         void catchItem(Item item);
         vector<Item> getItem();
@@ -41,13 +43,15 @@ class Player: public Character{
         Player();
         void catchItem(Item item); //拿到道具，存進itemList
         vector<Item> getItem();
-        void updateValues(int change1, int change2, int change3, int change4);
+        //void updateValues(int change1, int change2, int change3, int change4);
+        void updateValues(Card* card);
 };
 
 class Enemy: public Character{
     public:
         Enemy();
-        void updateValues(int change1, int change2, int change3, int change4);
+        //void updateValues(int change1, int change2, int change3, int change4);
+        void updateValues(Card* card);
         int getEnemyChoice();
 };
 

@@ -13,13 +13,13 @@ Game :: Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCar
     cout << "Timeless Redemption" << endl;
     cout << endl;
     cout << "---按 SPACE 開始遊戲、按ESC結束遊戲 ---" << endl;
-    Sleep(10);
+    Sleep(30);
     while(true){
         if (GetAsyncKeyState(VK_SPACE) && 0x8001){
             keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
             while (GetAsyncKeyState(VK_SPACE) && 0x8001) {
                 // Wait for the SPACE key to be released
-                Sleep(30);
+                Sleep(50);
             }
             // call game
             break;
@@ -48,31 +48,33 @@ void Game :: displayQuestion()
 
 void Game :: getChoice()
 {
+    Card& normalTmp = normalCard[this->nCardIdx];
     while(true){
         if(GetAsyncKeyState(VK_LEFT) && 0x8001){ // choose left
             keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
-            normalCard[this->nCardIdx].nowChoice = 1;
-            PLAYER.updateValues(normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val1[0], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val1[1], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val1[2], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val1[3]);
+            normalTmp.nowChoice = 1;
+            //PLAYER.updateValues(normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val1[0], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val1[1], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val1[2], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val1[3]);
             break;
         }
         if(GetAsyncKeyState(VK_RIGHT) && 0x8001){ // choose right
             keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
-            normalCard[this->nCardIdx].nowChoice = 2;
-            PLAYER.updateValues(normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val2[0], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val2[1], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val2[2], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val2[3]);
+            normalTmp.nowChoice = 2;
+            //PLAYER.updateValues(normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val2[0], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val2[1], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val2[2], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val2[3]);
             break;
         }
     }
+    PLAYER.updateValues(&normalTmp);
     cout << "-------------------" << endl;
     // for next print
-    normalCard[this->nCardIdx].nowQuestion += (normalCard[this->nCardIdx].nowQuestion + normalCard[this->nCardIdx].nowChoice);
+    normalTmp.nowQuestion += (normalTmp.nowQuestion + normalTmp.nowChoice);
     // if last question has asked, return to first question
-    if(normalCard[this->nCardIdx].nowQuestion >= normalCard[this->nCardIdx].questionCnt){
-        normalCard[this->nCardIdx].nowQuestion = 0;
-        normalCard[this->nCardIdx].nowChoice = 0;
+    if(normalTmp.nowQuestion >= normalTmp.questionCnt){
+        normalTmp.nowQuestion = 0;
+        normalTmp.nowChoice = 0;
     }
     // if in the array but no question
-    else if(normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].question.compare(" ") == 0){
-        normalCard[this->nCardIdx].nowQuestion = 0;
-        normalCard[this->nCardIdx].nowChoice = 0;
+    else if(normalTmp.totalOpt[normalTmp.nowQuestion].question.compare(" ") == 0){
+        normalTmp.nowQuestion = 0;
+        normalTmp.nowChoice = 0;
     }
 }
