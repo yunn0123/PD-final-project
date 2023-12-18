@@ -10,10 +10,6 @@ using namespace std;
 ////////////////////////////
 Player PLAYER;
 int main() {
-    /// initilalize the keyboard ///
-
-    keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
-    keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
 
     ////////////////////////////////
     cout << "initialize the information.../" << endl;
@@ -254,8 +250,17 @@ int main() {
     // }
     //////////////////////////////////////////
     while(true){
+        // initialize
         PLAYER.restart = false;
         Game game(normalCard, randomCard, eventCard, PLAYER);//game setup
+        
+        ///  keyboard 
+        keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
+        keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
+        keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
+        keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
+
+        // main process
         if(PLAYER.end){
             return 0;
         }
