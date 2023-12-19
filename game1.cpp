@@ -17,7 +17,7 @@ Game :: Game(vector<Card *> nrCard, vector<EventCard> eCard, Player& PLAYER)
 	eCardIdx = 0;
     cout << "           Regal Dominion" << endl;
     cout << endl;
-    cout << "--- 按SPACE開始遊戲 | 按ESC結束遊戲 ---" << endl;
+    cout << "--- ???SPACE???憪??????? | ???ESC蝯?????????? ---" << endl;
     Sleep(30);
     while(true){
         if (GetAsyncKeyState(VK_SPACE) && 0x8001){
@@ -27,8 +27,8 @@ Game :: Game(vector<Card *> nrCard, vector<EventCard> eCard, Player& PLAYER)
         }
         if(GetAsyncKeyState(VK_ESCAPE) && 0x8001){ // esc
             keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
-            cout << "是否離開遊戲？" << endl;
-            cout << "是(y) 否(n)" << endl;
+            cout << "??臬?阡?ａ???????莎??" << endl;
+            cout << "???(y) ???(n)" << endl;
             string user;
             cin >> user;
             if (user.compare("y") == 0){ // y
@@ -36,7 +36,7 @@ Game :: Game(vector<Card *> nrCard, vector<EventCard> eCard, Player& PLAYER)
                 break;
             }
             if (user.compare("n") == 0){ // n
-                cout << "--- 按SPACE開始遊戲 | 按ESC結束遊戲 ---" << endl;
+                cout << "--- ???SPACE???憪??????? | ???ESC蝯?????????? ---" << endl;
             }
         }
     }
@@ -174,7 +174,7 @@ void Game :: event()
         // if ending: ?
         if (event.nowQuestion == -1){ // event failed
             event.isEvent = 0;
-            cout << "事件失敗。" << endl;
+            cout << "事件失敗" << endl;
             break;
         }
 
