@@ -47,21 +47,21 @@ void Game :: displayQuestion()
         nrCard[this->cardAppearSeq[nrIdx]]->GameCallingPrint();
     }
     else{
-        // bool hasAllItem = true;
-        // const bool* itemList = PLAYER.getItem();
-        // for(int i = 0; i < 2; i++){
-        //     if(itemList[i] == 0){
-        //         hasAllItem = false;
-        //         break;
-        //     }
-        // }
-        // if(hasAllItem){
-        //     Ending :: hiddenEnding();
-        // }
-        // else{
-        //     Ending :: normalEnding();
-        // }
-        Ending :: normalEnding();
+        bool hasAllItem = true;
+        for(int i = 0; i < 2; i++){
+            if(PLAYER.itemList[i] == 0){
+                hasAllItem = false;
+                break;
+            }
+        }
+        if(hasAllItem){
+            Ending::hiddenEnding();
+            Ending :: normalEnding();
+        }
+        else{
+            Ending :: normalEnding();
+        }
+        //Ending :: normalEnding();
         PLAYER.end = 1;
         exit(0);
     }
