@@ -34,13 +34,14 @@ void NormalCard :: GameCallingPrint()
     // 2 -> 5, 6  (+3 , +4) 1
     // 3 -> 7, 8  (+4 , +5) 2
     cout << name << ": " << totalOpt[nowQuestion].question << endl;
+    cout << endl;
     cout << totalOpt[nowQuestion].option1 << " (左)" << " -> 影響 ";
     // effect what value, print out
     if(totalOpt[nowQuestion].eff1[0]){cout << "經濟 ";}
     if(totalOpt[nowQuestion].eff1[1]){cout << "聲望 ";}
     if(totalOpt[nowQuestion].eff1[2]){cout << "外交 ";}
     if(totalOpt[nowQuestion].eff1[3]){cout << "社會發展 ";}
-    cout << "           " ;
+    cout << endl ;
     cout <<  totalOpt[nowQuestion].option2 << " (右)" << " -> 影響 ";
     // effect what value, print out
     if(totalOpt[nowQuestion].eff2[0]){cout << "經濟 ";}

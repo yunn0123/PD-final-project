@@ -13,7 +13,7 @@ Player PLAYER;
 ///
 ////////////////////////////
 int main() {
-    ///  intialize the keyboard 
+    ///  intialize the keyboard
         keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
         keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
         keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
@@ -234,6 +234,8 @@ int main() {
         return 0;
     }
     eventFile.close();
+
+    //////////////////////////////////////////////////////
 
     while(true){
         // initialize
