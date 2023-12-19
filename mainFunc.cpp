@@ -236,14 +236,16 @@ int main() {
     eventFile.close();
 
     //////////////////////////////////////////////////////
-    int count = 0;
+    int count;
     while(true){
         // initialize
         PLAYER.restart = false;
+        count = 0;
         Game game(card, eventCard, PLAYER); // game setup
         int CardSeq = game.getTotalseq();
         // main process
         if(PLAYER.end){
+            count = 0;
             return 0;
         }
         //processing normal and random cards
@@ -252,9 +254,12 @@ int main() {
 
             game.displayQuestion();
             game.getChoice();
-            if(count % 5 == 0){game.displayEQuestion();}
+            count ++ ;
+            //
+            if (count %5 == 0){
+            game.displayEQuestion();
+            }
             if(PLAYER.restart){break;}
-            count ++;
         }
         if(PLAYER.restart){
             continue;

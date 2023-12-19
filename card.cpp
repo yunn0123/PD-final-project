@@ -72,13 +72,14 @@ void RandomCard :: GameCallingPrint()
     // 3 -> 7, 8  (+4 , +5) 2
 
     cout << name << ": " << totalOpt[nowQuestion].question << endl;
+    cout << endl;
     cout << totalOpt[nowQuestion].option1 << " (左)" << " -> 影響 ";
     // effect what value, print out
     if(totalOpt[nowQuestion].eff1[0]){cout << "經濟 ";}
     if(totalOpt[nowQuestion].eff1[1]){cout << "聲望 ";}
     if(totalOpt[nowQuestion].eff1[2]){cout << "外交 ";}
     if(totalOpt[nowQuestion].eff1[3]){cout << "社會發展 ";}
-    cout << "           " ;
+    cout << endl ;
     cout <<  totalOpt[nowQuestion].option2 << " (右)" << " -> 影響 ";
     // effect what value, print out
     if(totalOpt[nowQuestion].eff2[0]){cout << "經濟 ";}
@@ -128,11 +129,11 @@ bool EventCard :: isEnterEvent()
     string choice;
     cout << EventNorration << endl;
     cout << name << " : " << EnterEventQues << endl;
-    cout << optLEFT << " (左)          " << optRIGHT << " (右)" << endl;
+    cout << optLEFT << " (左)" << endl ; 
+    cout << optRIGHT << " (右)" << endl;
     while(true){
         if (GetAsyncKeyState(VK_LEFT) && 0x8001){ // left
             keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
-            Sleep(30);
             if(isEnter[0]){
                 isEvent = 1;
                 isHappened = 1;
@@ -147,7 +148,6 @@ bool EventCard :: isEnterEvent()
         }
         else if (GetAsyncKeyState(VK_RIGHT) && 0x8001){ ///right
             keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
-            Sleep(30);
             if(isEnter[1]){
                 isEvent = 1;
                 isHappened = 1;

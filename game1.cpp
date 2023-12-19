@@ -15,22 +15,14 @@ Game :: Game(vector<Card *> nrCard, vector<EventCard> eCard, Player& PLAYER)
     this->eventCard = eCard;
 	nrIdx = 0;
 	eCardIdx = 0;
-    cout << "Timeless Redemption" << endl;
+    cout << "           Timeless  Redemption" << endl;
     cout << endl;
     cout << "--- 按SPACE開始遊戲 | 按ESC結束遊戲 ---" << endl;
     Sleep(30);
     while(true){
         if (GetAsyncKeyState(VK_SPACE) && 0x8001){
             // avoid previous click is taken
-            keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
-            keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
             keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
-
-            while (GetAsyncKeyState(VK_SPACE) && 0x8001) {
-                // Wait for the SPACE key to be released
-                Sleep(50);
-            }
-            // call game
             break;
         }
         if(GetAsyncKeyState(VK_ESCAPE) && 0x8001){ // esc
@@ -54,6 +46,7 @@ void Game :: displayQuestion()
 {
     if (nrIdx < totalCardNumNeedToProcess){
         nrCard[this->cardAppearSeq[nrIdx]]->GameCallingPrint();
+        nrIdx ++;
     }
     else{
         Ending :: normalEnding();
@@ -65,6 +58,7 @@ void Game :: displayEQuestion()
 {
     if (eCardIdx < 4){
         event();
+        eCardIdx ++;
     }
     else{
         Ending :: normalEnding();
@@ -77,25 +71,22 @@ void Game :: getChoice()
 {
     Card* tempCard = nrCard[this->cardAppearSeq[nrIdx]];
     while(true){
-        keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
-        keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
+
         if(GetAsyncKeyState(VK_LEFT) && 0x8001){ // choose left
             keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
-                Sleep(50);
+                // Sleep(50);
             tempCard->nowChoice = 1;
-            //PLAYER.updateValues(normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val1[0], normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val1[1], normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val1[2], normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val1[3]);
             break;
         }
         if(GetAsyncKeyState(VK_RIGHT) && 0x8001){ // choose right
             keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
-                Sleep(50);
+                // Sleep(50);
             tempCard->nowChoice = 2;
-            //PLAYER.updateValues(normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val2[0], normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val2[1], normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val2[2], normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val2[3]);
             break;
         }
     }
     PLAYER.updateValues(tempCard);
-    nrIdx ++;
+    //
     cout << "-------------------" << endl;
     // for next print
     tempCard->nowQuestion += (tempCard->nowQuestion + tempCard->nowChoice);
@@ -114,7 +105,7 @@ void Game :: getChoice()
 }
 void Game :: event()
 {
-    EventCard& event = eventCard[this->eCardIdx];
+    EventCard event = eventCard[this->eCardIdx];
     event.isEnterEvent();
     while(event.nowQuestion < event.questionCnt && event.isEvent){
         cout << event.totalEventOpt[event.nowQuestion].getName() << ": " << event.totalEventOpt[event.nowQuestion].question << endl;
@@ -124,7 +115,7 @@ void Game :: event()
         if(event.totalEventOpt[event.nowQuestion].eff1[1]){cout << "聲望 ";}
         if(event.totalEventOpt[event.nowQuestion].eff1[2]){cout << "外交 ";}
         if(event.totalEventOpt[event.nowQuestion].eff1[3]){cout << "社會發展 ";}
-        cout << "          " ;
+        cout << endl ;
         cout <<  event.totalEventOpt[event.nowQuestion].option2 << " (左)" << " -> 影響 ";
         // effect what value, print out
         if(event.totalEventOpt[event.nowQuestion].eff2[0]){cout << "經濟 ";}
@@ -164,22 +155,18 @@ void Game :: event()
         }
         cout << "-------------------" << endl;
         
-        eCardIdx ++;
         // if ending: ?
         if (event.nowQuestion == -1){ // event failed
             event.isEvent = 0;
             cout << "事件失敗。" << endl;
-            if (event.isDead){
-                // tragger ending
-                // call ending ?
-                break;
-            }
             break;
         }
 
         if (event.nowQuestion >= event.questionCnt){
             cout << event.EventEnd << endl;
+            cout << "=================================================================" << endl;
             event.nowQuestion = 0;
+            break;
         }
     }
     
