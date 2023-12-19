@@ -19,7 +19,7 @@ int main() {
         keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
         keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
     ////////////////////////////////
-    cout << "initialize the information.../" << endl;
+    //cout << "initialize the information.../" << endl;
     int quesCnt, val1[4], val2[4], cardCnt;
     string operation, name, question, opt1, opt2;
     string line; //temp string to change str in int

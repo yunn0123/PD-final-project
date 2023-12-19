@@ -15,7 +15,7 @@ Game :: Game(vector<Card *> nrCard, vector<EventCard> eCard, Player& PLAYER)
     this->eventCard = eCard;
 	nrIdx = 0;
 	eCardIdx = 0;
-    cout << "           Timeless  Redemption" << endl;
+    cout << "           Regal Dominion" << endl;
     cout << endl;
     cout << "--- 按SPACE開始遊戲 | 按ESC結束遊戲 ---" << endl;
     Sleep(30);
@@ -49,6 +49,20 @@ void Game :: displayQuestion()
         nrIdx ++;
     }
     else{
+        // bool hasAllItem = true;
+        // const bool* itemList = PLAYER.getItem();
+        // for(int i = 0; i < 2; i++){
+        //     if(itemList[i] == 0){
+        //         hasAllItem = false;
+        //         break;
+        //     }
+        // }
+        // if(hasAllItem){
+        //     Ending :: hiddenEnding();
+        // }
+        // else{
+        //     Ending :: normalEnding();
+        // }
         Ending :: normalEnding();
         PLAYER.end = 1;
         exit(0);
@@ -109,19 +123,21 @@ void Game :: event()
     event.isEnterEvent();
     while(event.nowQuestion < event.questionCnt && event.isEvent){
         cout << event.totalEventOpt[event.nowQuestion].getName() << ": " << event.totalEventOpt[event.nowQuestion].question << endl;
-        cout << event.totalEventOpt[event.nowQuestion].option1 << " (左)" << " -> 影響 ";
-        // effect what value, print out
-        if(event.totalEventOpt[event.nowQuestion].eff1[0]){cout << "經濟 ";}
-        if(event.totalEventOpt[event.nowQuestion].eff1[1]){cout << "聲望 ";}
-        if(event.totalEventOpt[event.nowQuestion].eff1[2]){cout << "外交 ";}
-        if(event.totalEventOpt[event.nowQuestion].eff1[3]){cout << "社會發展 ";}
+        cout << event.totalEventOpt[event.nowQuestion].option1 << " (左)";
+        // cout << event.totalEventOpt[event.nowQuestion].option1 << " (左)" << " -> 影響 ";
+        // // effect what value, print out
+        // if(event.totalEventOpt[event.nowQuestion].eff1[0]){cout << "經濟 ";}
+        // if(event.totalEventOpt[event.nowQuestion].eff1[1]){cout << "聲望 ";}
+        // if(event.totalEventOpt[event.nowQuestion].eff1[2]){cout << "外交 ";}
+        // if(event.totalEventOpt[event.nowQuestion].eff1[3]){cout << "社會發展 ";}
         cout << endl ;
-        cout <<  event.totalEventOpt[event.nowQuestion].option2 << " (左)" << " -> 影響 ";
-        // effect what value, print out
-        if(event.totalEventOpt[event.nowQuestion].eff2[0]){cout << "經濟 ";}
-        if(event.totalEventOpt[event.nowQuestion].eff2[1]){cout << "聲望 ";}
-        if(event.totalEventOpt[event.nowQuestion].eff2[2]){cout << "外交 ";}
-        if(event.totalEventOpt[event.nowQuestion].eff2[3]){cout << "社會發展 ";}
+        cout <<  event.totalEventOpt[event.nowQuestion].option2 << " (右)";
+        // cout <<  event.totalEventOpt[event.nowQuestion].option2 << " (右)" << " -> 影響 ";
+        // // effect what value, print out
+        // if(event.totalEventOpt[event.nowQuestion].eff2[0]){cout << "經濟 ";}
+        // if(event.totalEventOpt[event.nowQuestion].eff2[1]){cout << "聲望 ";}
+        // if(event.totalEventOpt[event.nowQuestion].eff2[2]){cout << "外交 ";}
+        // if(event.totalEventOpt[event.nowQuestion].eff2[3]){cout << "社會發展 ";}
         cout << endl;
         // update value and item
         while(true){
@@ -154,7 +170,7 @@ void Game :: event()
             }
         }
         cout << "-------------------" << endl;
-        
+
         // if ending: ?
         if (event.nowQuestion == -1){ // event failed
             event.isEvent = 0;
@@ -169,6 +185,6 @@ void Game :: event()
             break;
         }
     }
-    
+
 
 }
