@@ -15,9 +15,9 @@ Game :: Game(vector<Card *> nrCard, vector<EventCard> eCard, Player& PLAYER)
     this->eventCard = eCard;
 	nrIdx = 0;
 	eCardIdx = 0;
-    cout << "           Timeless  Redemption" << endl;
+    cout << "           Regal Dominion" << endl;
     cout << endl;
-    cout << "--- «öSPACE¶}©l¹CÀ¸ | «öESCµ²§ô¹CÀ¸ ---" << endl;
+    cout << "--- æŒ‰SPACEé–‹å§‹éŠæˆ² | æŒ‰ESCçµæŸéŠæˆ² ---" << endl;
     Sleep(30);
     while(true){
         if (GetAsyncKeyState(VK_SPACE) && 0x8001){
@@ -27,8 +27,8 @@ Game :: Game(vector<Card *> nrCard, vector<EventCard> eCard, Player& PLAYER)
         }
         if(GetAsyncKeyState(VK_ESCAPE) && 0x8001){ // esc
             keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
-            cout << "¬O§_Â÷¶}¹CÀ¸¡H" << endl;
-            cout << "¬O(y) §_(n)" << endl;
+            cout << "æ˜¯å¦é›¢é–‹éŠæˆ²ï¼Ÿ" << endl;
+            cout << "æ˜¯(y) å¦(n)" << endl;
             string user;
             cin >> user;
             if (user.compare("y") == 0){ // y
@@ -36,7 +36,7 @@ Game :: Game(vector<Card *> nrCard, vector<EventCard> eCard, Player& PLAYER)
                 break;
             }
             if (user.compare("n") == 0){ // n
-                cout << "--- «öSPACE¶}©l¹CÀ¸ | «öESCµ²§ô¹CÀ¸ ---" << endl;
+                cout << "--- æŒ‰SPACEé–‹å§‹éŠæˆ² | æŒ‰ESCçµæŸéŠæˆ² ---" << endl;
             }
         }
     }
@@ -109,19 +109,19 @@ void Game :: event()
     event.isEnterEvent();
     while(event.nowQuestion < event.questionCnt && event.isEvent){
         cout << event.totalEventOpt[event.nowQuestion].getName() << ": " << event.totalEventOpt[event.nowQuestion].question << endl;
-        cout << event.totalEventOpt[event.nowQuestion].option1 << " (¥ª)" << " -> ¼vÅT ";
+        cout << event.totalEventOpt[event.nowQuestion].option1 << " (å·¦)" << " -> å½±éŸ¿ ";
         // effect what value, print out
-        if(event.totalEventOpt[event.nowQuestion].eff1[0]){cout << "¸gÀÙ ";}
-        if(event.totalEventOpt[event.nowQuestion].eff1[1]){cout << "Án±æ ";}
-        if(event.totalEventOpt[event.nowQuestion].eff1[2]){cout << "¥~¥æ ";}
-        if(event.totalEventOpt[event.nowQuestion].eff1[3]){cout << "ªÀ·|µo®i ";}
+        if(event.totalEventOpt[event.nowQuestion].eff1[0]){cout << "ç¶“æ¿Ÿ ";}
+        if(event.totalEventOpt[event.nowQuestion].eff1[1]){cout << "è²æœ› ";}
+        if(event.totalEventOpt[event.nowQuestion].eff1[2]){cout << "å¤–äº¤ ";}
+        if(event.totalEventOpt[event.nowQuestion].eff1[3]){cout << "ç¤¾æœƒç™¼å±• ";}
         cout << endl ;
-        cout <<  event.totalEventOpt[event.nowQuestion].option2 << " (¥ª)" << " -> ¼vÅT ";
+        cout <<  event.totalEventOpt[event.nowQuestion].option2 << " (å·¦)" << " -> å½±éŸ¿ ";
         // effect what value, print out
-        if(event.totalEventOpt[event.nowQuestion].eff2[0]){cout << "¸gÀÙ ";}
-        if(event.totalEventOpt[event.nowQuestion].eff2[1]){cout << "Án±æ ";}
-        if(event.totalEventOpt[event.nowQuestion].eff2[2]){cout << "¥~¥æ ";}
-        if(event.totalEventOpt[event.nowQuestion].eff2[3]){cout << "ªÀ·|µo®i ";}
+        if(event.totalEventOpt[event.nowQuestion].eff2[0]){cout << "ç¶“æ¿Ÿ ";}
+        if(event.totalEventOpt[event.nowQuestion].eff2[1]){cout << "è²æœ› ";}
+        if(event.totalEventOpt[event.nowQuestion].eff2[2]){cout << "å¤–äº¤ ";}
+        if(event.totalEventOpt[event.nowQuestion].eff2[3]){cout << "ç¤¾æœƒç™¼å±• ";}
         cout << endl;
         // update value and item
         while(true){
@@ -158,7 +158,7 @@ void Game :: event()
         // if ending: ?
         if (event.nowQuestion == -1){ // event failed
             event.isEvent = 0;
-            cout << "¨Æ¥ó¥¢±Ñ¡C" << endl;
+            cout << "äº‹ä»¶å¤±æ•—ã€‚" << endl;
             break;
         }
 
