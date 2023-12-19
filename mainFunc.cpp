@@ -236,7 +236,7 @@ int main() {
     eventFile.close();
 
     //////////////////////////////////////////////////////
-
+    int count = 0;
     while(true){
         // initialize
         PLAYER.restart = false;
@@ -246,13 +246,17 @@ int main() {
         if(PLAYER.end){
             return 0;
         }
-        //processing normal cards
+        //processing normal and random cards
         while(true)
         {
 
             game.displayQuestion();
             game.getChoice();
-
+            count ++;
+            if(count % 5 == 0)
+            {
+            	game.displayEQuestion();
+			}
             if(PLAYER.restart){break;}
         }
         if(PLAYER.restart){

@@ -1,20 +1,20 @@
 #include "./headFile/game1.h"
 using namespace std;
 int Game :: getTotalseq(){return totalCardNumNeedToProcess;}
-Game :: Game(vector<Card *> card, vector<EventCard> eCard, Player& PLAYER)
+Game :: Game(vector<Card *> nrCard, vector<EventCard> eCard, Player& PLAYER)
 {
-    // random the card's seq once if player dead
+    // random the nrCard's seq once if player dead
     srand( time(NULL) );
     for (int i = 0; i < totalCardNumNeedToProcess ; i++){
         int seq = rand();
-        cardAppearSeq.push_back( seq % (card.size()) );
+        cardAppearSeq.push_back( seq % (nrCard.size()) );
     }
     ///////////////////////////////////////////////////////
 
-    this->card = card;
+    this->nrCard = nrCard;
     this->eventCard = eCard;
-	cardIdx = 0;
-	eventIdx = 0;
+	nrIdx = 0;
+	eCardIdx = 0;
     cout << "Timeless Redemption" << endl;
     cout << endl;
     cout << "--- 按 SPACE 開始遊戲、按ESC結束遊戲 ---" << endl;
@@ -49,11 +49,11 @@ Game :: Game(vector<Card *> card, vector<EventCard> eCard, Player& PLAYER)
         }
     }
 }
-
+//
 void Game :: displayQuestion()
 {
-    if (cardIdx < totalCardNumNeedToProcess){
-        card[this->cardAppearSeq[cardIdx]]->GameCallingPrint();
+    if (nrIdx < totalCardNumNeedToProcess){
+        nrCard[this->cardAppearSeq[nrIdx]]->GameCallingPrint();
     }
     else{
         Ending :: normalEnding();
@@ -61,10 +61,21 @@ void Game :: displayQuestion()
         exit(0);
     }
 }
-
+void Game :: displayEQuestion()
+{
+    if (eCardIdx < 4){
+        event();
+    }
+    else{
+        Ending :: normalEnding();
+        PLAYER.end = 1;
+        exit(0);
+    }
+}
+//
 void Game :: getChoice()
 {
-    Card* tempCard = card[this->cardAppearSeq[cardIdx]];
+    Card* tempCard = nrCard[this->cardAppearSeq[nrIdx]];
     while(true){
         keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
         keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
@@ -72,19 +83,19 @@ void Game :: getChoice()
             keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
                 Sleep(50);
             tempCard->nowChoice = 1;
-            //PLAYER.updateValues(normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val1[0], normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val1[1], normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val1[2], normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val1[3]);
+            //PLAYER.updateValues(normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val1[0], normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val1[1], normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val1[2], normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val1[3]);
             break;
         }
         if(GetAsyncKeyState(VK_RIGHT) && 0x8001){ // choose right
             keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
                 Sleep(50);
             tempCard->nowChoice = 2;
-            //PLAYER.updateValues(normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val2[0], normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val2[1], normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val2[2], normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val2[3]);
+            //PLAYER.updateValues(normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val2[0], normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val2[1], normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val2[2], normalCard[this->nrIdx].totalOpt[normalCard[this->nrIdx].nowQuestion].val2[3]);
             break;
         }
     }
     PLAYER.updateValues(tempCard);
-    cardIdx ++;
+    nrIdx ++;
     cout << "-------------------" << endl;
     // for next print
     tempCard->nowQuestion += (tempCard->nowQuestion + tempCard->nowChoice);
@@ -103,7 +114,7 @@ void Game :: getChoice()
 }
 void Game :: event()
 {
-    EventCard event = eventCard[this->eventIdx];
+    EventCard event = eventCard[this->eCardIdx];
     event.isEnterEvent();
     while(event.nowQuestion < event.questionCnt && event.isEvent){
         cout << event.totalEventOpt[event.nowQuestion].getName() << ": " << event.totalEventOpt[event.nowQuestion].question << endl;
@@ -150,6 +161,7 @@ void Game :: event()
                 break;
             }
         }
+        eCardIdx ++;
         // if ending: ?
         if (event.nowQuestion == -1){ // event failed
             event.isEvent = 0;
