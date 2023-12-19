@@ -218,7 +218,7 @@ int main() {
             getline(eventFile, EventNorration, ' ');
             getline(eventFile, line);
             isDead = atoi(line.c_str());
-            eventCard[j].setEnding(EventNorration, isDead);
+            eventCard[j].setEnding(EventNorration, 0);
             // event item
             getline(eventFile, name, ' ');
             getline(eventFile, ItemNorration, ' ');
@@ -242,7 +242,6 @@ int main() {
         PLAYER.restart = false;
         count = 0;
         Game game(card, eventCard, PLAYER); // game setup
-        int CardSeq = game.getTotalseq();
         // main process
         if(PLAYER.end){
             count = 0;
@@ -257,7 +256,7 @@ int main() {
             count ++ ;
             //
             if (count %5 == 0){
-            game.displayEQuestion();
+                game.displayEQuestion();
             }
             if(PLAYER.restart){break;}
         }

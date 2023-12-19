@@ -9,6 +9,7 @@ Card :: Card(const string name, const int quesCnt) : name(name), questionCnt(que
     descript = "";
     nowChoice = 0;
     already_A_Round = 0;
+
 }
 void Card :: setTotalOpt(const Description opt) {totalOpt.push_back(opt);}
 string Card :: getName() {return name;}
@@ -97,6 +98,8 @@ EventCard :: EventCard(const string name, const int quesCnt) : Card(name, quesCn
 {
     nowQuestion = 0;
     descript = "";
+    isEvent = 0;
+    isHappened = 0;
 };
 EventCard :: EventCard(const string name, const int quesCnt, const string EventNorration, const string EventDes, const string opt1, const string opt2, const bool left, const int right)
 {
@@ -120,9 +123,6 @@ void EventCard:: setItem(const int itemQues, const int itemChoice, const string 
     this -> ItemNorration = ItemNorration;
     Item item(name);
 }
-/// static variables
-int EventCard :: isEvent = 0;
-int EventCard :: isHappened = 0;
 ////
 bool EventCard :: isEnterEvent()
 {

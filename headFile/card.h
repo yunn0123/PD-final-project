@@ -74,8 +74,6 @@ class RandomCard : public Card{
 class EventCard : public Card{
     friend class Game;
     friend class Character;
-    static int isEvent;    // 是否在event中
-    static int isHappened; // 該event有出現過
     private:
         //
         string EventNorration; // 事件開始前的旁白
@@ -83,6 +81,8 @@ class EventCard : public Card{
         string EnterEventQues; // 第一個問題，是否要進入該事件
         string optLEFT, optRIGHT; // 是否要進入該事件的選項們
         bool isEnter[2]; // isEnter[0]: 左邊選項是否進入事件, isEnter[1]: 右邊選項是否進入事件
+        bool isEvent;    // 是否在event中
+        bool isHappened; // 該event有出現過
         //
         string EventEnd; // 事件失敗的旁白
         bool isDead;     // 事件失敗是否會死亡

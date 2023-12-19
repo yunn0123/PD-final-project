@@ -22,7 +22,7 @@ private:
 	int nrIdx;//which card are we now
 	int eCardIdx;
 	//
-	int totalCardNumNeedToProcess = 10;
+	int totalCardNumNeedToProcess = 20;
 	vector<int> cardAppearSeq;
 public:
 	//void setup();//initialization and read card text
@@ -32,8 +32,8 @@ public:
 	void displayEQuestion(); // ?
 	void event();
 	void getChoice();
-	void theEnd();//ending
-	int getTotalseq();
+	// void theEnd();//ending
+	// int getTotalseq();
 };
 
 

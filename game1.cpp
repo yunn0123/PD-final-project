@@ -1,6 +1,5 @@
 #include "./headFile/game1.h"
 using namespace std;
-int Game :: getTotalseq(){return totalCardNumNeedToProcess;}
 Game :: Game(vector<Card *> nrCard, vector<EventCard> eCard, Player& PLAYER)
 {
     // random the nrCard's seq once if player dead
@@ -46,7 +45,6 @@ void Game :: displayQuestion()
 {
     if (nrIdx < totalCardNumNeedToProcess){
         nrCard[this->cardAppearSeq[nrIdx]]->GameCallingPrint();
-        nrIdx ++;
     }
     else{
         // bool hasAllItem = true;
@@ -72,7 +70,6 @@ void Game :: displayEQuestion()
 {
     if (eCardIdx < 4){
         event();
-        eCardIdx ++;
     }
     else{
         Ending :: normalEnding();
@@ -116,6 +113,9 @@ void Game :: getChoice()
         tempCard->nowChoice = 0;
         tempCard->already_A_Round = 1;
     }
+    //
+    nrIdx ++;
+
 }
 void Game :: event()
 {
@@ -186,5 +186,6 @@ void Game :: event()
         }
     }
 
+    eCardIdx ++;
 
 }
