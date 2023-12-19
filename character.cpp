@@ -100,28 +100,28 @@ void Player :: updateValues(Card* card){
 
     cout << "<" <<  name << "> " << endl;
     cout << "經濟: " << value1 << printChange(change1) << "  ";
-    cout << "外交: " << value2 << printChange(change2) << "  ";
-    cout << "聲望: " << value3 << printChange(change3) << "  ";
+    cout << "聲望: " << value2 << printChange(change2) << "  ";
+    cout << "外交: " << value3 << printChange(change3) << "  ";
     cout << "社會發展: " << value4 << printChange(change4) << "  ";
     cout << endl;
     Ending :: checkForEnding(PLAYER);
 }
-void Player :: eventUpdateVal(EventCard* ecard){
+void Player :: eventUpdateVal(EventCard& ecard){
     int change1 = 0;
     int change2 = 0;
     int change3 = 0;
     int change4 = 0;
-    if(ecard->nowChoice == 1){
-        change1 = ecard->totalOpt[ecard->nowQuestion].val1[0];
-        change2 = ecard->totalOpt[ecard->nowQuestion].val1[1];
-        change3 = ecard->totalOpt[ecard->nowQuestion].val1[2];
-        change4 = ecard->totalOpt[ecard->nowQuestion].val1[3];
+    if(ecard.nowChoice == 1){
+        change1 = ecard.totalOpt[ecard.nowQuestion].val1[0];
+        change2 = ecard.totalOpt[ecard.nowQuestion].val1[1];
+        change3 = ecard.totalOpt[ecard.nowQuestion].val1[2];
+        change4 = ecard.totalOpt[ecard.nowQuestion].val1[3];
     }
-    else if(ecard->nowChoice == 2){
-        change1 = ecard->totalOpt[ecard->nowQuestion].val2[0];
-        change2 = ecard->totalOpt[ecard->nowQuestion].val2[1];
-        change3 = ecard->totalOpt[ecard->nowQuestion].val2[2];
-        change4 = ecard->totalOpt[ecard->nowQuestion].val2[3];
+    else if(ecard.nowChoice == 2){
+        change1 = ecard.totalOpt[ecard.nowQuestion].val2[0];
+        change2 = ecard.totalOpt[ecard.nowQuestion].val2[1];
+        change3 = ecard.totalOpt[ecard.nowQuestion].val2[2];
+        change4 = ecard.totalOpt[ecard.nowQuestion].val2[3];
     }
     value1 += change1;
     value2 += change2;
@@ -130,8 +130,8 @@ void Player :: eventUpdateVal(EventCard* ecard){
 
     cout << "<" <<  name << "> " << endl;
     cout << "經濟: " << value1 << printChange(change1) << "  ";
-    cout << "外交: " << value2 << printChange(change2) << "  ";
-    cout << "聲望: " << value3 << printChange(change3) << "  ";
+    cout << "聲望: " << value2 << printChange(change2) << "  ";
+    cout << "外交: " << value3 << printChange(change3) << "  ";
     cout << "社會發展: " << value4 << printChange(change4) << "  ";
     cout << endl;
     Ending :: checkForEnding(PLAYER);
@@ -183,27 +183,27 @@ void Enemy:: updateValues(Card* card){
 
     cout << "<" <<  name << "> " << endl;
     cout << "經濟: " << value1 << printChange(change1) << "  ";
-    cout << "外交: " << value2 << printChange(change2) << "  ";
-    cout << "聲望: " << value3 << printChange(change3) << "  ";
+    cout << "聲望: " << value2 << printChange(change2) << "  ";
+    cout << "外交: " << value3 << printChange(change3) << "  ";
     cout << "社會發展: " << value4 << printChange(change4) << "  ";
     cout << endl;
 }
-void Enemy :: eventUpdateVal(EventCard* ecard){
+void Enemy :: eventUpdateVal(EventCard& ecard){
     int change1 = 0;
     int change2 = 0;
     int change3 = 0;
     int change4 = 0;
-    if(ecard->nowChoice == 1){
-        change1 = ecard->totalOpt[ecard->nowQuestion].val1[0];
-        change2 = ecard->totalOpt[ecard->nowQuestion].val1[1];
-        change3 = ecard->totalOpt[ecard->nowQuestion].val1[2];
-        change4 = ecard->totalOpt[ecard->nowQuestion].val1[3];
+    if(ecard.nowChoice == 1){
+        change1 = ecard.totalOpt[ecard.nowQuestion].val1[0];
+        change2 = ecard.totalOpt[ecard.nowQuestion].val1[1];
+        change3 = ecard.totalOpt[ecard.nowQuestion].val1[2];
+        change4 = ecard.totalOpt[ecard.nowQuestion].val1[3];
     }
-    else if(ecard->nowChoice == 2){
-        change1 = ecard->totalOpt[ecard->nowQuestion].val2[0];
-        change2 = ecard->totalOpt[ecard->nowQuestion].val2[1];
-        change3 = ecard->totalOpt[ecard->nowQuestion].val2[2];
-        change4 = ecard->totalOpt[ecard->nowQuestion].val2[3];
+    else if(ecard.nowChoice == 2){
+        change1 = ecard.totalOpt[ecard.nowQuestion].val2[0];
+        change2 = ecard.totalOpt[ecard.nowQuestion].val2[1];
+        change3 = ecard.totalOpt[ecard.nowQuestion].val2[2];
+        change4 = ecard.totalOpt[ecard.nowQuestion].val2[3];
     }
     value1 += change1;
     value2 += change2;
@@ -212,8 +212,8 @@ void Enemy :: eventUpdateVal(EventCard* ecard){
 
     cout << "<" <<  name << "> " << endl;
     cout << "經濟: " << value1 << printChange(change1) << "  ";
-    cout << "外交: " << value2 << printChange(change2) << "  ";
-    cout << "聲望: " << value3 << printChange(change3) << "  ";
+    cout << "聲望: " << value2 << printChange(change2) << "  ";
+    cout << "外交: " << value3 << printChange(change3) << "  ";
     cout << "社會發展: " << value4 << printChange(change4) << "  ";
     cout << endl;
 }

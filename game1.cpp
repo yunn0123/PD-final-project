@@ -17,7 +17,7 @@ Game :: Game(vector<Card *> nrCard, vector<EventCard> eCard, Player& PLAYER)
 	eCardIdx = 0;
     cout << "Timeless Redemption" << endl;
     cout << endl;
-    cout << "--- 按 SPACE 開始遊戲、按ESC結束遊戲 ---" << endl;
+    cout << "--- 按SPACE開始遊戲 | 按ESC結束遊戲 ---" << endl;
     Sleep(30);
     while(true){
         if (GetAsyncKeyState(VK_SPACE) && 0x8001){
@@ -44,7 +44,7 @@ Game :: Game(vector<Card *> nrCard, vector<EventCard> eCard, Player& PLAYER)
                 break;
             }
             if (user.compare("n") == 0){ // n
-                cout << "--- 按 SPACE 開始遊戲、按ESC結束遊戲 ---" << endl;
+                cout << "--- 按SPACE開始遊戲 | 按ESC結束遊戲 ---" << endl;
             }
         }
     }
@@ -114,7 +114,7 @@ void Game :: getChoice()
 }
 void Game :: event()
 {
-    EventCard event = eventCard[this->eCardIdx];
+    EventCard& event = eventCard[this->eCardIdx];
     event.isEnterEvent();
     while(event.nowQuestion < event.questionCnt && event.isEvent){
         cout << event.totalEventOpt[event.nowQuestion].getName() << ": " << event.totalEventOpt[event.nowQuestion].question << endl;
@@ -125,7 +125,7 @@ void Game :: event()
         if(event.totalEventOpt[event.nowQuestion].eff1[2]){cout << "外交 ";}
         if(event.totalEventOpt[event.nowQuestion].eff1[3]){cout << "社會發展 ";}
         cout << "          " ;
-        cout <<  event.totalEventOpt[event.nowQuestion].option2 << " (右)" << " -> 影響 ";
+        cout <<  event.totalEventOpt[event.nowQuestion].option2 << " (左)" << " -> 影響 ";
         // effect what value, print out
         if(event.totalEventOpt[event.nowQuestion].eff2[0]){cout << "經濟 ";}
         if(event.totalEventOpt[event.nowQuestion].eff2[1]){cout << "聲望 ";}
@@ -134,6 +134,7 @@ void Game :: event()
         cout << endl;
         // update value and item
         while(true){
+            //
             if(GetAsyncKeyState(VK_LEFT) && 0x8001){ // choose left
                 keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
                 event.nowChoice = 1;
@@ -143,7 +144,7 @@ void Game :: event()
                     PLAYER.catchItem(event.item);
                 }
                 //
-                PLAYER.eventUpdateVal(&event);
+                // PLAYER.eventUpdateVal(event);
                 event.nowQuestion = event.totalEventOpt[event.nowQuestion].getLeftInd();
                 break;
             }
@@ -156,11 +157,13 @@ void Game :: event()
                     PLAYER.catchItem(event.item);
                 }
                 //
-                PLAYER.updateValues(&event);
+                // PLAYER.eventUpdateVal(event);
                 event.nowQuestion = event.totalEventOpt[event.nowQuestion].getRightInd();
                 break;
             }
         }
+        cout << "-------------------" << endl;
+        
         eCardIdx ++;
         // if ending: ?
         if (event.nowQuestion == -1){ // event failed

@@ -53,12 +53,13 @@ void NormalCard :: GameCallingPrint()
 
 }
 ////////////////////////////////////////////////
-// ?H??
+// random value
 RandomCard :: RandomCard() {}
 RandomCard :: RandomCard(const string name, const int quesCnt) : Card(name, quesCnt)
 {
     nowQuestion = 0;
     descript = "";
+    nowChoice = 0;
 }
 RandomCard :: ~RandomCard() {}
 void RandomCard :: setTotalOpt(const Description opt) {totalOpt.push_back(opt);}
@@ -128,9 +129,10 @@ bool EventCard :: isEnterEvent()
     cout << EventNorration << endl;
     cout << name << " : " << EnterEventQues << endl;
     cout << optLEFT << " (ек)          " << optRIGHT << " (еk)" << endl;
-    cin >> choice;
     while(true){
-        if (choice.compare("l") == 0){ // left
+        if (GetAsyncKeyState(VK_LEFT) && 0x8001){ // left
+            keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
+            Sleep(30);
             if(isEnter[0]){
                 isEvent = 1;
                 isHappened = 1;
@@ -143,7 +145,9 @@ bool EventCard :: isEnterEvent()
             }
             break;
         }
-        else if (choice.compare("r") == 0){ ///right
+        else if (GetAsyncKeyState(VK_RIGHT) && 0x8001){ ///right
+            keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
+            Sleep(30);
             if(isEnter[1]){
                 isEvent = 1;
                 isHappened = 1;
