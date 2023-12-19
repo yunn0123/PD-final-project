@@ -29,9 +29,15 @@ void Player::catchItem(Item item)
     if(item.getName() == "ダ磨家"){
         itemList[0] = 1;
     }
-    else if(item.getName() == "ダ磨家"){
+    else if(item.getName() == "ó家"){
         itemList[1] = 1;
-    } //TODO: other 2 items
+    }
+    else if(item.getName() == "癵現獀產家"){
+        itemList[2] = 1;
+    }
+    else if(item.getName() == "繨钩家"){
+        itemList[3] = 1;
+    }
 }
 
 int Character::getEnemyChoice(){}
@@ -39,7 +45,7 @@ int Character::getEnemyChoice(){}
 const bool* Player :: getItem()
 {
     return itemList;
-    
+
 }
 
 Player::Player(): Character(){
