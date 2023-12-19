@@ -22,7 +22,7 @@ void Ending :: checkForEnding(Player& player)
     //     hiddenEnding();
     //     return;
     // }
-    
+
     bool hasAllItem = true;
     const bool* itemList = player.getItem();
     for(int i = 0; i < 4; i++){
@@ -128,7 +128,7 @@ void Ending :: normalEnding()
         << "經濟：" << PLAYER.value1 << endl
         << "聲望：" << PLAYER.value2 << endl
         << "外交：" << PLAYER.value3 << endl
-        << "發展：" << PLAYER.value4 << endl;
+        << "社會發展：" << PLAYER.value4 << endl;
 }
 
 void Ending :: hiddenEnding()
