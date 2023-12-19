@@ -19,7 +19,8 @@ class Ending {
 
         // 普通結局
         static void normalEnding();
-
+        // 隱藏結局
+        static void hiddenEnding();
         // 檢查是否達到普通結局條件
         // static bool isNormalEndingAchieved();
     private:
@@ -31,8 +32,7 @@ class Ending {
         // 重啟結局
         static void restartEnding(Player& player);
 
-        // 隱藏結局
-        static void hiddenEnding();
+
 };
 
 #endif

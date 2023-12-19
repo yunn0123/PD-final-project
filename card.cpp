@@ -121,7 +121,8 @@ void EventCard:: setItem(const int itemQues, const int itemChoice, const string 
     this -> itemQues = itemQues;
     this -> itemChoice = itemChoice;
     this -> ItemNorration = ItemNorration;
-    Item item(name);
+    //Item item(name);
+    item = Item(name);
 }
 ////
 bool EventCard :: isEnterEvent()
@@ -129,7 +130,7 @@ bool EventCard :: isEnterEvent()
     string choice;
     cout << EventNorration << endl;
     cout << name << " : " << EnterEventQues << endl;
-    cout << optLEFT << " (ек)" << endl ; 
+    cout << optLEFT << " (ек)" << endl ;
     cout << optRIGHT << " (еk)" << endl;
     while(true){
         if (GetAsyncKeyState(VK_LEFT) && 0x8001){ // left
@@ -174,7 +175,7 @@ void EventCard :: setEnding(const string end, bool isDead)
     this->isDead = isDead;
 }
 void EventCard :: GameCallingPrint(){
-    
+
 
 }
 ///////////////////////////////////////////

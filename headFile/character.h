@@ -31,13 +31,14 @@ class Character {
         int getEnemyChoice();
         void catchItem(Item item);
         const bool* getItem(); //return pointer pointed to itemList
-        
+
 };
 
 class Player: public Character{
     private:
-        bool itemList[4]; //存拿到的隱藏道具(1: 拿到 0: 未拿到)
+
     public:
+        bool itemList[4]; //存拿到的隱藏道具(1: 拿到 0: 未拿到)
         bool restart;
         bool end;
         Player();

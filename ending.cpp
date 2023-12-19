@@ -23,18 +23,17 @@ void Ending :: checkForEnding(Player& player)
     //     return;
     // }
 
-    bool hasAllItem = true;
-    const bool* itemList = player.getItem();
-    for(int i = 0; i < 4; i++){
-        if(itemList[i] == 0){
-            hasAllItem = false;
-            break;
-        }
-    }
-    if(hasAllItem){
-        hiddenEnding();
-        return;
-    }
+    // bool hasAllItem = true;
+    // for(int i = 0; i < 2; i++){
+    //     if(player.itemList[i] == 0){
+    //         hasAllItem = false;
+    //         break;
+    //     }
+    // }
+    // if(hasAllItem){
+    //     hiddenEnding();
+    //     return;
+    // }
 
 
     //
@@ -143,4 +142,3 @@ void Ending :: hiddenEnding()
 
 }
 
- 
