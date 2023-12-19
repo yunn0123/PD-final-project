@@ -2,15 +2,16 @@
 #include <random>
 #include <ctime>
 using namespace std;
-#include "headFile/card.h"
 #include "headFile/description.h"
 #include "headFile/character.h"
+Player PLAYER;
+
+#include "headFile/card.h"
 #include "headFile/ending.h"
 #include "headFile/game1.h"
 #include "headFile/item.h"
 ///
 ////////////////////////////
-Player PLAYER;
 int main() {
     ///  intialize the keyboard 
         keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
@@ -19,26 +20,28 @@ int main() {
         keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
     ////////////////////////////////
     cout << "initialize the information.../" << endl;
-    int quesCnt, val1[4], val2[4], index = 0, cardCnt;
+    int quesCnt, val1[4], val2[4], cardCnt;
     string operation, name, question, opt1, opt2;
     string line; //temp string to change str in int
+    int index = 0;
+    //
+    vector<Card*> card;
     /////////// store card info //////////////
     //// cardText.txt
     string cardPath = "textFile/cardText.txt";
     ifstream cardFile(cardPath);
-    vector<NormalCard> normalCard;
     if (cardFile.is_open()){
         getline(cardFile, line, '\n');
         cardCnt = atoi(line.c_str());
         ///////////////////////////////////
-        for(int j = 0 ; j < cardCnt ; j++){
+        while(index < cardCnt){
             // quesCnt
             getline(cardFile, line, ' ');
             quesCnt = atoi(line.c_str());
             // name
             getline(cardFile, name);
             /// create card
-            normalCard.push_back(NormalCard(name, quesCnt));
+            card.push_back(new NormalCard(name, quesCnt));
             /// create description
             for (int i = 0 ; i < quesCnt ; i++){
                 // question
@@ -47,7 +50,7 @@ int main() {
                 if (question.compare(" ") == 0){
                     Description opt = Description(" ");
                     /// set card's description
-                    normalCard[j].setTotalOpt(opt);
+                    card[index]->setTotalOpt(opt);
                 }
                 else{
                     // option
@@ -76,10 +79,11 @@ int main() {
                     /// store into description
                     Description opt = Description(question, opt1, opt2, val1, val2);
                     /// set card's description
-                    normalCard[j].setTotalOpt(opt);
+                    card[index]->setTotalOpt(opt);
                 }
             }
-        }
+            index ++;
+        } // while
     }
     else{
         cout << "CardFile cannot open." << endl;
@@ -91,19 +95,20 @@ int main() {
     //// cardText.txt
     string randomCardPath = "textFile/randomCard.txt";
     ifstream randomCardFile(randomCardPath);
-    vector<RandomCard> randomCard;
+
     if (randomCardFile.is_open()){
         getline(randomCardFile, line, '\n');
         cardCnt = atoi(line.c_str());
+        cardCnt += index;
         ///////////////////////////////////
-        for(int j = 0 ; j < cardCnt ; j++){
+        while(index < cardCnt){
             // quesCnt
             getline(randomCardFile, line, ' ');
             quesCnt = atoi(line.c_str());
             // name
             getline(randomCardFile, name);
             /// create card
-            randomCard.push_back(RandomCard(name, quesCnt));
+            card.push_back(new RandomCard(name, quesCnt));
             /// create description
             for (int i = 0 ; i < quesCnt ; i++){
                 // question
@@ -112,7 +117,7 @@ int main() {
                 if (question.compare(" ") == 0){
                     Description opt = Description(" ");
                     /// set card's description
-                    normalCard[j].setTotalOpt(opt);
+                    card[index]->setTotalOpt(opt);
                 }
                 else{
                     // option
@@ -123,9 +128,10 @@ int main() {
                     /// store into description
                     Description opt = Description(question, opt1, opt2);
                     /// set card's description
-                    randomCard[j].setTotalOpt(opt);
+                    card[index]->setTotalOpt(opt);
                 }
             }
+            index ++;
         }
     }
     else{
@@ -148,38 +154,37 @@ int main() {
     //
     if(eventFile.is_open()){
         getline(eventFile, line, '\n');
-        eventCardCnt = atoi(line.c_str()); // �`�@���ƥ�d�P��
-        //
+        eventCardCnt = atoi(line.c_str()); // the number of event
         for(int j = 0 ; j < eventCardCnt ; j++){
-            // �Өƥ��`�@���D�ƶq
+            // this event's total question
             getline(eventFile, line, ' ');
             totalQuesInEvent = atoi(line.c_str());
-            // �ƥ�}�l���ǥ�
+            // before entering event, will have a norration
             getline(eventFile, EventNorration, '\n');
-            // �Ĥ@�ӭn�O�_�n�i�J�ƥ���D���W�r
+            // who's asking?
             getline(eventFile, name, ' ');
-            // �O�_�n�i�J�ƥ󪺰��D
+            // the question to choose enter event or not
             getline(eventFile, question, '\"');
             getline(eventFile, question, '\"');
             getline(eventFile, line, ' ');
-            // ���k���
+            // option
             getline(eventFile, opt1, ' ');
             getline(eventFile, opt2, ' ');
-            // ���k��ܬO�_�|�i�J�ƥ�
+            // if choice will entering event or not
             getline(eventFile, line, ' ');
             leftChoice = atoi(line.c_str());
             getline(eventFile, line);
             rightChoice = atoi(line.c_str());
             eventCard.push_back(EventCard(name, totalQuesInEvent, EventNorration, question, opt1, opt2, leftChoice, rightChoice));
-            // �ƥ󪺰��D��
+            // this event's all questions
             for (int i = 0; i < totalQuesInEvent ; i++){
-                // �W�r(���ݤH)
+                // who's asking
                 getline(eventFile, name, ' ');
-                // ���D
+                // question
                 getline(eventFile, question, '\"');
                 getline(eventFile, question, '\"');
                 getline(eventFile, line, ' ');
-                // �ﶵ��
+                // option
                 getline(eventFile, opt1, ' ');
                 getline(eventFile, opt2, ' ');
                 // val1
@@ -200,7 +205,7 @@ int main() {
                 val2[2] = atoi(line.c_str());
                 getline(eventFile, line, ' ');
                 val2[3] = atoi(line.c_str());
-                // ���k�ﶵ�|���쪺�U�@�Ӱ��D
+                // next index for choices to point to
                 getline(eventFile, line, ' ');
                 leftChoice = atoi(line.c_str());
                 getline(eventFile, line);
@@ -222,45 +227,19 @@ int main() {
             getline(eventFile, line);
             itemChoice = atoi(line.c_str());
             eventCard[j].setItem(itemQues, itemChoice, ItemNorration, name);
-        }// this event card
+        } // this event card
     }
     else{
         cout << "eventFile cannot open." << endl;
         return 0;
     }
     eventFile.close();
-    //////////////////////////////////////////////////////
-    // cout << "Timeless Redemption" << endl;
-    // cout << endl;
-    // cout << "---�� SPACE �}�l�C��---" << endl;
 
-    // while(true){
-    //     if (GetAsyncKeyState(VK_SPACE) && 0x8001){
-    //         keybd_event(VK_SPACE, 0, KEYEVENTF_KEYUP, 0);
-    //         // call game
-    //         break;
-    //     }
-    //     if(GetAsyncKeyState(VK_ESCAPE) && 0x8001){ // esc
-    //         keybd_event(VK_ESCAPE, 0, KEYEVENTF_KEYUP, 0);
-    //         cout << "�T�w�n���}�ܡH" << endl;
-    //         cout << "�O(y) �_(n)" << endl;
-    //         string user;
-    //         cin >> user;
-    //         if (user.compare("y") == 0){ // y
-    //             return 0;
-    //         }
-    //         if (user.compare("n") == 0){ // n
-    //             cout << "---�� SPACE �}�l�C��---" << endl;
-    //         }
-    //     }
-    // }
-    //////////////////////////////////////////
     while(true){
         // initialize
         PLAYER.restart = false;
-        Game game(normalCard, randomCard, eventCard, PLAYER); // game setup
+        Game game(card, eventCard, PLAYER); // game setup
         int CardSeq = game.getTotalseq();
-        int count = 0;
         // main process
         if(PLAYER.end){
             return 0;
@@ -268,24 +247,16 @@ int main() {
         //processing normal cards
         while(true)
         {
+
             game.displayQuestion();
             game.getChoice();
-            count ++;
+
             if(PLAYER.restart){break;}
         }
         if(PLAYER.restart){
             continue;
         }
 
-        //processing event cards
-        // for(int i = 0; i < eventCard.size(); i++)
-        // {
-        //     for(int j = 0; j < eventCard[i].getCnt(); j++)
-        //     {
-        //         game.displayQuestion();
-        //         game.getChoice();
-        //     }
-        // }
     }
 
 

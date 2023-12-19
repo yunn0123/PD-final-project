@@ -8,9 +8,9 @@ using namespace std;
 //
 #ifndef CHARACTER_H
 #define CHARACTER_H
-
 #include "item.h"
 #include "game.h"
+
 #include "card.h"
 //#include "ending.h"
 class Ending;
@@ -28,6 +28,7 @@ class Character {
         Character();
         //virtual void updateValues(int change1, int change2, int change3, int change4) = 0; //更新玩家的數值並印出
         virtual void updateValues(Card* card) = 0;
+        virtual void eventUpdateVal(EventCard* ecard) = 0;
         int getEnemyChoice();
         void catchItem(Item item);
         vector<Item> getItem();
@@ -45,6 +46,7 @@ class Player: public Character{
         vector<Item> getItem();
         //void updateValues(int change1, int change2, int change3, int change4);
         void updateValues(Card* card);
+        void eventUpdateVal(EventCard* ecard);
 };
 
 class Enemy: public Character{
@@ -52,6 +54,7 @@ class Enemy: public Character{
         Enemy();
         //void updateValues(int change1, int change2, int change3, int change4);
         void updateValues(Card* card);
+        void eventUpdateVal(EventCard* ecard);
         int getEnemyChoice();
 };
 

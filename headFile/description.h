@@ -43,6 +43,9 @@ class eventDes : public Description{
     public:
         eventDes(const string name, const string q, const string opt1, const string opt2, const int val1[4], const int val2[4]);
         void setNextIdex(const int left, const int right);
+        int getLeftInd();
+        int getRightInd();
+        string getName();
 };
 ///
 

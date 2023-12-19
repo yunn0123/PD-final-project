@@ -12,7 +12,7 @@ using namespace std;
 #define CARD_H
 
 #include "description.h"
-//#include "character.h"
+// #include "character.h"
 #include "item.h"
 //#include "game1.h"
 
@@ -40,8 +40,10 @@ class Card {
         string getName();
         int getCnt();
         void setDescript(const string des);
-        virtual void GameCallingPrint() = 0;
         bool getIfRounded();
+        virtual void GameCallingPrint() = 0;
+        // virtual void GameCallingPrint() = 0;
+        // virtual void GameCallingPrint() = 0;
 };
 ////////////////////////////////////////////////
 // 一般
@@ -53,8 +55,6 @@ class NormalCard : public Card{
         ~NormalCard();
         void setTotalOpt(const Description opt);
         void GameCallingPrint(); // 當game呼叫card，要印出的問題與選項 (可能有連續性問題)，game呼叫時傳入已經call該card幾次或是要call odd or even function
-        int* getVal1(); // 回傳左邊選項的數值增減陣列
-        int* getVal2();
 
 };
 ////////////////////////////////////////////////
@@ -72,6 +72,8 @@ class RandomCard : public Card{
 ////////////////////////////////////////////////
 // 事件(進入不可出來，除非選到特定的選項)
 class EventCard : public Card{
+    friend class Game;
+    friend class Character;
     static int isEvent;    // 是否在event中
     static int isHappened; // 該event有出現過
     private:
@@ -103,7 +105,7 @@ class EventCard : public Card{
         //// print
         void GameCallingPrint();
         //// destructor
-        ~EventCard();
+        ~EventCard(){};
 
 };
 

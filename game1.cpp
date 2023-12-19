@@ -1,23 +1,20 @@
 #include "./headFile/game1.h"
 using namespace std;
 int Game :: getTotalseq(){return totalCardNumNeedToProcess;}
-Game :: Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCard> eCard, Player& PLAYER)
+Game :: Game(vector<Card *> card, vector<EventCard> eCard, Player& PLAYER)
 {
     // random the card's seq once if player dead
     srand( time(NULL) );
     for (int i = 0; i < totalCardNumNeedToProcess ; i++){
         int seq = rand();
-        cardAppearSeq.push_back( seq % 20 );
+        cardAppearSeq.push_back( seq % (card.size()) );
     }
     ///////////////////////////////////////////////////////
 
-    normalCard = nCard;
-    //normalCard.assign(nCard.begin(), nCard.end());//try: normalCard = nCard;
-	randomCard.assign(rCard.begin(), rCard.end());
-	eventCard.assign(eCard.begin(), eCard.end());
-	nCardIdx = 0;
-	rCardIdx = 0;
-	eCardIdx = 0;
+    this->card = card;
+    this->eventCard = eCard;
+	cardIdx = 0;
+	eventIdx = 0;
     cout << "Timeless Redemption" << endl;
     cout << endl;
     cout << "--- 按 SPACE 開始遊戲、按ESC結束遊戲 ---" << endl;
@@ -55,8 +52,8 @@ Game :: Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCar
 
 void Game :: displayQuestion()
 {
-    if (nCardIdx < totalCardNumNeedToProcess){
-        normalCard[this->cardAppearSeq[nCardIdx]].GameCallingPrint();
+    if (cardIdx < totalCardNumNeedToProcess){
+        card[this->cardAppearSeq[cardIdx]]->GameCallingPrint();
     }
     else{
         Ending :: normalEnding();
@@ -67,40 +64,109 @@ void Game :: displayQuestion()
 
 void Game :: getChoice()
 {
-    Card& normalTmp = normalCard[this->cardAppearSeq[nCardIdx]];
+    Card* tempCard = card[this->cardAppearSeq[cardIdx]];
     while(true){
         keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
         keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
         if(GetAsyncKeyState(VK_LEFT) && 0x8001){ // choose left
             keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
                 Sleep(50);
-            normalTmp.nowChoice = 1;
-            //PLAYER.updateValues(normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val1[0], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val1[1], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val1[2], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val1[3]);
+            tempCard->nowChoice = 1;
+            //PLAYER.updateValues(normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val1[0], normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val1[1], normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val1[2], normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val1[3]);
             break;
         }
         if(GetAsyncKeyState(VK_RIGHT) && 0x8001){ // choose right
             keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
                 Sleep(50);
-            normalTmp.nowChoice = 2;
-            //PLAYER.updateValues(normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val2[0], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val2[1], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val2[2], normalCard[this->nCardIdx].totalOpt[normalCard[this->nCardIdx].nowQuestion].val2[3]);
+            tempCard->nowChoice = 2;
+            //PLAYER.updateValues(normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val2[0], normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val2[1], normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val2[2], normalCard[this->cardIdx].totalOpt[normalCard[this->cardIdx].nowQuestion].val2[3]);
             break;
         }
     }
-    PLAYER.updateValues(&normalTmp);
-    nCardIdx ++;
+    PLAYER.updateValues(tempCard);
+    cardIdx ++;
     cout << "-------------------" << endl;
     // for next print
-    normalTmp.nowQuestion += (normalTmp.nowQuestion + normalTmp.nowChoice);
+    tempCard->nowQuestion += (tempCard->nowQuestion + tempCard->nowChoice);
     // if last question has asked, return to first question
-    if(normalTmp.nowQuestion >= normalTmp.questionCnt){
-        normalTmp.nowQuestion = 0;
-        normalTmp.nowChoice = 0;
-        normalTmp.already_A_Round = 1;
+    if(tempCard->nowQuestion >= tempCard->questionCnt){
+        tempCard->nowQuestion = 0;
+        tempCard->nowChoice = 0;
+        tempCard->already_A_Round = 1;
     }
     // if in the array but no question
-    else if(normalTmp.totalOpt[normalTmp.nowQuestion].question.compare(" ") == 0){
-        normalTmp.nowQuestion = 0;
-        normalTmp.nowChoice = 0;
-        normalTmp.already_A_Round = 1;
+    else if(tempCard->totalOpt[tempCard->nowQuestion].question.compare(" ") == 0){
+        tempCard->nowQuestion = 0;
+        tempCard->nowChoice = 0;
+        tempCard->already_A_Round = 1;
     }
+}
+void Game :: event()
+{
+    EventCard event = eventCard[this->eventIdx];
+    event.isEnterEvent();
+    while(event.nowQuestion < event.questionCnt && event.isEvent){
+        cout << event.totalEventOpt[event.nowQuestion].getName() << ": " << event.totalEventOpt[event.nowQuestion].question << endl;
+        cout << event.totalEventOpt[event.nowQuestion].option1 << " (左)" << " -> 影響 ";
+        // effect what value, print out
+        if(event.totalEventOpt[event.nowQuestion].eff1[0]){cout << "經濟 ";}
+        if(event.totalEventOpt[event.nowQuestion].eff1[1]){cout << "聲望 ";}
+        if(event.totalEventOpt[event.nowQuestion].eff1[2]){cout << "外交 ";}
+        if(event.totalEventOpt[event.nowQuestion].eff1[3]){cout << "社會發展 ";}
+        cout << "          " ;
+        cout <<  event.totalEventOpt[event.nowQuestion].option2 << " (右)" << " -> 影響 ";
+        // effect what value, print out
+        if(event.totalEventOpt[event.nowQuestion].eff2[0]){cout << "經濟 ";}
+        if(event.totalEventOpt[event.nowQuestion].eff2[1]){cout << "聲望 ";}
+        if(event.totalEventOpt[event.nowQuestion].eff2[2]){cout << "外交 ";}
+        if(event.totalEventOpt[event.nowQuestion].eff2[3]){cout << "社會發展 ";}
+        cout << endl;
+        // update value and item
+        while(true){
+            if(GetAsyncKeyState(VK_LEFT) && 0x8001){ // choose left
+                keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
+                event.nowChoice = 1;
+                // item check
+                if (event.nowQuestion == event.itemQues && event.nowChoice == event.itemChoice ){
+                    cout << event.ItemNorration << endl;
+                    PLAYER.catchItem(event.item);
+                }
+                //
+                PLAYER.eventUpdateVal(&event);
+                event.nowQuestion = event.totalEventOpt[event.nowQuestion].getLeftInd();
+                break;
+            }
+            if(GetAsyncKeyState(VK_RIGHT) && 0x8001){ // choose right
+                keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
+                event.nowChoice = 2;
+                // item check
+                if (event.nowQuestion == event.itemQues && event.nowChoice == event.itemChoice ){
+                    cout << event.ItemNorration << endl;
+                    PLAYER.catchItem(event.item);
+                }
+                //
+                PLAYER.updateValues(&event);
+                event.nowQuestion = event.totalEventOpt[event.nowQuestion].getRightInd();
+                break;
+            }
+        }
+        // if ending: ?
+        if (event.nowQuestion == -1){ // event failed
+            event.isEvent = 0;
+            cout << "事件失敗。" << endl;
+            if (event.isDead){
+                // tragger ending
+                // call ending ?
+                break;
+            }
+            break;
+        }
+
+        if (event.nowQuestion >= event.questionCnt){
+            cout << event.EventEnd << endl;
+            event.nowQuestion = 0;
+        }
+    }
+    
+
 }

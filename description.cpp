@@ -55,3 +55,6 @@ void eventDes :: setNextIdex(const int left, const int right)
     nextIndex[0] = left;
     nextIndex[1] = right;
 }
+int eventDes :: getLeftInd(){return nextIndex[0];}
+int eventDes :: getRightInd(){return nextIndex[1];}
+string eventDes :: getName(){return name;}

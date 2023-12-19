@@ -17,21 +17,19 @@ using namespace std;
 class Game
 {
 private:
-	vector<NormalCard> normalCard;
-	vector<RandomCard> randomCard;
+	vector<Card* > card;
 	vector<EventCard> eventCard;
-	int nCardIdx;//which card are we now
-	int rCardIdx;
-	int eCardIdx;
+	int cardIdx;//which card are we now
+	int eventIdx;
 	//
 	int totalCardNumNeedToProcess = 10;
 	vector<int> cardAppearSeq;
-	// Player PLAYER;
 public:
 	//void setup();//initialization and read card text
-	Game(vector<NormalCard> nCard, vector<RandomCard> rCard, vector<EventCard> eCard, Player& PLAYER);
+	Game(vector<Card* > card, vector<EventCard> eCard, Player& PLAYER);
 	~Game(){}
 	void displayQuestion(); // when achieve the normal ending, return 1
+	void event();
 	void getChoice();
 	void theEnd();//ending
 	int getTotalseq();
