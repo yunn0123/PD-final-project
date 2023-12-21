@@ -108,7 +108,9 @@ void Ending :: restartEnding(Player& player)
     player.value2 = INI_VAL;
     player.value3 = INI_VAL;
     player.value4 = INI_VAL;
-
+    for(int i = 0; i < 4; i++){
+        player.itemList[i] = 0;
+    }
 }
 
 

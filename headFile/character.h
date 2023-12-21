@@ -9,7 +9,7 @@ using namespace std;
 #ifndef CHARACTER_H
 #define CHARACTER_H
 #include "item.h"
-#include "game.h"
+//#include "game.h"
 
 #include "card.h"
 //#include "ending.h"
@@ -27,18 +27,19 @@ class Character {
         Character();
         //virtual void updateValues(int change1, int change2, int change3, int change4) = 0; //更新玩家的數值並印出
         virtual void updateValues(Card* card) = 0;
-        virtual void eventUpdateVal(EventCard& ecard) = 0;
-        int getEnemyChoice();
+        //virtual void eventUpdateVal(EventCard& ecard) = 0;
+        //int getEnemyChoice();
         void catchItem(Item item);
         const bool* getItem(); //return pointer pointed to itemList
 
 };
 
 class Player: public Character{
+    //friend class Game;
+    friend class Ending;
     private:
-
-    public:
         bool itemList[4]; //存拿到的隱藏道具(1: 拿到 0: 未拿到)
+    public:
         bool restart;
         bool end;
         Player();
@@ -46,17 +47,17 @@ class Player: public Character{
         const bool* getItem(); //return pointer pointed to itemList
         //void updateValues(int change1, int change2, int change3, int change4);
         void updateValues(Card* card);
-        void eventUpdateVal(EventCard& ecard);
+        //void eventUpdateVal(EventCard& ecard);
 };
 
-class Enemy: public Character{
-    public:
-        Enemy();
-        //void updateValues(int change1, int change2, int change3, int change4);
-        void updateValues(Card* card);
-        void eventUpdateVal(EventCard& ecard);
-        int getEnemyChoice();
-};
+// class Enemy: public Character{
+//     public:
+//         Enemy();
+//         //void updateValues(int change1, int change2, int change3, int change4);
+//         void updateValues(Card* card);
+//         void eventUpdateVal(EventCard& ecard);
+//         int getEnemyChoice();
+// };
 
 extern Player PLAYER;
 

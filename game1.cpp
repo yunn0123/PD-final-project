@@ -48,8 +48,9 @@ void Game :: displayQuestion()
     }
     else{
         bool hasAllItem = true;
-        for(int i = 0; i < 2; i++){
-            if(PLAYER.itemList[i] == 0){
+        const bool* itemList = PLAYER.getItem();
+        for(int i = 0; i < 4; i++){
+            if(itemList[i] == 0){
                 hasAllItem = false;
                 break;
             }
