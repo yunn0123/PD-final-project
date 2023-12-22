@@ -9,7 +9,7 @@ using namespace std;
 #ifndef ENDING_H
 #define ENDING_H
 #include "character.h"
-//class Player; //forward declaration
+
 
 class Ending {
     public:

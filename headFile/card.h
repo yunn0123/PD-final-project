@@ -8,15 +8,12 @@ using namespace std;
 //
 
 #ifndef CARD_H
-
 #define CARD_H
 
 #include "description.h"
-// #include "character.h"
 #include "item.h"
-//#include "game1.h"
 
-//class Game; // Forward declaration
+
 class Character;
 
 class Card {
@@ -42,8 +39,6 @@ class Card {
         void setDescript(const string des);
         bool getIfRounded();
         virtual void GameCallingPrint() = 0;
-        // virtual void GameCallingPrint() = 0;
-        // virtual void GameCallingPrint() = 0;
 };
 ////////////////////////////////////////////////
 // 一般
