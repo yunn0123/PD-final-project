@@ -28,7 +28,7 @@ int main() {
     vector<Card*> card;
     /////////// store card info //////////////
     //// cardText.txt
-    string cardPath = "textFile/cardText.txt";
+    string cardPath = "sources/textFile/cardText.txt";
     ifstream cardFile(cardPath);
     if (cardFile.is_open()){
         getline(cardFile, line, '\n');
@@ -93,7 +93,7 @@ int main() {
 
     cardFile.close();
     //// cardText.txt
-    string randomCardPath = "textFile/randomCard.txt";
+    string randomCardPath = "sources/textFile/randomCard.txt";
     ifstream randomCardFile(randomCardPath);
 
     if (randomCardFile.is_open()){
@@ -143,7 +143,7 @@ int main() {
     randomCardFile.close();
     //////////////////////////////////////////////
     //// event.txt
-    string eventPath = "textFile/event.txt";
+    string eventPath = "sources/textFile/event.txt";
     ifstream eventFile(eventPath);
     vector<EventCard> eventCard;
     int eventCardCnt = 0, totalQuesInEvent = 0;
