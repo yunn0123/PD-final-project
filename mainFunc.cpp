@@ -187,30 +187,12 @@ int main() {
                 // option
                 getline(eventFile, opt1, ' ');
                 getline(eventFile, opt2, ' ');
-                // val1
-                getline(eventFile, line, ',');
-                val1[0] = atoi(line.c_str());
-                getline(eventFile, line, ',');
-                val1[1] = atoi(line.c_str());
-                getline(eventFile, line, ',');
-                val1[2] = atoi(line.c_str());
-                getline(eventFile, line, ' ');
-                val1[3] = atoi(line.c_str());
-                // val2
-                getline(eventFile, line, ',');
-                val2[0] = atoi(line.c_str());
-                getline(eventFile, line, ',');
-                val2[1] = atoi(line.c_str());
-                getline(eventFile, line, ',');
-                val2[2] = atoi(line.c_str());
-                getline(eventFile, line, ' ');
-                val2[3] = atoi(line.c_str());
                 // next index for choices to point to
                 getline(eventFile, line, ' ');
                 leftChoice = atoi(line.c_str());
                 getline(eventFile, line);
                 rightChoice = atoi(line.c_str());
-                eventDes opt = eventDes(name, question, opt1, opt2, val1, val2);
+                eventDes opt = eventDes(name, question, opt1, opt2);
                 opt.setNextIdex(leftChoice, rightChoice);
                 eventCard[j].setTotalEventOpt(opt);
             } // total question

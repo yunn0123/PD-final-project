@@ -49,7 +49,13 @@ Description :: Description(const string q, const string opt1, const string opt2)
 
 }
 
-eventDes :: eventDes(const string name, const string q, const string opt1, const string opt2, const int val1[4], const int val2[4]) : Description(q, opt1, opt2, val1, val2), name(name){}
+eventDes :: eventDes(const string name, const string q, const string opt1, const string opt2) : Description(q, opt1, opt2), name(name)
+{
+    for(int i = 0; i < 4 ; i++){
+        val1[i] = 0;
+        val2[i] = 0;
+    }
+}
 void eventDes :: setNextIdex(const int left, const int right)
 {
     nextIndex[0] = left;
