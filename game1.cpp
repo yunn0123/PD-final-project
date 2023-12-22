@@ -170,7 +170,6 @@ void Game :: event()
             break;
         }
     }
-
-    eCardIdx ++;
+    if (event.isHappened){ eCardIdx ++; }
 
 }

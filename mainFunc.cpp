@@ -237,10 +237,10 @@ int main() {
             game.getChoice();
             count ++ ;
             //
+            if(PLAYER.restart){break;}
             if (count %5 == 0){
                 game.displayEQuestion();
             }
-            if(PLAYER.restart){break;}
         }
         if(PLAYER.restart){
             continue;
