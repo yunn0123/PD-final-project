@@ -62,7 +62,6 @@ void Game :: displayQuestion()
         else{
             Ending :: normalEnding();
         }
-        //Ending :: normalEnding();
         PLAYER.end = 1;
         exit(0);
     }
@@ -86,13 +85,11 @@ void Game :: getChoice()
 
         if(GetAsyncKeyState(VK_LEFT) && 0x8001){ // choose left
             keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0);
-                // Sleep(50);
             tempCard->nowChoice = 1;
             break;
         }
         if(GetAsyncKeyState(VK_RIGHT) && 0x8001){ // choose right
             keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0);
-                // Sleep(50);
             tempCard->nowChoice = 2;
             break;
         }
@@ -124,21 +121,10 @@ void Game :: event()
     event.isEnterEvent();
     while(event.nowQuestion < event.questionCnt && event.isEvent){
         cout << event.totalEventOpt[event.nowQuestion].getName() << ": " << event.totalEventOpt[event.nowQuestion].question << endl;
+        //
         cout << event.totalEventOpt[event.nowQuestion].option1 << " (左)";
-        // cout << event.totalEventOpt[event.nowQuestion].option1 << " (左)" << " -> 影響 ";
-        // // effect what value, print out
-        // if(event.totalEventOpt[event.nowQuestion].eff1[0]){cout << "經濟 ";}
-        // if(event.totalEventOpt[event.nowQuestion].eff1[1]){cout << "聲望 ";}
-        // if(event.totalEventOpt[event.nowQuestion].eff1[2]){cout << "外交 ";}
-        // if(event.totalEventOpt[event.nowQuestion].eff1[3]){cout << "社會發展 ";}
         cout << endl ;
         cout <<  event.totalEventOpt[event.nowQuestion].option2 << " (右)";
-        // cout <<  event.totalEventOpt[event.nowQuestion].option2 << " (右)" << " -> 影響 ";
-        // // effect what value, print out
-        // if(event.totalEventOpt[event.nowQuestion].eff2[0]){cout << "經濟 ";}
-        // if(event.totalEventOpt[event.nowQuestion].eff2[1]){cout << "聲望 ";}
-        // if(event.totalEventOpt[event.nowQuestion].eff2[2]){cout << "外交 ";}
-        // if(event.totalEventOpt[event.nowQuestion].eff2[3]){cout << "社會發展 ";}
         cout << endl;
         // update value and item
         while(true){
@@ -152,7 +138,6 @@ void Game :: event()
                     PLAYER.catchItem(event.item);
                 }
                 //
-                // PLAYER.eventUpdateVal(event);
                 event.nowQuestion = event.totalEventOpt[event.nowQuestion].getLeftInd();
                 break;
             }
@@ -165,7 +150,6 @@ void Game :: event()
                     PLAYER.catchItem(event.item);
                 }
                 //
-                // PLAYER.eventUpdateVal(event);
                 event.nowQuestion = event.totalEventOpt[event.nowQuestion].getRightInd();
                 break;
             }

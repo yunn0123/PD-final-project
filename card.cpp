@@ -92,7 +92,7 @@ void RandomCard :: GameCallingPrint()
 
 }
 ////////////////////////////////////////////////
-// ???(?s??)
+// event
 EventCard :: EventCard() {}
 EventCard :: EventCard(const string name, const int quesCnt) : Card(name, quesCnt)
 {

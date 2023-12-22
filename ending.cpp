@@ -15,28 +15,6 @@ void Ending :: checkForEnding(Player& player)
         restartEnding(player);
         return;
     }
-
-    // const string mothershipModel = "母艦模型";
-    // const string trainModel = "火車模型";
-    // if (hasSpecificItem(player, mothershipModel) && hasSpecificItem(player, trainModel)) {
-    //     hiddenEnding();
-    //     return;
-    // }
-
-    // bool hasAllItem = true;
-    // for(int i = 0; i < 2; i++){
-    //     if(player.itemList[i] == 0){
-    //         hasAllItem = false;
-    //         break;
-    //     }
-    // }
-    // if(hasAllItem){
-    //     hiddenEnding();
-    //     return;
-    // }
-
-
-    //
 }
 // 檢查玩家數值是否過高或過低
 bool Ending :: isValuesBalanced(Player& player, int minVal, int maxVal)
@@ -88,15 +66,6 @@ bool Ending :: isValuesBalanced(Player& player, int minVal, int maxVal)
     return restartGame;
 }
 
-//檢查是否有特定的道具
-// bool Ending::hasSpecificItem(Player& player, const string itemName) {
-//     for (const Item item : player.getItem()) {
-//         if (item.getName() == itemName) {
-//             return true;
-//         }
-//     }
-//     return false;
-// }
 
 // 重啟結局
 void Ending :: restartEnding(Player& player)
